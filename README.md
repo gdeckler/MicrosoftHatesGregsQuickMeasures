@@ -23,3 +23,4 @@ An external tool for creating quick measures in Power BI Desktop or tabular mode
 - Same thing if you use a column from some table you shouldn't
 - Won't cause issues with measure and column creation, you just might get some DAX errors
 - No, it is not open source
+- Original code based on Kay Unkroth's Metadata Translator
