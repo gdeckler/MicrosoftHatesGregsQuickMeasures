@@ -7,8 +7,9 @@ An external tool for creating quick measures in Power BI Desktop or tabular mode
 3. Go to where you extracted the files
 4. Copy <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong>
 5. Paste <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong> to your Power BI Desktop "External Tools" directory (<strong>C:\Program Files (x86)\Common Files\Microsoft Shared\Power BI Desktop\External Tools</strong>)
-6. Launch Power BI and go to the "<strong>External Tools</strong>" tab
-7. Click "<strong>Microsoft Hates Greg</strong>" icon
+6. Open <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong> in Notepad and edit the <strong>Path</strong> element to point to the executable file
+7. Launch Power BI and go to the "<strong>External Tools</strong>" tab
+8. Click "<strong>Microsoft Hates Greg</strong>" icon
 
 ## How to Use
 1. Choose a column in the <strong>Fields</strong> pane
