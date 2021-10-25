@@ -5,13 +5,13 @@ Released: October 6th, 2021
 - 30+ formulas
 
 ## Beta
-Planned Release: December 2021
+Planned Release: December 2021<br/>
 Planned Features:
 - Code clean-up and refactoring
 - 30 additional formulas
 
 ## Gamma
-Planned Release: February 2022
+Planned Release: February 2022<br/>
 Planned Features:
 - Remove initial column selection pane
 - Consolidate to a single, dynamic measure configuration pane
@@ -20,7 +20,7 @@ Planned Features:
 - Additional formulas
 
 ## Delta
-Planned Release: June 2022
+Planned Release: June 2022<br/>
 Planned Features:
 - Include DAX Template JSON support from powerbi.tips
 - Refactor all DAX formulas and code to use DAX template JSON
