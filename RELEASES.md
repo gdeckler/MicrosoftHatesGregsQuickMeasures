@@ -15,8 +15,8 @@ Features and Fixes<br/>
 -	Fixed bug in Lookup Min/Max not switch between measures and columns
 -	Fixed minor DAX code error in Week Ending and Week Starting
 -	45 New Formulas
--- WEEKDAY
--- WEEKNUM
+- WEEKDAY
+- WEEKNUM
 - FIND or SEARCH
 - Near (Distance)
 - Near (Square)
