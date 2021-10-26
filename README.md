@@ -2,7 +2,7 @@
 An external tool for creating quick measures in Power BI Desktop or tabular model.
 <img src="MSHGQM.png" />
 ## Installation
-1. Download the <strong>MicrsoftHatesGregsQuickMeasures.zip</strong> file
+1. Download the <strong>MSHGQM_Beta.zip</strong> file
 2. Extract the files in the .zip to some location, such as <strong>C:\Program Files (x86)\MicrosoftHatesGregsQuickMeasures</strong>
 3. Go to where you extracted the files
 4. Copy <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong>
