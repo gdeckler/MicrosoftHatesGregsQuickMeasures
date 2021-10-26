@@ -1,5 +1,5 @@
 # MicrosoftHatesGregsQuickMeasures
-An external tool for creating quick measures in Power BI Desktop or tabular model.
+An external tool for creating quick measures or columns in Power BI Desktop or tabular model.
 <img src="MSHGQM.png" />
 ## Installation
 1. Download the <strong>MSHGQM_Beta.zip</strong> file
