@@ -12,7 +12,7 @@ Planned Features:
 
 Actual Release:   October 25th, 2021<br/>
 Features and Fixes<br/>
--	Fixed bug in Lookup Min/Max not switch between measures and columns
+-	Fixed bug in Lookup Min/Max not switch between measures and columns - Note on 11/8/2021 uploaded a minor DAX fix for these
 -	Fixed minor DAX code error in Week Ending and Week Starting
 -	45 New Formulas
 - WEEKDAY
