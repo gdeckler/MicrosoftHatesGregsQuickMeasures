@@ -87,7 +87,7 @@ Features and Fixes<br/>
 - Added Notes and Links pane
 - Added custom measures JSON file support
 - Added the ability to create you very own custom quick measures!
-- 18 additional formulas
+- 18 additional formulas (Now over 100 quick measures!!)
 - BINOM.DIST (Simple)
 - BINOM.DIST.CUMULATIVE (Simple)
 - BINOM.INV (Simple)
@@ -106,6 +106,7 @@ Features and Fixes<br/>
 - SVG Blinking Dot
 - Dynamic Slicer Title
 - Measure Totals, The Final Word
+- Custom Measure Demo
 
 ## Delta
 Planned Release:  June 2022<br/>
