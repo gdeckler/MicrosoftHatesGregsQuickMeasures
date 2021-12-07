@@ -110,8 +110,11 @@ Features and Fixes<br/>
 
 ## Delta
 Planned Release:  June 2022<br/>
-Planned Features: 
+Possible Features: 
 - Include DAX Template JSON support from powerbi.tips?
 - Refactor all DAX formulas and code to use DAX template JSON?
 - Add editor for creating new custom measures?
+- Add a table selector interface?
+- Add color formatting to DAX source code?
+- Add intellisense?
 - Additional formulas
