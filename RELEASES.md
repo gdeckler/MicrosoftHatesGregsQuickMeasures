@@ -71,9 +71,46 @@ Planned Features:
 - Refactor DAX formulas accordingly
 - Additional formulas
 
+Actual Release:   December 6th, 2021<br/>
+Features and Fixes<br/>
+- Removed initial column selection pane
+- Consolidated to a single, dynamic measure configuration pane
+- Preserved table name and column name when choosing a column in the column selection pane
+- Refactored DAX formulas accordingly
+- Added YouTube channel link
+- Added GitHub link replacing Panic button
+- Updated icon
+- Expanded DAX source code text box
+- Added ability to edit creation table
+- Added ability to edit custom format string
+- Added measure creation confirmation dialog
+- Added Notes and Links pane
+- Added custom measures JSON file support
+- Added the ability to create you very own custom quick measures!
+- 18 additional formulas
+- BINOM.DIST (Simple)
+- BINOM.DIST.CUMULATIVE (Simple)
+- BINOM.INV (Simple)
+- NEGBINOM.DIST (Simple)
+- NEGBINOM.DIST.CUMULATIVE (Simple)
+- Days in Month
+- DAX 445 Calendar
+- Count of Items in List
+- The Replacements
+- CAPS!
+- Text Duration Converter
+- Keywords
+- Text Accumulator
+- Decminal Days to Duration
+- Open Tickets
+- SVG Blinking Dot
+- Dynamic Slicer Title
+- Measure Totals, The Final Word
+
 ## Delta
 Planned Release:  June 2022<br/>
 Planned Features: 
-- Include DAX Template JSON support from powerbi.tips
-- Refactor all DAX formulas and code to use DAX template JSON
+- Include DAX Template JSON support from powerbi.tips?
+- Refactor all DAX formulas and code to use DAX template JSON?
+- Add editor for creating new custom measures?
 - Additional formulas
