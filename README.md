@@ -2,7 +2,7 @@
 An external tool for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
 <img src="MSHGQM_Gamma.png" />
 ## Installation
-1. Download the <strong>MSHGQM_Beta.zip</strong> file
+1. Download the <strong>MSHGQM_Gamma.zip</strong> file
 2. Extract the files in the .zip to some location, such as <strong>C:\Program Files (x86)\MicrosoftHatesGregsQuickMeasures</strong>
 3. Go to where you extracted the files
 4. Copy <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong>
