@@ -12,11 +12,10 @@ An external tool for creating quick measures or columns in Power BI Desktop or t
 8. Click "<strong>Microsoft Hates Greg</strong>" icon
 
 ## How to Use
-1. Choose a column in the <strong>Fields</strong> pane
-2. Choose a quick measure in the <strong>Calculations</strong> pane
-3. In the quick measure's configuration pane, configure the measure
-4. Click "<strong>Generate DAX</strong>"
-5. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen table (<strong>Fields</strong> pane) in your model
+1. Choose a quick measure in the <strong>Calculations</strong> pane
+2. In the quick measure's configuration pane, configure the measure
+3. Click "<strong>Generate DAX</strong>"
+4. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen table (<strong>Fields</strong> pane) in your model
 
 ## Notes
 - There are not a lot of guard rails
