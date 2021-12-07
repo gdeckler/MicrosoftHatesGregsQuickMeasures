@@ -15,7 +15,7 @@ An external tool for creating quick measures or columns in Power BI Desktop or t
 1. Choose a quick measure in the <strong>Calculations</strong> pane
 2. In the quick measure's configuration pane, configure the measure
 3. Click "<strong>Generate DAX</strong>"
-4. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen table (<strong>Fields</strong> pane) in your model
+4. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen Table
 
 ## Start Creating Your Own Quick Measures
 1. Create a JSON file with the appropriate fields. More information coming otherwise find the <strong>suppotedmeasures.json</strong> file for the format
