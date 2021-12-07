@@ -117,4 +117,5 @@ Possible Features:
 - Add a table selector interface?
 - Add color formatting to DAX source code?
 - Add intellisense?
+- Add custom unit conversion measures?
 - Additional formulas
