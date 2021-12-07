@@ -17,6 +17,12 @@ An external tool for creating quick measures or columns in Power BI Desktop or t
 3. Click "<strong>Generate DAX</strong>"
 4. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen table (<strong>Fields</strong> pane) in your model
 
+## Start Creating Your Own Quick Measures
+1. Create a JSON file with the appropriate fields. More information coming otherwise find the <strong>suppotedmeasures.json</strong> file for the format
+2. Launch MSHGQM and set the <strong>Custom File</strong> property
+3. Click the <strong>Set</strong> button
+4. Close and relaunch MSHGQM to load any custom measures
+
 ## Notes
 - There are not a lot of guard rails
 - There is no data type checking for example so if you try to sum a text column, that's on you. 
