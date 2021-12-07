@@ -23,6 +23,13 @@ An external tool for creating quick measures or columns in Power BI Desktop or t
 3. Click the <strong>Set</strong> button
 4. Close and relaunch MSHGQM to load any custom measures
 
+## Updates for Quick Measures
+Now that quick measures can be released without recompiling, I will be releasing the supportedmeasures.json file separately. To update the quick measures in your tool simply do the following:
+1. Download the latest supportedmeasures.json file
+2. Close MSHGQM
+3. Locate the supportedmeasures.json file in the <strong>Resources</strong> directory where you installed MSHGQM
+4. Replace the file with the new version and then re-open MSHGQM
+
 ## Notes
 - There are not a lot of guard rails
 - There is no data type checking for example so if you try to sum a text column, that's on you. 
