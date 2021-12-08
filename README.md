@@ -3,7 +3,7 @@ An external tool for creating quick measures or columns in Power BI Desktop or t
 <img src="MSHGQM_Gamma.png" />
 ## Installation
 1. Download the <strong>MSHGQM_Gamma.zip</strong> file
-2. Extract the files in the .zip to some location, such as <strong>C:\Program Files (x86)\MicrosoftHatesGregsQuickMeasures</strong>
+2. Extract the files in the .zip to some location, such as <strong>C:\Program Files (x86)\MicrosoftHatesGregsQuickMeasures</strong> I right-click the zip file and use Open with and then Windows Explorer and then you can simply copy the top directory and paste it to a new location.
 3. Go to where you extracted the files
 4. Copy <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong>
 5. Paste <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong> to your Power BI Desktop "External Tools" directory (<strong>C:\Program Files (x86)\Common Files\Microsoft Shared\Power BI Desktop\External Tools</strong>)
