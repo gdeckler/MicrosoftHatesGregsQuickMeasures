@@ -111,11 +111,16 @@ Features and Fixes<br/>
 ## Delta
 Planned Release:  June 2022<br/>
 Possible Features: 
+- Add editor for creating new custom measures
+- Add a table selector interface in DAX Source pane
+- Add a "reload" button for Calculations pane
+- Add a "reload" button for the Model
+- Add a "Raw" button to view raw code before replacements happen
+- Add a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
+- Add Annotations?
+- Fix expansion of Notes pane
 - Include DAX Template JSON support from powerbi.tips?
-- Refactor all DAX formulas and code to use DAX template JSON?
-- Add editor for creating new custom measures?
-- Add a table selector interface?
 - Add color formatting to DAX source code?
 - Add intellisense?
-- Add custom unit conversion measures?
+- Add ability to add custom unit conversion types?
 - Additional formulas
