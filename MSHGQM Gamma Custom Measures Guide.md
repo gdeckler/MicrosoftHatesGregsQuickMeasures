@@ -10,7 +10,7 @@ This file contains information for the creation of custom measures in MSHGQM Gam
   }
 ]
 ```
-What goes inside the \<custom measure definition\> are attribute/value pairs. A few are required, the rest are optional. Note that <strong>Configuration</strong>, <strong>MeasureId</strong> and <strong>MeasureGroup</strong> are all required and should all have the same value. Standard JSON format applies. Don't forget to escape double quotes and other characters inside Value's and mind your end of line commas. All variables have two underscores in front of and after the variable text.
+What goes inside the <strong>\<custom measure definition\></strong> are attribute/value pairs. A few are required, the rest are optional. Note that <strong>Configuration</strong>, <strong>MeasureId</strong> and <strong>MeasureGroup</strong> are all required and should all have the same value. Standard JSON format applies. Don't forget to escape double quotes and other characters inside Value's and mind your end of line commas. All variables have two underscores in front of and after the variable text.
 ```
 "Attribute": "Value",
 ...
