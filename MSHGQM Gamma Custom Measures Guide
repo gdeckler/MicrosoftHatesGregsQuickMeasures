@@ -11,7 +11,7 @@ This file contains information for the creation of custom measures in MSHGQM Gam
 What goes inside the <custom measure definition> are attribute/value pairs. A few are required, the rest are optional. 
 Note that Configuration, MeasureId and MeasureGroup are all required and should all have the same value.
 
-<strong>Attribute                       Required  Value                                                           Variables</strong>
+<strong>Attribute</strong>                       Required  Value                                                           Variables
 Configuration                   Yes       Defines the group for the measure in Calculations pane          None
 
 MeasureId                       Yes       Defines the group for the measure in Calculations pane          None
