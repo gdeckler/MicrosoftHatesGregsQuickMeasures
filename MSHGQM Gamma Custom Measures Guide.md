@@ -1,3 +1,4 @@
+:MSHGQM Gamma Custom Measure Guide
 This file contains information for the creation of custom measures in MSHGQM Gamma. You can create your own JSON file in the following general format:<br/>
 
 ```
