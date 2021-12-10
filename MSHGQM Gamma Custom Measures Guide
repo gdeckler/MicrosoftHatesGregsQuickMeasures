@@ -52,7 +52,7 @@ AggregationLabel                No        Label for first corresponding aggregat
 
 Aggregation                     No        Displays aggregation dropdown box. Any value will make the      __AGGREGATION__, __XAGGREGATION__
                                           dropdown box appear as well as the correponding label which     __AGGREGATION1__, __XAGGREGATION1__ - 
-                                          is the default label unless the corresponding label             __AGGREGATION10__, XAGGREGATION10__
+                                          is the default label unless the corresponding label             __AGGREGATION10__, __XAGGREGATION10__
                                           attribute is configured (AggregationLabel) There are 11 of 
                                           these, Aggregation, Aggregation1 - Aggregation10. 
                                           __AGGREGATION__ is replaced with the corresponding DAX 
