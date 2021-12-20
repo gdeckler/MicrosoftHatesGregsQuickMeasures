@@ -117,6 +117,8 @@ Possible Features:
 - Add a "reload" button for the Model
 - Add a "Raw" button to view raw code before replacements happen
 - Add a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
+- Add support for measures as well as columns when choosing a column
+- More spacing between aggregation elements
 - Add Annotations?
 - Fix expansion of Notes pane
 - Include DAX Template JSON support from powerbi.tips?
