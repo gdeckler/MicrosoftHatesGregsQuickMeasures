@@ -120,7 +120,7 @@ Possible Features:
 - Add support for measures as well as columns when choosing a column
 - More spacing between aggregation elements
 - Add Ascending/Descending control
-- Add True/False control
+- Add True/False control or Yes/No control
 - Add ability to control tooltips
 - Add Annotations?
 - Fix expansion of Notes pane
