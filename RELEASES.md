@@ -121,6 +121,7 @@ Possible Features:
 - More spacing between aggregation elements
 - Add Ascending/Descending control
 - Add True/False control or Yes/No control
+- Add Days, Months, Quarters, Years control
 - Add ability to control tooltips
 - Add Annotations?
 - Fix expansion of Notes pane
