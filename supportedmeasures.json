@@ -1,0 +1,3797 @@
+[
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Distance Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DistanceFrom": "Visible",
+    "DistanceTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __DISTANCECONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for distance.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"    
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Volume Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "VolumeFrom": "Visible",
+    "VolumeTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __VOLUMECONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for volume.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Mass Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "MassFrom": "Visible",
+    "MassTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __MASSCONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for mass.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Area Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "AreaFrom": "Visible",
+    "AreaTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __AREACONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for area.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"   
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Density Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DensityFrom": "Visible",
+    "DensityTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __DENSITYCONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for density.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Velocity Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "VelocityFrom": "Visible",
+    "VelocityTo": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __UnitConversion = __VELOCITYCONVERSIONFACTOR__
+RETURN
+    __Value * __UnitConversion",
+    "Notes": "Unit converter for velocity.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Unit Conversion",
+    "MeasureId": "Unit Conversion",
+    "MeasureGroup": "Unit Conversion",
+    "DisplayName": "Temperature Unit Converter",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "TempFrom": "Visible",
+    "TempTo": "Visible",
+    "DAXCode": 
+" 
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+RETURN
+    (__Value__TEMPCONVERSIONFACTOR__",
+    "Notes": "Unit converter for temperature.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unit-Conversion/td-p/2056906",  
+    "Hyperlink1Text": "Quick Measure Gallery"    
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Text to Table",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Separator",
+    "Parameter": ",",
+    "DAXCode": 
+" 
+    VAR __Column = __AGGREGATION__(__COLUMN__)
+    VAR __Text = SUBSTITUTE(__Column,\"__PARAM__\",\"|\")
+    VAR __Length = PATHLENGTH(__Column)
+    VAR __Table = 
+        ADDCOLUMNS(
+            GENERATESERIES(1,__Length,1),
+            \"__Column\",PATHITEM(__Text,[Value],TEXT)
+        )
+RETURN
+    COUNTROWS(__Table)",
+    "Notes": "Converts text to a table with rows identified by the separator. This measure performs a COUNTROWS at the end since measures cannot return tables. However, the __Table variable contains the table version of the text and you can use that for your own calculations.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Text-to-Table/m-p/1312929#M594",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "TRIMMEAN",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Percent",
+    "Parameter": ".2",
+    "DAXCode": 
+"
+    VAR __Table = 
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"__Rank\",RANKX('__TABLENAME__',[__COLUMNNAME__])
+        )
+    VAR __Percent = __PARAM__
+    VAR __Count = COUNTROWS(__Table)
+    VAR __Trim = MROUND(__Count * __Percent,2) / 2
+    VAR __MaxRank = MAXX(__Table,[__Rank])
+    VAR __MinRank = MINX(__Table,[__Rank])
+    VAR __RanksTable =
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                GROUPBY(
+                    __Table,
+                    [__Rank],
+                    \"__Count\",COUNTX(CURRENTGROUP(),[__COLUMNNAME__]),
+                    \"__Value\",MAXX(CURRENTGROUP(),[__COLUMNAME__])
+                ),
+                \"CumulativeBottomCount\",COUNTROWS(FILTER(__Table,[__Rank] >= EARLIER([__Rank]))),
+                \"CumulativeTopCount\",COUNTROWS(FILTER(__Table,[__Rank] <= EARLIER([__Rank])))
+            ),
+            \"__BottomWhile\",__Trim - [CumulativeBottomCount],
+            \"__TopWhile\",__Trim - [CumulativeTopCount]
+        )
+    VAR __MinBottom = MAXX(FILTER(__RanksTable,[__BottomWhile]<=0),[__BottomWhile])
+    VAR __MinTop = MAXX(FILTER(__RanksTable,[__TopWhile]<=0),[__TopWhile])
+    VAR __FinalBottomRankTable = 
+        ADDCOLUMNS(
+            FILTER(__RanksTable,[__BottomWhile]>=__MinBottom),
+            \"__Product\",IF([__BottomWhile]>=0,[__Count]*[__Value],([__Count] + [__BottomWhile]) * [__Value])
+        )
+    VAR __FinalTopRankTable =
+        ADDCOLUMNS(
+            FILTER(__RanksTable,[__TopWhile]>=__MinTop),
+            \"__Product\",IF([__TopWhile]>=0,[__Count]*[__Value],([__Count] + [__TopWhile]) * [__Value])
+        )
+    VAR __Bottom = SUMX(__FinalBottomRankTable,[__Product])
+    VAR __Top = SUMX(__FinalTopRankTable,[__Product])
+RETURN
+    DIVIDE(
+        SUMX(__Table,[__COLUMNNAME__]) - __Bottom - __Top,
+        __Count - 2 * __Trim
+    )",
+    "Notes": "An equivalent for Excel's TRIMMEAN function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/TRIMMEAN/td-p/1074075",  
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://support.microsoft.com/en-us/office/trimmean-function-d90c9878-a119-4746-88fa-63d988f511d3",  
+    "Hyperlink2Text": "Excel TRIMMEAN Function"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "GAMMA",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __zInput = __AGGREGATION__(__COLUMN__)
+    VAR __p =
+        {
+            (0, 676.5203681218851),
+            (1, -1259.1392167224028),
+            (2, 771.32342877765313),
+            (3, -176.61502916214059),
+            (4, 12.507343278686905),
+            (5, -0.13857109526572012),
+            (6, 9.9843695780195716e-6),
+            (7, 1.5056327351493116e-7)
+        }
+    VAR __EPSILON = 1e-7
+    VAR __z = IF(__zInput < 0.5, 1 - __zInput - 1,__zInput - 1)
+    VAR __pTable = 
+        ADDCOLUMNS(
+            __p,
+            \"x\",[Value2] / (__z + [Value1] + 1)
+        )
+    VAR __x = 0.99999999999980993 + SUMX(__pTable,[x])
+    VAR __t = __z + COUNTROWS(__pTable) - .5
+    VAR __y = 
+        IF(
+            __zInput < 0.5,
+            PI() / (SIN(PI() * __zInput) * SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x),
+            SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x
+        )
+RETURN
+    __y",
+    "Notes": "A replacement for Excel's GAMMA function.'",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/GAMMA/m-p/1081907#M510",  
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://support.microsoft.com/en-us/office/gamma-function-ce1702b1-cf55-471d-8307-f83be0fc5297",  
+    "Hyperlink2Text": "Excel GAMMA Function"    
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Chelsie Eiden's Duration",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Duration": "Visible",
+    "Format": "00:00:00",
+    "DAXCode":
+"
+\/\/ Duration formatting 
+\/\/ * @konstatinos 1/25/2016
+\/\/ * Given a number of seconds, returns a format of \"hh:mm:ss\"
+\/\/
+  \/\/ We start with a duration in number of seconds
+  VAR __SecondsDuration = __AGGREGATION__(__COLUMN__) * __DURATIONCONVERSIONFACTOR__ 
+  VAR __Sign = SIGN(__SecondsDuration)
+  VAR __Duration = ABS(__SecondsDuration)
+  \/\/ There are 3,600 seconds in an hour
+  VAR __Hours = INT ( __Duration / 3600)
+  \/\/ There are 60 seconds in a minute
+  VAR __Minutes = INT ( MOD( __Duration - ( __Hours * 3600 ),3600 ) / 60)
+  \/\/ Remaining seconds are the remainder of the seconds divided by 60 after subtracting out the hours 
+  VAR __Seconds = ROUNDUP(MOD ( MOD( __Duration - ( __Hours * 3600 ),3600 ), 60 ),0) \/\/ We round up here to get a whole number
+RETURN
+  \/\/ We put the hours, minutes and seconds into the proper \"place\"
+  (__Hours * 10000 + __Minutes * 100 + __Seconds) * __Sign",
+    "Notes": "@konstantinos 1/25/2016, Given a duration, converts to seconds and returns a format of hh:mm:ss in a manner that can be aggregated and shown in visuals using a custom format string created by Chelsie Eiden. Remember to set Display units to None.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Chelsie-Eiden-s-Duration/m-p/793639#M389",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Cthulhu",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Values Column",
+    "Column": "Choose Column",
+    "Column1Label": "Index Column",
+    "Column1": "Choose Index",
+    "DAXCode":
+"  
+    VAR __Index = __AGGREGATION__(__COLUMN1__)
+    VAR __Group = __AGGREGATION__(__COLUMN__)
+    VAR __Table1 = FILTER(ALL('__TABLENAME__'),[__COLUMNNAME__] = __Group && [__COLUMN1NAME__] < __Index)
+    VAR __Table2 = 
+        ADDCOLUMNS(
+            __Table1,
+            \"__Diff\",
+                [__COLUMN1NAME__] - 
+                    MAXX(
+                        FILTER(
+                            ALL('__TABLENAME__'),
+                            [__COLUMN1NAME__] < EARLIER([__COLUMN1NAME__]) && [__COLUMNNAME__] = EARLIER([__COLUMNNAME__])
+                        ),
+                        [__COLUMN1NAME__])
+                    )
+    VAR __Max = MAXX(__Table2,[__COLUMN1NAME__])
+    VAR __MaxStart = MAXX(FILTER(__Table2,[__Diff] > 1),[__COLUMN1NAME__])
+    VAR __Table3 = FILTER(__Table2,[__COLUMN1NAME__] >= __MaxStart)
+RETURN
+    SWITCH(TRUE(),
+        ISBLANK(__Max),1,
+        __Max = __Index - 1,COUNTROWS(__Table3) + 1,
+        1
+    )",
+    "Notes": "A counter that resets when a change is detected. The Values column is what is used for detecting changes. Set your Index column to a column that can define previous. Both columns should be in the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Cthulhu/m-p/509739#M211",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With MOD",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Divisor",
+    "Parameter": "2",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __Divisor = __PARAM__
+RETURN
+    __Value - __Divisor * INT( DIVIDE(__Value, __Divisor) )",
+    "Notes": "Fixes the peculiar issue where MOD refuses to work with decimal numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/To-bleep-with-MOD/td-p/1081806",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Duration To Seconds",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __SubText = SUBSTITUTE(__AGGREGATION__(__COLUMN__),\":\",\"|\")
+    VAR __Hours = VALUE( PATHITEM( __SubText, 1) ) * 3600
+    VAR __Minutes = VALUE( PATHITEM(__SubText,2) ) * 60
+    VAR __Seconds = VALUE( PATHITEM(__SubText,3) ) * 1
+RETURN
+    __Hours + __Minutes + __Seconds",
+    "Notes": "Converts hh:mm:ss to seconds.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Duration-to-Seconds-Converter/td-p/342279",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Week Ending",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date Column",
+    "Column": "Choose Date Column",
+    "WeekDayReturn": "Visible",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+    VAR __WeekStarts = __WEEKDAYRETURN__
+    VAR __WeekDate = 
+        MINX(
+            FILTER(
+                ADDCOLUMNS(
+                    GENERATESERIES(__Date,__Date + 6,1),
+                    \"__Weekday\",WEEKDAY([Value],__WeekStarts)
+                ),
+                [__Weekday] = 7
+            ), [Value]
+        )
+RETURN
+    __WeekDate",
+    "Notes": "Calculates the end of the week.
+Return type:
+1:  1 (Sun) - 7 (Sat)
+2:  1 (Mon) - 7 (Sun)
+3:  0 (Mon) - 7 (Sun)
+11: 1 (Mon) - 7 (Sun)
+12: 1 (Tue) - 7 (Mon)
+13: 1 (Wed) - 7 (Tue)
+14: 1 (Thu) - 7 (Wed)
+15: 1 (Fri) - 7 (Thu)
+16: 1 (Sat) - 7 (Fri)
+17: 1 (Sun) - 7 (Sat)",    
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Week-Ending/m-p/389293#M120",  
+    "Hyperlink1Text": "Quick Measure Gallery"
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Week Starting",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date Column",
+    "Column": "Choose Date Column",
+    "WeekDayReturn": "Visible",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+    VAR __WeekStarts = __WEEKDAYRETURN__
+    VAR __WeekDate = 
+        MINX(
+            FILTER(
+                ADDCOLUMNS(
+                    GENERATESERIES(__Date - 6,__Date,1),
+                    \"__Weekday\",WEEKDAY([Value],__WeekStarts)
+                ),
+                [__Weekday] = 1
+            ), [Value]
+        )
+RETURN
+    __WeekDate",
+    "Notes": "Calculates the start of the week.
+Return type:
+1:  1 (Sun) - 7 (Sat)
+2:  1 (Mon) - 7 (Sun)
+3:  0 (Mon) - 7 (Sun)
+11: 1 (Mon) - 7 (Sun)
+12: 1 (Tue) - 7 (Mon)
+13: 1 (Wed) - 7 (Tue)
+14: 1 (Thu) - 7 (Wed)
+15: 1 (Fri) - 7 (Thu)
+16: 1 (Sat) - 7 (Fri)
+17: 1 (Sun) - 7 (Sat)",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Week-Starting/m-p/391487#M123",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Replace From Right",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date Column",
+    "Column": "Choose Date Column",
+    "ParameterLabel": "Replace Text",
+    "Parameter": "Replace this text",
+    "Parameter1Label": "Replacement Text",
+    "Parameter1": "Replace with this text",
+    "Parameter2Label": "Instance",
+    "Parameter2": 1,
+    "DAXCode": 
+"
+    VAR __Replace = \"__PARAM__\"
+    VAR __Replacement = \"__PARAM1__\"
+    VAR __Instance = __PARAM2__
+    VAR __Text = __AGGREGATION__(__COLUMN__)
+    VAR __Instances = LEN(__Text) - LEN(SUBSTITUTE(__Text,__Replace,\"\"))
+    VAR __ReplacedText = 
+        IF(
+            __Instance > __Instances,
+            __Text,
+            SUBSTITUTE(__Text,__Replace,__Replacement,__Instances - __Instance + 1)
+        )
+RETURN
+    __ReplacedText",
+    "Notes": "Replaces text instances evaluating from right to left.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Replace-From-Right/td-p/1394592",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With MEDIAN",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    CONVERT(MEDIAN(__COLUMN__),INTEGER)",
+    "Notes": "Fixes the odd issue where MEDIAN wants to return a variant and thus doesn't work.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/To-bleep-With-MEDIAN/td-p/1322755",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Mode",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table = SUMMARIZE(__COLUMN__,\"__Count\",COUNTROWS('__TABLENAME__'))
+    VAR __Max = MAXX(FILTER(__Table, [__Count] <> BLANK()),[__Count])
+    VAR __Mode = MAXX(FILTER(__Table, [__Count] = __Max),[__COLUMNNAME__])
+RETURN
+    __Mode",
+    "Notes": "Determines the most frequent number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Mode-Single-Column/m-p/359150",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "KURT",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __mean = AVERAGEX(ALL('__TABLENAME__'),[__COLUMNNAME__])
+    VAR __stddev = STDEVX.P(ALL('__TABLENAME__'),[__COLUMNNAME__])
+    VAR __n = COUNTROWS(ALL('__TABLENAME__'))
+    VAR __table = ADDCOLUMNS('__TABLENAME__',\"__skew\",POWER(([__COLUMNNAME__] - __mean), 4))
+    VAR __sum = SUMX(__table, [__skew])
+RETURN
+    DIVIDE(__sum, POWER(__stddev, 4), 0) * DIVIDE(1, __n, 0)",
+    "Notes": "An equivalent of Excel's KURT function. Calculates the Kurtosis of the data.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Kurtosis/m-p/625111#M308",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With STARTOFYEAR",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    DATE(YEAR(__Date),1,1)",
+    "Notes": "A better STARTOFYEAR that returns the actual start of a year. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With ENDOFYEAR",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    DATE(YEAR(__Date),12,31)",
+    "Notes": "A better ENDOFYEAR that returns the actual end of a year. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With NEXTDAY",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    __Date + 1",
+    "Notes": "A better NEXTDAY that returns the actual next day. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"    
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With PREVIOUSDAY",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    __Date - 1",
+    "Notes": "A better PREVIOUSDAY that returns the actual previous day. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With STARTOFMONTH",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+    VAR __Month = MONTH(__Date)
+    VAR __Year = YEAR(__Date)
+RETURN
+    DATE(__Year,__Month,1)",
+    "Notes": "A better STARTOFMONTH that returns the actual start of a month. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"  
+  },
+  {
+    "Configuration": "To Hell With",
+    "MeasureId": "To Hell With",
+    "MeasureGroup": "To Hell With",
+    "DisplayName": "To Hell With ENDOFMONTH",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    EOMONTH(__Date,0)",
+    "Notes": "A better ENDOFMONTH that returns the actual end of a month. If you want it as a single row table, just wrap the return in { }.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Community-Blog/To-bleep-With-Time-Intelligence/ba-p/1260000",  
+    "Hyperlink1Text": "To Hell with Time Intelligence"  
+  },
+  {
+    "Configuration": "Lookup",
+    "MeasureId": "Lookup",
+    "MeasureGroup": "Lookup",
+    "DisplayName": "Lookup Min",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",    
+    "Column1Label": "Lookup Column",
+    "Column1": "Choose Column",    
+    "DAXCode": 
+"
+    VAR __Table = 
+        SUMMARIZE(
+            '__TABLE1NAME__',
+            [__COLUMN1NAME__],
+            \"__Value\",__AGGREGATION__(__COLUMN__)
+        )
+    VAR __Min = MINX(__Table,[__Value])
+RETURN
+    MINX(FILTER(__Table,[__Value] = __Min),[__COLUMN1NAME__])",
+    "Notes": "Returns the Lookup Column value that corresponds to minimum value of the designated aggregation of the Value Column. Both columns should come from the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Lookup-Min-Max/td-p/985814",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Lookup",
+    "MeasureId": "Lookup",
+    "MeasureGroup": "Lookup",
+    "DisplayName": "Lookup Max",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",    
+    "Column1Label": "Lookup Column",
+    "Column1": "Choose Column",  
+    "DAXCode": 
+"
+    VAR __Table = 
+        SUMMARIZE(
+            '__TABLE1NAME__',
+            [__COLUMN1NAME__],
+            \"__Value\",__AGGREGATION__(__COLUMN__)
+        )
+    VAR __Max = MAXX(__Table,[__Value])
+RETURN
+    MAXX(FILTER(__Table,[__Value] = __Max),[__COLUMN1NAME__])",
+    "Notes": "Returns the Lookup Column value that corresponds to maximum value of the designated aggregation of the Value Column. Both columns should come from the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Lookup-Min-Max/td-p/985814",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Lookup",
+    "MeasureId": "Lookup",
+    "MeasureGroup": "Lookup",
+    "DisplayName": "Lookup Min Simple",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",    
+    "Column1Label": "Lookup Column",
+    "Column1": "Choose Column", 
+    "DAXCode": 
+"
+    CALCULATE(MIN(__COLUMN1__),__COLUMN__ = MIN(__COLUMN__))",
+    "Notes": "Returns the Lookup Column value that corresponds with the minimum value in the Value Column. Both columns should come from the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Lookup-Min-Max/td-p/985814",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Lookup",
+    "MeasureId": "Lookup",
+    "MeasureGroup": "Lookup",
+    "DisplayName": "Lookup Max Simple",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",    
+    "Column1Label": "Lookup Column",
+    "Column1": "Choose Column", 
+    "DAXCode": 
+"
+    CALCULATE(MAX(__COLUMN1__),__COLUMN__ = MAX(__COLUMN__))",
+    "Notes": "Returns the Lookup Column value that corresponds with the maximum value in the Value Column. Both columns should come from the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Lookup-Min-Max/td-p/985814",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Going The Distance",
+    "Aggregation": "Visible",
+    "ColumnLabel": "From Latitude",
+    "Column": "Choose Column",    
+    "Column1Label": "From Longitude",
+    "Column1": "Choose Column", 
+    "Column2Label": "To Latitude",
+    "Column2": "Choose Column",    
+    "Column3Label": "To Longitude",
+    "Column3": "Choose Column", 
+    "DistanceUnits":  "Visible",
+    "DAXCode": 
+"
+    VAR __FromLat = __AGGREGATION__(__COLUMN__)
+    VAR __FromLong = __AGGREGATION__(__COLUMN1__)
+    VAR __ToLat = __AGGREGATION__(__COLUMN2__)
+    VAR __ToLong = __AGGREGATION__(__COLUMN3__)
+    VAR __distanceLong = RADIANS(__ToLong - __FromLong)
+    VAR __distanceLat = RADIANS(__ToLat - __FromLat)
+    VAR __a = (SIN(__distanceLat/2))^2 + COS(RADIANS(__FromLat)) * COS(RADIANS(__ToLat)) * SIN((__distanceLong/2))^2
+    VAR __y = SQRT(__a)
+    VAR __x = SQRT(1 - __a)
+    VAR __atan2 = 
+        SWITCH(
+            TRUE(),
+            __x > 0, ATAN(__y/__x),
+            __x < 0 && __y >= 0, ATAN(__y/__x) + PI(),
+            __x < 0 && __y < 0, ATAN(__y/__x) - PI(),
+            __x = 0 && __y > 0, PI()/2,
+            __x = 0 && __y < 0, PI()/2 * (0-1),
+            BLANK()
+        )
+    VAR __c = 2 * __atan2
+RETURN
+    __c * __DISTANCEUNITSGLOBALRADIUS__",
+    "Notes": "Calculates the distance between two pairs of latitude and longitude. Approximate because the earth isn't a perfect sphere",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Going-the-Distance/td-p/963267",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "ATAN2",
+    "Aggregation": "Visible",
+    "ColumnLabel": "X",
+    "Column": "Choose Column",    
+    "Column1Label": "Y",
+    "Column1": "Choose Column", 
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __y = __AGGREGATION__(__COLUMN1__)
+    VAR __atan2 = 
+        SWITCH(
+            TRUE(),
+            __x > 0, ATAN(__y/__x),
+            __x < 0 && __y >= 0, ATAN(__y/__x) + PI(),
+            __x < 0 && __y < 0, ATAN(__y/__x) - PI(),
+            __x = 0 && __y > 0, PI()/2,
+            __x = 0 && __y < 0, PI()/2 * (0-1),
+            BLANK()
+        )
+RETURN
+    __atan2",
+    "Notes": "A DAX implementation of ATAN2 function. Use this for Cartesian to Polar (theta).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/ATAN2/td-p/963263",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Net Work Days",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Start Date",
+    "Column": "Choose Column",    
+    "Column1Label": "End Date",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Calendar = 
+        ADDCOLUMNS(
+            CALENDAR(
+                __AGGREGATION__(__COLUMN__),
+                __AGGREGATION__(__COLUMN1__)
+            ),
+            \"__WeekDay\",WEEKDAY([Date],2)
+        )
+RETURN
+    COUNTROWS(FILTER(__Calendar,[__WeekDay] < 6))",
+    "Notes": "Calculates the number of working days (no Saturdays or Sundays) between two dates.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Net-Work-Days/td-p/367362",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Cartesian to Polar (r)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "X",
+    "Column": "Choose Column",    
+    "Column1Label": "Y",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __y = __AGGREGATION__(__COLUMN1__)
+    VAR __r = SQRT(POWER(__x, 2) + POWER(__y, 2))
+RETURN
+    __r",
+    "Notes": "Converts Cartesian coordinates to poloar coordinates returning r. Use ATAN2 for Cartesian to Polar (theta).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Cartesian-2-Polar/td-p/347574",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Polar to Cartesian (x)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "r",
+    "Column": "Choose Column",    
+    "Column1Label": "theta",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __r = __AGGREGATION__(__COLUMN__)
+    VAR __theta = __AGGREGATION__(__COLUMN1__)
+    VAR __x = __r * COS(__theta)
+RETURN
+    __x",
+    "Notes": "Converts polar coordinates to Cartesian and returns the x value.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Polar-to-Cartesian/td-p/347548",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Polar to Cartesian (y)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "r",
+    "Column": "Choose Column",    
+    "Column1Label": "theta",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __r = __AGGREGATION__(__COLUMN__)
+    VAR __theta = __AGGREGATION__(__COLUMN1__)
+    VAR __y = __r * SIN(__theta)
+RETURN
+    __y",
+    "Notes": "Converts polar coordinates to Cartesian and returns the y value.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Polar-to-Cartesian/td-p/347548",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "TIMEADD",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column":  "Choose Column",
+    "ParameterLabel": "Amount",
+    "Parameter": "1",
+    "DurationLabel": "Units",
+    "Duration": "Visible",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __Days = 1
+    VAR __Hours = 1/24
+    VAR __Minutes = __Hours / 60
+    VAR __Seconds = __Minutes / 60
+    VAR __Unit = \"__DURATION__\"
+    VAR __ConversionFactor =
+      SWITCH(__Unit,
+        \"Days\",__Days,
+        \"Hours\",__Hours,
+        \"Minutes\",__Minutes,
+        \"Seconds\",__Seconds
+      )
+RETURN
+    __Value + (__PARAM__ * __ConversionFactor)",
+    "Notes": "Adds the specified Amount of time to the aggregation of the column.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/TIMEADD/m-p/2139097#M780",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "WEEKDAY",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date Column",
+    "Column": "Choose Date Column",
+    "WeekDayReturn": "Visible",
+    "DAXCode": 
+"
+    WEEKDAY(__AGGREGATION__(__COLUMN__),__WEEKDAYRETURN__)",
+    "Notes": "
+Return type:
+1:  1 (Sun) - 7 (Sat)
+2:  1 (Mon) - 7 (Sun)
+3:  0 (Mon) - 7 (Sun)
+11: 1 (Mon) - 7 (Sun)
+12: 1 (Tue) - 7 (Mon)
+13: 1 (Wed) - 7 (Tue)
+14: 1 (Thu) - 7 (Wed)
+15: 1 (Fri) - 7 (Thu)
+16: 1 (Sat) - 7 (Fri)
+17: 1 (Sun) - 7 (Sat)
+      ",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/dax/weekday-function-dax",  
+    "Hyperlink1Text": "WEEKDAY"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "WEEKNUM",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date Column",
+    "Column": "Choose Date Column",
+    "WeekNumReturn": "Visible",
+    "DAXCode": 
+ "
+    WEEKNUM(__AGGREGATION__(__COLUMN__),__WEEKNUMRETURN__)",
+    "Notes": "
+Return type:
+1: Week starts Sun
+2: Week starts Mon
+11: Week starts Mon
+12: Week starts Tue
+13: Week starts Wed
+14: Week starts Thu
+15: Week starts Fri
+16: Week starts Sat
+17: Week starts Sun
+21: Week starts Mon (ISO)",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/dax/weeknum-function-dax",
+    "Hyperlink1Text": "WEEKNUM"
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "FIND or SEARCH",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Find Text",
+    "Parameter": "Text to find",
+    "Parameter1Label": "Start (optional)",
+    "Parameter1": "1",
+    "Parameter2Label": "Not Found (optional)",
+    "Parameter2": "BLANK()",
+    "CaseSensitivity": "Visible",
+    "DAXCode": 
+"
+    __CASESENSITIVITYFUNCTION__(\"__PARAM__\", __AGGREGATION__(__COLUMN__), __PARAM1__, __PARAM2__)",
+    "Notes": "Implements SEARCH or FIND.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/dax/find-function-dax",
+    "Hyperlink1Text": "FIND",
+    "Hyperlink2": "https://docs.microsoft.com/en-us/dax/search-function-dax",
+    "Hyperlink2Text": "SEARCH"
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Near (Distance)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "X",
+    "Column": "Choose Column",    
+    "Column1Label": "Y",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Radius",
+    "Parameter1": "5",
+    "DAXCode": 
+"
+    VAR __radius = __PARAM1__
+    VAR __x1 = __AGGREGATION__(__COLUMN__)
+    VAR __y1 = __AGGREGATION__(__COLUMN1__)
+    VAR __Table = ADDCOLUMNS(FILTER(ALL('__TABLENAME__'),[__COLUMNNAME__]<=__x1+__radius && [__COLUMNNAME__]>=__x1-__radius && [__COLUMN1NAME__]<=__y1+__radius && [__COLUMN1NAME__]>=__y1-__radius),\"__Distance\",SQRT( (__x1 - [__COLUMNNAME__])^2 + (__y1 - [__COLUMN1NAME__])^2) )
+RETURN
+    COUNTROWS(FILTER(__Table,[__Distance]<=__radius))",
+    "Notes": "Counts the number of coordinates within the radius of a set of x/y coordinates. Think of a circle around the point.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Near/td-p/1360099",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Near (Square)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "X",
+    "Column": "Choose Column",    
+    "Column1Label": "Y",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Distance",
+    "Parameter1": "5",
+    "DAXCode": 
+"
+    VAR __radius = __PARAM1__
+    VAR __x1 = __AGGREGATION__(__COLUMN__)
+    VAR __y1 = __AGGREGATION__(__COLUMN1__)
+    VAR __Table = FILTER(ALL('__TABLENAME__'),[__COLUMNNAME__]<=__x1+__radius && [__COLUMNNAME__]>=__x1-__radius && [__COLUMN1NAME__]<=__y1+__radius && [__COLUMN1NAME__]>=__y1-__radius)
+RETURN
+    COUNTROWS(__Table)",
+    "Notes": "Counts the number of coordinates within the distance of a set of x/y coordinates. Think a square box around the point.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Near/td-p/1360099",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Overlap",
+    "ColumnLabel": "Start",
+    "Column": "Choose Date Column",    
+    "Column1Label": "End",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+    VAR __Start = MIN('__TABLE__'[__COLUMN__])
+    VAR __End = MAX('__TABLE__'[__COLUMN1__])
+RETURN
+    IF(ISBLANK(MAX([__COLUMN__])),BLANK(),
+        VAR __Table = GENERATESERIES(__Start,__End,1/24/60)
+        VAR __Table1 = ALL('__TABLE__')
+        VAR __Table2 = GENERATE(__Table,__Table1)
+        VAR __Table3 = ADDCOLUMNS(__Table2,\"__Include\",IF([Value]>=[Start] && [Value] <= [End],1,0))
+        VAR __Table4 = GROUPBY(__Table3,[Value],\"__Minute\",MAXX(CURRENTGROUP(),[__Include]))
+    RETURN
+        SUMX(__Table4,[__Minute])/60)",
+    "Notes": "Returns the number of hours of overlap between a set of meetings with start and end times by looking at every minute between the min start time and max end time.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Overlap/td-p/1372369",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "No Overlap",
+    "ColumnLabel": "Start",
+    "Column": "Choose Date Column",    
+    "Column1Label": "End",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+    VAR __Start = MIN('__TABLE__'[__COLUMN__])
+    VAR __End = MAX('__TABLE__'[__COLUMN1__])
+RETURN
+    IF(ISBLANK(MAX([__COLUMN__])),BLANK(),
+        VAR __Table = GENERATESERIES(__Start,__End,1/24/60)
+        VAR __Table1 = ALL('__TABLE__')
+        VAR __Table2 = GENERATE(__Table,__Table1)
+        VAR __Table3 = ADDCOLUMNS(__Table2,\"__Include\",IF(COUNTROWS(FILTER(__Table1,[Value]>=[Start] && [Value] <= [End]))>=1,0,1))
+        VAR __Table4 = GROUPBY(__Table3,[Value],\"__Minute\",MAXX(CURRENTGROUP(),[__Include]))
+    RETURN
+        SUMX(__Table4,[__Minute])/60)",
+    "Notes": "Returns the number of hours of gap time between a set of meetings with start and end times by looking at every minute between the min start time and max end time.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Overlap/td-p/1372369",  
+    "Hyperlink1Text": "Quick Measure Gallery"
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Fuzzy",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Word to Match",
+    "Column": "Choose Column",
+    "Column1Label": "Word Search Column",
+    "Column1": "Choose Column",
+    "Column2Label": "Word Search Index Column",
+    "Column2": "Choose Column",
+    "Parameter2Label": "Clean Match Threshold",
+    "Parameter2": "4",
+    "Parameter3Label": "Kill Threshold",
+    "Parameter3": "3",
+    "Parameter4Label": "Fuzzy Threshold 1",
+    "Parameter4": ".4",
+    "Parameter5Label": "Fuzzy Threshold 2",
+    "Parameter5": ".8",
+    "DAXCode": 
+"
+    VAR __MatchWord = __AGGREGATION__(__COLUMN__)
+    VAR __CleanMatchThreshold = __PARAM2__
+    VAR __KillThreshold = __PARAM3__
+    VAR __FuzzyThreshold1 = __PARAM4__
+    VAR __FuzzyThreshold2 = __PARAM5__
+    VAR __WordSearchTable = 
+        GENERATE(
+            '__TABLE1NAME__',
+                VAR __Word = MAXX(FILTER('__TABLE1NAME__',[__COLUMN2NAME__]=EARLIER(__COLUMN2__)),[__COLUMN1NAME__])
+            RETURN ADDCOLUMNS(GENERATESERIES(__KillThreshold,LEN(__Word),1),\"__Search\",LEFT(__Word,[Value]),\"__Original\",__Word)
+        )
+    VAR __Table =
+        FILTER(
+            ADDCOLUMNS(
+                __WordSearchTable,
+                \"__Match\",SEARCH([__Search],__MatchWord,,BLANK())
+            ),
+            NOT(ISBLANK([__Match]))
+        )
+    VAR __Max = MAXX(__Table,[Value])
+    VAR __Match = MAXX(FILTER(__Table,[Value]=__Max),[__Search])
+    VAR __Proposed =
+        IF(
+            LEN(__Match)<=__CleanMatchThreshold,
+            SWITCH(TRUE(),
+                COUNTROWS(FILTER(__Table,[Value]=__Max))>1,BLANK(),
+                LEN(__Match) <= __KillThreshold,BLANK(),
+                LEN(__Match) = LEN(__MatchWord),__Match,
+                LEN(__Match)/LEN(__MatchWord)>__FuzzyThreshold1 && SEARCH(__Match,__MatchWord,,0)=1,__Match,
+                LEN(__Match)/LEN(__MatchWord)>__FuzzyThreshold2,__Match,
+                BLANK()
+            ),
+            SWITCH(TRUE(),
+                LEN(__Match)/LEN(__MatchWord)<__FuzzyThreshold2 && SEARCH(__Match,__MatchWord,,0)<>1,BLANK(),
+                __Match
+            )
+        )
+    VAR __Clean1 = IF(RIGHT(__Proposed,1)=\"(\",LEFT(__Proposed,LEN(__Proposed)-1),__Proposed)
+    VAR __Clean2 = IF(RIGHT(__Clean1,1)=\" \",LEFT(__Clean1,LEN(__Clean1)-1),__Clean1)
+RETURN
+    __Clean2",
+    "Notes": "Attempts to find the closest word match within a set of search words. Word Search Column and Word Search Index Column should come from the same table. Word Search Index Column should be a column that defines previous. Word to Match column can be in a different table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Fuzzy/td-p/1352914",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Blowout!",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Value Column",
+    "Column": "Choose Column",
+    "Column1Label": "Choose Quantity Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table =
+        GENERATE(
+        '__TABLENAME__',
+            VAR __Quantity = [__COLUMN1NAME__]
+        RETURN GENERATESERIES(1,__Quantity,1)
+    )
+RETURN
+    __XAGGREGATION__(__Table,[__COLUMNNAME__])",
+    "Notes": "For a summarized table with value and quantity, reverse engineers the non-summarized table so that aggregations such as averages can be calculated correctly.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Blowout/td-p/1391913",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "The Mythical DAX Index",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __SourceTable = '__TABLENAME__'
+    VAR __Count = COUNTROWS(__SourceTable)
+    VAR __SortText = CONCATENATEX(__SourceTable,[__COLUMNNAME__],\"|\", [__COLUMNNAME__])
+    VAR __Table = 
+        ADDCOLUMNS(
+            GENERATESERIES(1,__Count,1),
+            \"__COLUMN__\", PATHITEM(__SortText,[Value],TEXT)
+        )
+RETURN
+    \"__Table variable contains index table.\" \/\/__Table",
+    "Notes": "Sorts the specified column and creates an indexed table based upon that sorting. The __Table variable contains the indexed table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/The-Mythical-DAX-Index/td-p/1093214",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "WEIBULL.DIST",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Column1Label": "Alpha",
+    "Column1": "Choose Column",
+    "Column2Label": "Beta",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __Alpha = __AGGREGATION__(__COLUMN1__)
+    VAR __Beta = __AGGREGATION__(__COLUMN2__)
+RETURN
+    DIVIDE(__Alpha, POWER(__Beta,__Alpha)) *
+        POWER(__x,__Alpha - 1) *
+            EXP(-1*(POWER(__x/__Beta,__Alpha)))",
+    "Notes": "Equivalent for Excel's WEIBULL.DIST function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/WEIBULL-DIST/td-p/1082432",  
+    "Hyperlink1Text": "Quick Measure Gallery" 
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "WEIBULL.DIST.CUMULATIVE",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Column1Label": "Alpha",
+    "Column1": "Choose Column",
+    "Column2Label": "Beta",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __Alpha = __AGGREGATION__(__COLUMN1__)
+    VAR __Beta = __AGGREGATION__(__COLUMN2__)
+RETURN
+    1 - EXP(-1*(POWER(__x/__Beta,__Alpha)))",
+    "Notes": "Equivalent for Excel's WEIBULL.DIST.CUMULATIVE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/WEIBULL-DIST/td-p/1082432",  
+    "Hyperlink1Text": "Quick Measure Gallery" 
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "NEGBINOM.DIST (Simple)",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "x",
+    "Parameter": "10",
+    "Parameter1Label": "r",
+    "Parameter1": "5",
+    "Parameter2Label": "p",
+    "Parameter2": ".25",
+    "DAXCode": 
+"
+    VAR __x = __PARAM__
+    VAR __r = __PARAM1__
+    VAR __p = __PARAM2__
+RETURN
+    COMBIN(__x+__r-1,__r-1) * POWER(__p,__r) * POWER(1 - __p,__x)",
+    "Notes": "Equivalent for Excel's NEGBINOM.DIST function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/NEGBINOM-DIST/td-p/1082542",  
+    "Hyperlink1Text": "Quick Measure Gallery"   
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "NEGBINOM.DIST",
+    "Aggregation": "Visible",
+    "AggregationLabel": "x Aggregation",
+    "ColumnLabel": "x",
+    "Column": "Choose column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "r Aggregation",
+    "Column1Label": "r",
+    "Column1": "Choose column",
+    "Aggregation2": "Visible",
+    "Aggregation2Label": "p Aggregation",
+    "Column2Label": "p",
+    "Column2": "Choose column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __r = __AGGREGATION1__(__COLUMN1__)
+    VAR __p = __AGGREGATION2__(__COLUMN2__)
+RETURN
+    COMBIN(__x+__r-1,__r-1) * POWER(__p,__r) * POWER(1 - __p,__x)",
+    "Notes": "Equivalent for Excel's NEGBINOM.DIST function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/NEGBINOM-DIST/td-p/1082542",  
+    "Hyperlink1Text": "Quick Measure Gallery"   
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "NEGBINOM.DIST.CUMULATIVE (Simple)",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "x",
+    "Parameter": "10",
+    "Parameter1Label": "r",
+    "Parameter1": "5",
+    "Parameter2Label": "p",
+    "Parameter2": ".25",
+    "DAXCode": 
+"
+    VAR __x = __PARAM__
+    VAR __r = __PARAM1__
+    VAR __p = __PARAM2__
+RETURN
+    SUMX(
+      ADDCOLUMNS(
+        GENERATESERIES(0,__x), \/\/ For range, change 0 and __x to the range
+        \"-B\",COMBIN([Value]+__r-1,__r-1) * POWER(__p,__r) * POWER(1-__p,[Value])
+      ),
+      [-B]
+    )",
+    "Notes": "Equivalent for Excel's NEGBINOM.DIST.CUMULATIVE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/NEGBINOM-DIST/td-p/1082542",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "NEGBINOM.DIST.CUMULATIVE",
+    "Aggregation": "Visible",
+    "AggregationLabel": "x Aggregation",
+    "ColumnLabel": "x",
+    "Column": "Choose column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "r Aggregation",
+    "Column1Label": "r",
+    "Column1": "Choose column",
+    "Aggregation2": "Visible",
+    "Aggregation2Label": "p Aggregation",
+    "Column2Label": "p",
+    "Column2": "Choose column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __r = __AGGREGATION1__(__COLUMN1__)
+    VAR __p = __AGGREGATION2__(__COLUMN2__)
+RETURN
+    SUMX(
+      ADDCOLUMNS(
+        GENERATESERIES(0,__x), \/\/ For range, change 0 and __x to the range
+        \"-B\",COMBIN([Value]+__r-1,__r-1) * POWER(__p,__r) * POWER(1-__p,[Value])
+      ),
+      [-B]
+    )",
+    "Notes": "Equivalent for Excel's NEGBINOM.DIST.CUMULATIVE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/NEGBINOM-DIST/td-p/1082542",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.DIST (Simple)",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "x",
+    "Parameter": "6",
+    "Parameter1Label": "n",
+    "Parameter1": "10",
+    "Parameter2Label": "p",
+    "Parameter2": ".5",
+    "DAXCode": 
+"
+    VAR __x = __PARAM__
+    VAR __n = __PARAM1__
+    VAR __p = __PARAM2__
+RETURN
+    DIVIDE(FACT(__n),FACT(__n - __x)*FACT(__x)) * POWER(__p,__x) * POWER(1-__p,__n-__x)",
+    "Notes": "Equivalent for Excel's BINOM.DIST function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.DIST",
+    "Aggregation": "Visible",
+    "AggregationLabel": "x Aggregation",
+    "ColumnLabel": "x",
+    "Column": "Choose column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "n Aggregation",
+    "Column1Label": "n",
+    "Column1": "Choose column",
+    "Aggregation2": "Visible",
+    "Aggregation2Label": "p Aggregation",
+    "Column2Label": "p",
+    "Column2": "Choose column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __n = __AGGREGATION1__(__COLUMN1__)
+    VAR __p = __AGGREGATION2__(__COLUMN2__)
+RETURN
+    DIVIDE(FACT(__n),FACT(__n - __x)*FACT(__x)) * POWER(__p,__x) * POWER(1-__p,__n-__x)",
+    "Notes": "Equivalent for Excel's BINOM.DIST function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.DIST.CUMULATIVE (Simple)",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "x",
+    "Parameter": "6",
+    "Parameter1Label": "n",
+    "Parameter1": "10",
+    "Parameter2Label": "p",
+    "Parameter2": ".5",
+    "DAXCode": 
+"
+    VAR __x = __PARAM__
+    VAR __n = __PARAM1__
+    VAR __p = __PARAM2__
+RETURN
+    SUMX(
+      ADDCOLUMNS(
+        GENERATESERIES(0,__x), \/\/ For range, change 0 and __x to the range
+        \"B\",DIVIDE(FACT(__n),FACT(__n - [Value])*FACT([Value])) * POWER(__p,[Value]) * POWER(1-__p,__n-[Value])
+      ),
+      [B]
+    )",
+    "Notes": "Equivalent for Excel's BINOM.DIST.CUMULATIVE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.DIST.CUMULATIVE",
+    "Aggregation": "Visible",
+    "AggregationLabel": "x Aggregation",
+    "ColumnLabel": "x",
+    "Column": "Choose column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "n Aggregation",
+    "Column1Label": "n",
+    "Column1": "Choose column",
+    "Aggregation2": "Visible",
+    "Aggregation2Label": "p Aggregation",
+    "Column2Label": "p",
+    "Column2": "Choose column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __n = __AGGREGATION1__(__COLUMN1__)
+    VAR __p = __AGGREGATION2__(__COLUMN2__)
+RETURN
+    SUMX(
+      ADDCOLUMNS(
+        GENERATESERIES(0,__x), \/\/ For range, change 0 and __x to the range
+        \"B\",DIVIDE(FACT(__n),FACT(__n - [Value])*FACT([Value])) * POWER(__p,[Value]) * POWER(1-__p,__n-[Value])
+      ),
+      [B]
+    )",
+    "Notes": "Equivalent for Excel's BINOM.DIST.CUMULATIVE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.INV (Simple)",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "Alpha",
+    "Parameter": ".75",
+    "Parameter1Label": "n",
+    "Parameter1": "10",
+    "Parameter2Label": "p",
+    "Parameter2": ".5",
+    "DAXCode": 
+"
+    VAR __Alpha = __PARAM__
+    VAR __n = __PARAM1__
+    VAR __p = __PARAM2__
+    VAR __Table =
+        ADDCOLUMNS(
+            GENERATESERIES(0,__n), \/\/ For range, change 0 and [x] to the range
+            \"B\",DIVIDE(FACT(__n),FACT(__n - [Value])*FACT([Value])) * POWER(__p,[Value]) * POWER(1-__p,__n-[Value])
+        )
+    VAR __CumulativeTable = 
+        ADDCOLUMNS(
+            __Table,
+            \"Cumulative\",SUMX(FILTER(__Table,[Value] <= EARLIER([Value])),[B])
+        )
+RETURN
+    MINX(
+        FILTER(
+            __CumulativeTable,
+            [Cumulative] >= __Alpha
+        ),
+        [Value]
+    )",
+    "Notes": "Equivalent for Excel's BINOM.INV function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BINOM.INV",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Alpha Aggregation",
+    "ColumnLabel": "Alpha",
+    "Column": "Choose column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "n Aggregation",
+    "Column1Label": "n",
+    "Column1": "Choose column",
+    "Aggregation2": "Visible",
+    "Aggregation2Label": "p Aggregation",
+    "Column2Label": "p",
+    "Column2": "Choose column",
+    "DAXCode": 
+"
+    VAR __Alpha = __AGGREGATION__(__COLUMN__)
+    VAR __n = __AGGREGATION1__(__COLUMN1__)
+    VAR __p = __AGGREGATION2__(__COLUMN2__)
+    VAR __Table =
+        ADDCOLUMNS(
+            GENERATESERIES(0,__n), \/\/ For range, change 0 and [x] to the range
+            \"B\",DIVIDE(FACT(__n),FACT(__n - [Value])*FACT([Value])) * POWER(__p,[Value]) * POWER(1-__p,__n-[Value])
+        )
+    VAR __CumulativeTable = 
+        ADDCOLUMNS(
+            __Table,
+            \"Cumulative\",SUMX(FILTER(__Table,[Value] <= EARLIER([Value])),[B])
+        )
+RETURN
+    MINX(
+        FILTER(
+            __CumulativeTable,
+            [Cumulative] >= __Alpha
+        ),
+        [Value]
+    )",
+    "Notes": "Equivalent for Excel's BINOM.INV function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BINOM-DIST/td-p/1081712",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "HARMEAN",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table =
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"__Inverse\",1/[__COLUMNNAME__]
+        )
+RETURN
+    DIVIDE(1,1/COUNTROWS(__Table) * SUMX(__Table,[__Inverse]),0)",
+    "Notes": "Equivalent for Excel's HARMEAN function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/HARMEAN/td-p/1063069",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "MULTINOMIAL",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table = 
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"__Factorial\",FACT([__COLUMNNAME__])
+        )
+RETURN
+    DIVIDE(
+        FACT(SUMX(__COLUMN__)),
+        PRODUCTX(__Table,[__Factorial]),
+        0
+    )",
+    "Notes": "Equivalent for Excel's MULTINOMIAL function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/MULTINOMIAL/td-p/1063083",  
+    "Hyperlink1Text": "Quick Measure Gallery"   
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "FISHER",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+RETURN
+    1/2 * LN(DIVIDE(1 + __x, 1 - __x))",
+    "Notes": "Equivalent for Excel's FISHER function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/FISHER/td-p/1062964",  
+    "Hyperlink1Text": "Quick Measure Gallery"   
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "FISHERINV",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __y = __AGGREGATION__(__COLUMN__)
+RETURN
+    DIVIDE(EXP(2 * __y) - 1, EXP(2 * __y) + 1)",
+    "Notes": "Equivalent for Excel's FISHERINV function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/FISHERINV/td-p/1062965",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DEVSQ",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Mean = AVERAGE(__COLUMN__)
+RETURN
+    VAR __Table = 
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"__Deviation\",POWER([__COLUMNNAME__] - __Mean,2)
+        )
+RETURN
+    SUMX(__Table,[__Deviation])",
+    "Notes": "Equivalent for Excel's DEVSQ function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DEVSQ/td-p/1062825",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Transitive Closure",
+    "ColumnLabel": "To",
+    "Column": "Choose Column",
+    "Column1Label": "From",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table1 = '__TABLENAME__'
+    VAR __Table1a = DISTINCT(SELECTCOLUMNS(__Table1,\"__to\",[__COLUMNNAME__]))
+    VAR __Table2 = FILTER(ALL('__TABLENAME__'),[__COLUMN1NAME__] IN __Table1a)
+    VAR __Table2a = DISTINCT(SELECTCOLUMNS(__Table2,\"__to\",[__COLUMNNAME__]))
+RETURN
+    CONCATENATEX(DISTINCT(UNION(__Table1a,__Table2a)),[__to],\";\")",
+    "Notes": "Note that the example does not require one to go any more than 2 levels deep. You can extend the DAX solution to additional levels by simply following the pattern between __table1 and __table2 to add __table3, __table4, etc.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Transitive-Closure/td-p/783828",
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "HyperLink2": "https://community.powerbi.com/t5/Community-Blog/Transitive-Closure-in-Power-Query/ba-p/782678",
+    "Hyperlink2Text": "Transitive Closure Power Query"
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "While Loop",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "i",
+    "Parameter": "10",
+    "DAXCode": 
+"
+    VAR __i = __PARAM__
+    VAR __loopTable = GENERATESERIES(1,__i)
+    VAR __loopTable1 = ADDCOLUMNS(__loopTable,\"__i\",[Value] - 1)
+RETURN
+    COUNTROWS(FILTER(__loopTable1,[__i]>1))+1",
+    "Notes": "Example of a pseudo while loop in DAX",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/While-Loop/td-p/637535",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "For Loop",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "n",
+    "Parameter": "5",
+    "DAXCode": 
+"
+    VAR __n = __PARAM__
+    VAR __sum = 0
+    VAR __loopTable = GENERATESERIES(1,__n)
+    VAR __loopTable1 = ADDCOLUMNS(__loopTable,\"__sum\",SUMX(FILTER(__loopTable,[Value]<=EARLIER([Value])),[Value]))
+    VAR __max = MAXX(__loopTable1,[Value])
+RETURN
+    MAXX(FILTER(__loopTable1,[Value]=__max),[__sum])",
+    "Notes": "Example of a pseudo for loop in DAX",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/For-Loop/td-p/637531",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Statistics",
+    "MeasureId": "Statistics",
+    "MeasureGroup": "Statistics",
+    "DisplayName": "Jarque-Bera",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __k = 1
+    VAR __Table = ALL('__TABLENAME__')
+    VAR __mean = AVERAGEX(__Table,[__COLUMNNAME__])
+    VAR __stddev = STDEVX.P(__Table,[__COLUMNNAME__])
+    VAR __n = COUNTROWS(__Table)
+    VAR __tableSkew = ADDCOLUMNS(__Table,\"__skew\",POWER(([__COLUMNNAME__]-__mean),3))
+    VAR __sumSkew = SUMX(__tableSkew,[__skew])
+    VAR __skewness = DIVIDE(__sumSkew,POWER(__stddev,3),0) * DIVIDE(1,__n,0)
+    VAR __tableKurtosis = ADDCOLUMNS(__Table,\"__skew\",POWER(([__COLUMNNAME__]-__mean),4))
+    VAR __sumKurtosis = SUMX(__tableKurtosis,[__skew])
+    VAR __sampleKurtosis = DIVIDE(__sumKurtosis,POWER(__stddev,4),0) * DIVIDE(1,__n,0)
+    VAR __firstPart = DIVIDE(__n - __k + 1,6,0)
+    VAR __secondPart = POWER(__skewness,2) + 1/4*(POWER(__sampleKurtosis - 3,2))
+    VAR __JB = __firstPart * __secondPart
+RETURN
+    SWITCH(TRUE(),
+        __JB>0,\"Not Normally Distributed\",
+        \"Normally Distributed\"
+    )",
+    "Notes": "The Jarque-Bera test checks for normal distribution of data.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Jarque-Bera-Test/td-p/625212",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Financial",
+    "MeasureId": "Financial",
+    "MeasureGroup": "Financial",
+    "DisplayName": "Compound Interest",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Interest rate",
+    "Parameter": ".05",
+    "Parameter1Label": "Compounding interval",
+    "Parameter1": "12",
+    "Parameter2Label": "Number of years",
+    "Parameter2": "10",
+    "DAXCode": 
+"
+    VAR __principal = __AGGREGATION__(__COLUMN__)
+    VAR __r = __PARAM__
+    VAR __n = __PARAM1__
+    VAR __t = __PARAM2__
+RETURN
+    __principal*POWER((1+__r/__n),(__n*__t))",
+    "Notes": "Compound interest rate calculator.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Compound-Interest/td-p/627014",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Statistics",
+    "MeasureId": "Statistics",
+    "MeasureGroup": "Statistics",
+    "DisplayName": "Kendall's Tau",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Column1Label": "Index Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __table = '__TABLENAME__'
+    VAR __table1 = ADDCOLUMNS(__table,\"__Concordant\",COUNTROWS(FILTER(__table,[__COLUMN1NAME__]>EARLIER([__COLUMN1NAME__])&&[__COLUMNNAME__]>EARLIER([__COLUMNNAME__]))))
+    VAR __table2 = ADDCOLUMNS(__table1,\"__Discordant\",COUNTROWS(FILTER(__table,[__COLUMN1NAME__]>EARLIER([__COLUMN1NAME__])&&[__COLUMNNAME__]<EARLIER([__COLUMNNAME__]))))
+    VAR __C = SUMX(__table2,[__Concordant])
+    VAR __D = SUMX(__table2,[__Discordant])
+RETURN
+    ABS(DIVIDE(__C - __D , __C + __D,0))",
+    "Notes": "Kendall's Tau, or Kendall Rank Correlation Coefficient, is a non-parametric measure of relationships between columns of ranked data. The Tau correlation coefficient returns a value of 0 to 1, where: 0 is no relationship and 1 is a perfect relationship. A quirk of this test is that it can also produce negative values (i.e. from -1 to 0). Unlike a linear graph, a negative relationship doesn’t mean much with ranked columns (other than you perhaps switched the columns around), so just remove the negative sign when you’re interpreting Tau.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Kendall-s-Tau/td-p/625107",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Is Prime",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __num = __AGGREGATION__(__COLUMN__)
+    VAR __max = INT(SQRT(__num))
+    VAR __table = GENERATESERIES(2,__max,1)
+    VAR __table1 = ADDCOLUMNS(__table,\"__mod\",MOD(__num,[Value]))
+RETURN
+    SWITCH(TRUE(),
+        __num = 1, 0,
+        ISBLANK(COUNTROWS(FILTER(__table1,[__mod]=0))),1,
+        0
+    )",
+    "Notes": "Determines if a number is a prime number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IsPrime/td-p/620015",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Unix2UTC",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)/(60*60*24)
+RETURN
+    (DATEVALUE(\"1/1/1970\")+__Value)",
+    "Notes": "Converts a Unix timestamp to UTC time.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unix2UTC-and-UTC2Unix/td-p/620012",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "UTC2Unix",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+RETURN
+    (__Value - DATEVALUE(\"1/1/1970\"))*60*60*24",
+    "Notes": "Converts a UTC time to a Unix timestamp.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Unix2UTC-and-UTC2Unix/td-p/620012",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is Leap Year",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Year = INT(__AGGREGATION__(__COLUMN__))
+    VAR __Div4 = IF(MOD(__Year,4)=0,TRUE(),FALSE())
+    VAR __Div100 = IF(MOD(__Year,100)=0,TRUE(),FALSE())
+    VAR __Div400 = IF(MOD(__Year,400)=0,TRUE(),FALSE())
+    VAR __IsLeapYear = IF(__Div4 && NOT(__Div100),TRUE(),IF(__Div4 && __Div100 && __Div400,TRUE(),FALSE()))
+RETURN 
+    __IsLeapYear",
+    "Notes": "Determines if a date falls in a leap year.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Leap-Year/td-p/442398",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Days in Year",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Year = INT(__AGGREGATION__(__COLUMN__))
+    VAR __Div4 = IF(MOD(__Year,4)=0,TRUE(),FALSE())
+    VAR __Div100 = IF(MOD(__Year,100)=0,TRUE(),FALSE())
+    VAR __Div400 = IF(MOD(__Year,400)=0,TRUE(),FALSE())
+    VAR __IsLeapYear = IF(__Div4 && NOT(__Div100),TRUE(),IF(__Div4 && __Div100 && __Div400,TRUE(),FALSE()))
+RETURN 
+    IF(__IsLeapYear,366,365)",
+    "Notes": "Determines the number of days in a year, 365 or 366.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Leap-Year/td-p/442398",  
+    "Hyperlink1Text": "Quick Measure Gallery" 
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Day of Year",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN
+    TRUNC( __Date - DATE(YEAR(__Date),1,1) ) + 1",
+    "Notes": "Determines the day number of the year for a date.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Date-of-Year/td-p/442421",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Date of Year",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Day Column",
+    "Column": "Choose Column",
+    "Column1Label": "Year Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __DayOfYear = __AGGREGATION__(__COLUMN__)
+    VAR __Year = __AGGREGATION__(__COLUMN1__)
+    VAR __tmpTable = ADDCOLUMNS(GENERATESERIES(DATE(__Year,1,1),DATE(__Year,12,31),1),\"__DayOfYear\",DATEDIFF(DATE(__Year,1,1),[Value],DAY)+1)
+    VAR __DateofYear = MAXX(FILTER(__tmpTable,[__DayOfYear]=__DayOfYear),[Value])
+RETURN  
+    IF(ISBLANK(__DateofYear),BLANK(),__DateofYear)",
+    "Notes": "Determines the date of the year for a day number of the year. Basically generate a table of dates for the entire year, calculate the day of year for each date and then lookup the day of year in the table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Date-of-Year/td-p/442421",  
+    "Hyperlink1Text": "Quick Measure Gallery"    
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Greeting",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "DAXCode": 
+"
+    VAR user = USERNAME()
+    VAR hour = HOUR(NOW())
+    VAR minute = MINUTE(NOW())
+    VAR prefix = 
+        SWITCH(
+            TRUE(),
+            hour<12,\"Good morning \",
+            hour<17,\"Good afternoon \",
+            \"Good evening \"
+        )
+RETURN
+    CONCATENATE(prefix,user)",
+    "Notes": "Creates a simple greeting with the user's name.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Greeting/td-p/390430",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Sequential",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Column1Label": "WeekNum Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table = ALL('__TABLENAME__')
+    VAR __MaxWeeks = SUMMARIZE(__Table,[__COLUMNNAME__],\"__MaxWeek\",MAX([__COLUMN1NAME__]))
+    VAR __MyYear = __AGGREGATION__('__TABLENAME__'[__COLUMNNAME__])
+    VAR __MyStart = SUMX(FILTER(__MaxWeeks,[__COLUMNNAME__]<__MyYear),[__MaxWeek])
+    VAR __firstYear = CALCULATE(FIRSTNONBLANK('__TABLENAME__'[__COLUMNNAME__],1),ALL('__TABLENAME__'))
+    VAR __MyWeekNum = __AGGREGATION__('__TABLENAME__'[__COLUMN1NAME__])
+    VAR __myNum = IF(__MyYear=__firstYear,__MyWeekNum,__MyStart+__MyWeekNum)
+RETURN
+    __myNum",
+    "Notes": "Creates a sequential week number spanning multiple years.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Sequential/td-p/380231",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Statistics",
+    "MeasureId": "Statistics",
+    "MeasureGroup": "Statistics",
+    "DisplayName": "Shannon Entropy",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table = '__TABLENAME__'
+    VAR __Table1 = ALL('__TABLENAME__')
+RETURN
+    SUMX(
+        SUMMARIZE(
+            __Table,
+            __COLUMNNAME__,
+            \"H(X)\",
+            -1*COUNTROWS(__Table)/COUNTROWS(__Table1)*LOG(COUNTROWS(__Table)/COUNTROWS(__Table1),2)
+        ),
+        [H(X)]
+    )",
+    "Notes": "Calculates the Shannon Entropy of values in a column.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Shannon-Entropy/td-p/373327",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Statistics",
+    "MeasureId": "Statistics",
+    "MeasureGroup": "Statistics",
+    "DisplayName": "Covariance",
+    "ColumnLabel": "A Column",
+    "Column": "Choose Column",
+    "Column1Label": "B Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __AvgA = CALCULATE(AVERAGE(__COLUMN__),ALL('__TABLENAME__'))
+    VAR __AvgB = CALCULATE(AVERAGE(__COLUMN1__),ALL('__TABLENAME__'))
+    VAR __Table = 
+        SUMMARIZE(
+            '__TABLENAME__',
+            [__COLUMNNAME__],
+            \"__Covariance\",
+            ([__COLUMNNAME__]-AvgA)*(MAX(__COLUMN1__)-AvgB)/CALCULATE(COUNTROWS('__TABLENAME__'),ALL('__TABLENAME__')))
+RETURN
+    SUMX(__Table,[__Covariance])",
+    "Notes": "From Wikipedia on Covariance: In probability theory and statistics, covariance is a measure of the joint variability of two random variables.[1] If the greater values of one variable mainly correspond with the greater values of the other variable, and the same holds for the lesser values, i.e., the variables tend to show similar behavior, the covariance is positive.[2] In the opposite case, when the greater values of one variable mainly correspond to the lesser values of the other, i.e., the variables tend to show opposite behavior, the covariance is negative. The sign of the covariance therefore shows the tendency in the linear relationship between the variables. The magnitude of the covariance is not easy to interpret because it is not normalized and hence depends on the magnitudes of the variables. The normalized version of the covariance, the correlation coefficient, however, shows by its magnitude the strength of the linear relation.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Covariance/td-p/379069",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Running Product",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",
+    "Column1Label": "Date Column",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+CALCULATE(
+    PRODUCT(__COLUMN__),
+    FILTER(
+        ALLSELECTED(__COLUMN1__),
+        ISONORAFTER(__COLUMN1__, MAX(__COLUMN1__), DESC)
+    )
+)",
+    "Notes": "Power BI Desktop doesn't provide an option for a running product like the other aggregations.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Running-Product/td-p/330708",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DELTA",
+    "Aggregation": "Visible",
+    "ColumnLabel": "A",
+    "Column": "Choose Column",
+    "Column1Label": "B",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __A = __AGGREGATION__(__COLUMN__)
+    VAR __B = __AGGREGATION__(__COLUMN1__)
+RETURN
+    IF(__A = __B,1,0)",
+    "Notes": "Equivalent formula for Excel's DELTA function",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DELTA/td-p/1062799",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Financial",
+    "MeasureId": "Financial",
+    "MeasureGroup": "Financial",
+    "DisplayName": "Macaulay Duration",
+    "ColumnLabel": "Choose Column",
+    "Column": "Choose Column",
+    "Column1Label": "Index Column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Interest Rate",
+    "Parameter1": ".06",
+    "Parameter2Label": "Periods",
+    "Parameter2": "2",
+    "DAXCode": 
+"
+    VAR __InterestRate = __PARAM1__
+    VAR __PeriodNumber = __PARAM2__
+    VAR __Table1 = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                '__TABLENAME__',
+                \"__Discount\", 1 / (1 + __InterestRate/__PeriodNumber)^[__COLUMN1NAME__]
+            ),
+            \"__PV Cash Flow\",[__COLUMN1NAME__] * [__COLUMNNAME__] * [__Discount],
+            \"__Current Bond Price\",[__COLUMNNAME__] / (1 + __InterestRate/__PeriodNumber)^[__COLUMN1NAME__]
+        )
+RETURN
+    SUMX(__Table1,[__PV Cash Flow]) / SUMX(__Table1,[__Current Bond Price])",
+    "Notes": "Calculates the Macaulay Duration.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DELTA/td-p/1062799",
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://www.investopedia.com/terms/m/macaulayduration.asp",
+    "Hyperlink2Text": "Investopedia Macaulay Duration"
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Previous Row (MTBF)",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Value Column",
+    "Column": "Choose Column",
+    "Column1Label": "Date or Index Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Table = ALL('__TABLENAME__')
+    VAR __Current = __AGGREGATION__(__COLUMN__)
+    VAR __CurrentDate = __AGGREGATION__(__COLUMN1__)
+    VAR __PreviousDate = MAXX(FILTER(__Table,[__COLUMN1NAME__] < __CurrentDate),[__COLUMN1NAME__])
+    VAR __Previous = MAXX(FILTER(__Table,[__COLUMN1NAME__]=__PreviousDate),[__COLUMNNAME__])
+RETURN
+    __Current - __Previous",
+    "Notes": "Demonstrates how to look at the previous row in a table and make a calculation with the current row. In this case it is subtracting the previous row's Value column from the current row's Value column.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Mean-Time-Between-Failure-MTBF/td-p/625082",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Financial",
+    "MeasureId": "Financial",
+    "MeasureGroup": "Financial",
+    "DisplayName": "Gross Margin %",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Revenue",
+    "Column": "Choose Column",
+    "Column1Label": "Cost",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Revenue = __AGGREGATION__(__COLUMN__)
+    VAR __Cost = __AGGREGATION__(__COLUMN1__)
+RETURN
+    DIVIDE(__Revenue - __Cost, __Revenue,0)",
+    "Notes": "Given a revenue and cost, calculates gross margin %.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Gross-Margin-Revenue-and-Cost-GMRC/td-p/584437",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Financial",
+    "MeasureId": "Financial",
+    "MeasureGroup": "Financial",
+    "DisplayName": "Revenue",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Gross Margin %",
+    "Column": "Choose Column",
+    "Column1Label": "Cost",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __GM = __AGGREGATION__(__COLUMN__)
+    VAR __Cost = __AGGREGATION__(__COLUMN1__)
+RETURN
+    DIVIDE(__Cost, 1 - __GM,0)",
+    "Notes": "Given a gross margin % and cost, calculates revenue.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Gross-Margin-Revenue-and-Cost-GMRC/td-p/584437",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Financial",
+    "MeasureId": "Financial",
+    "MeasureGroup": "Financial",
+    "DisplayName": "Cost",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Gross Margin %",
+    "Column": "Choose Column",
+    "Column1Label": "Revenue",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __GM = __AGGREGATION__(__COLUMN__)
+    VAR __Revenue = __AGGREGATION__(__COLUMN1__)
+RETURN
+    __Revenue * (1 - __GM)",
+    "Notes": "Given a gross margin % and revenue, calculates cost.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Gross-Margin-Revenue-and-Cost-GMRC/td-p/584437",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Days in Month",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Choose Date Column",
+    "Column": "Choose Date Column",
+    "DAXCode": 
+"
+    VAR __Date = __AGGREGATION__(__COLUMN__)
+RETURN 
+    DAY(EOMONTH(__Date,0))",
+    "Notes": "Calculates the days in a month."
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Decimal Days to Duration",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Decimal Days Column",
+    "Column": "Choose Column",
+    "Format": "00:00:00:00",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __Days = TRUNC(__Value)
+    VAR __Hours = TRUNC ( (__Value - __Days) * 24 )
+    VAR __Minutes = TRUNC ( (__Value - __Days - __Hours / 24) * 24*60 )
+    VAR __Seconds = TRUNC ( (__Value - __Days - __Hours / 24 - __Minutes/24/60) * 24*60*60 )
+RETURN
+    (__Days * 1000000 + __Hours * 10000 + __Minutes * 100 + __Seconds)",
+    "Notes": "Converts a duration in decimal days to a duration format.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Decimal-Duration-Converter/td-p/2083170",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "DAX 445 Calendar",
+    "ColumnLabel": "Select table",
+    "Column": "Choose column in table",
+    "ParameterLabel": "Start Year",
+    "Parameter": "2020",
+    "Parameter1Label": "Number of years",
+    "Parameter1": "2",
+    "Parameter2Label": "Week Day Start",
+    "Parameter2": "1",
+    "Parameter3Label": "Week number start",
+    "Parameter3": "5",
+    "WeekDayReturn": "Visible",
+    "DAXCode": 
+"
+    VAR __StartYear = __PARAM__ \/\/ starting year
+    VAR __NumYears = __PARAM1__ \/\/ number of years including start year
+    VAR __WeekForm = __WEEKDAYRETURN__ \/\/ 16 has Saturday as 1, Friday 7
+    VAR __StartDay = __PARAM2__ \/\/ weekday to start calendar on
+    VAR __StartWeek = __PARAM3__ \/\/ # instance of weekday to start calendar on (5th Saturday for example)
+    VAR __Base = CALENDAR(DATE(__StartYear,1,1),DATE(__StartYear,12,31))
+    VAR __StartDate = 
+        MAXX(
+            FILTER(
+                ADDCOLUMNS(
+                    __Base,
+                    \"WeekNum\",COUNTROWS(FILTER(__Base,[Date]<=EARLIER([Date]) && WEEKDAY([Date],__WeekForm) = __StartDay))
+                ),
+                [WeekNum]=__StartWeek && WEEKDAY([Date],__WeekForm)=__StartDay
+            ),
+            [Date]
+        )
+    VAR __CalendarBase = CALENDAR(__StartDate,__StartDate + 52 * __NumYears * 7 - 1)
+    VAR __Calendar = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                ADDCOLUMNS(
+                    ADDCOLUMNS(
+                        __CalendarBase,
+                        \"Year\",ROUNDUP(([Date]-__StartDate+1)*1./ (52*7),0)-1+__StartYear,
+                        \"DAYOFWK#\",MOD(([Date] - __StartDate),7)+1,
+                        \"SEQWK#\",COUNTROWS(FILTER(__CalendarBase,[Date]<=EARLIER([Date]) && WEEKDAY([Date],__WeekForm) = __StartDay)),
+                        \"DAY#YEAR\",MOD(([Date]-__StartDate)*1.,(52*7))+1,
+                        \"DAY\",DAY([Date])
+                    ),
+                    \"WK#\",ROUNDUP([DAY#YEAR]/7,0),
+                    \"QWK#\",MOD([SEQWK#]-1,13)+1,
+                    \"Q\",ROUNDUP([DAY#YEAR]/91,0)
+                ),
+                \"Month\",SWITCH(TRUE(),
+                            [Q]=1 && [QWK#]<=4,1,
+                            [Q]=1 && [QWK#]<=8,2,
+                            [Q]=1,3,
+                            [Q]=2 && [QWK#]<=4,4,
+                            [Q]=2 && [QWK#]<=8,5,
+                            [Q]=2,6,
+                            [Q]=3 && [QWK#]<=4,7,
+                            [Q]=3 && [QWK#]<=8,8,
+                            [Q]=3,9,
+                            [Q]=4 && [QWK#]<=4,10,
+                            [Q]=4 && [QWK#]<=8,11,
+                            [Q]=4,12
+                        )   
+            ),
+            \"MonthName\", \/\/Adjust as necessary for your calendar
+                SWITCH([Month],
+                    1,\"February\",
+                    2,\"March\",
+                    3,\"April\",
+                    4,\"May\",
+                    5,\"June\",
+                    6,\"July\",
+                    7,\"August\",
+                    8,\"September\",
+                    9,\"October\",
+                    10,\"November\",
+                    11,\"December\",
+                    12,\"January\"
+                )
+        )
+RETURN
+    COUNTROWS(__Calendar) \/\/__Calendar contains the table.",
+    "Notes": "Creates a 445 custom calendar. Returns the count of rows in the calendar. The __Calendar variable holds the calendar. Can paste this code into a calculated table. You will have to adjust the MonthName depending on your calendar.
+Return type:
+1:  1 (Sun) - 7 (Sat)
+2:  1 (Mon) - 7 (Sun)
+3:  0 (Mon) - 7 (Sun)
+11: 1 (Mon) - 7 (Sun)
+12: 1 (Tue) - 7 (Mon)
+13: 1 (Wed) - 7 (Tue)
+14: 1 (Thu) - 7 (Wed)
+15: 1 (Fri) - 7 (Thu)
+16: 1 (Sat) - 7 (Fri)
+17: 1 (Sun) - 7 (Sat)",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DAX-Custom-445-Calendar/td-p/1388582",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Text Accumulator",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Date/Index Column",
+    "Column": "Choose Column",
+    "Column1Label": "Text Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Date = MAX(__COLUMN__)
+    VAR __Table = 
+        ADDCOLUMNS(
+            FILTER(
+                ALL('__TABLENAME__'),
+                [__COLUMNNAME__]<=__Date
+            ),
+            \"TextX\",RIGHT([__COLUMN1NAME__],1),
+            \"Keep\",IF(LEFT([__COLUMN1NAME__],1)=\"X\",0,1)
+        )
+    VAR __Table1 = 
+        ADDCOLUMNS(
+            GROUPBY(
+                __Table,
+                [TextX],
+                \"__Date\",MAXX(CURRENTGROUP(),[__COLUMNNAME__])
+            ),
+            \"FinalKeep\",MAXX(FILTER(__Table,[__COLUMNNAME__]=[__Date] && [TextX] = EARLIER([TextX])),[Keep])
+        )
+    VAR __Cumulative = SUBSTITUTE(CONCATENATEX(FILTER(__Table1,[FinalKeep]=1),[TextX],\",\"),\",,\",\",\")
+RETURN
+    IF(RIGHT(__Cumulative,1)=\",\",LEFT(__Cumulative,LEN(__Cumulative)-1),__Cumulative)",
+    "Notes": "Accumulates text and also allows text to be removed. It's a weird one.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Text-Accumulator/td-p/1339804",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Keywords",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Text Column",
+    "Column": "Choose Column",
+    "Column1Label": "Keywords Column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Separator",
+    "Parameter1": ",",
+    "DAXCode": 
+"
+    VAR __Separator = \"__PARAM1__\"
+    VAR __SearchText = MAX(__COLUMN__)
+    VAR __Len = LEN(__SearchText)
+    VAR __Count = __Len - LEN(SUBSTITUTE(__SearchText,__Separator,\"\")) + 1
+    VAR __Table = 
+        SELECTCOLUMNS(
+            ADDCOLUMNS(
+                GENERATESERIES(1,__Count,1),
+                \"__Word\",
+                    VAR __Text = SUBSTITUTE(__SearchText,__Separator,\"|\",IF([Value]=1,1,[Value]-1))
+                    VAR __Start =
+                        SWITCH(TRUE(),
+                            __Count = 1,1,
+                            [Value] = 1,1,
+                            FIND(\"|\",__Text)+1
+                        )
+                    VAR __End = 
+                        SWITCH(TRUE(),
+                            __Count = 1,__Len,
+                            [Value] = 1,FIND(\"|\",__Text) - 1,
+                            [Value] = __Count,__Len,
+                            FIND(__Separator,__Text,__Start)-1
+                        )
+                    VAR __Word = MID(__Text,__Start,__End - __Start + 1)
+                RETURN __Word
+            ),
+            \"__Word\", [__Word]
+        )
+    VAR __Keywords = INTERSECT(__Table,SELECTCOLUMNS('__TABLE1NAME__',\"__Word\",[__COLUMN1NAME__]))
+RETURN
+    CONCATENATEX(__Keywords,[__Word],\",\")",
+    "Notes": "Extracts keywords from text.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Keywords/td-p/2044408",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Time and Duration",
+    "MeasureId": "Time and Duration",
+    "MeasureGroup": "Time and Duration",
+    "DisplayName": "Text Duration Converter",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Text Duration Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Separator",
+    "Parameter": ",",
+    "Format": "00:00:00:00",
+    "DAXCode": 
+"
+    VAR __Separator = \"__PARAM__\"
+    VAR __SearchText = MAX(__COLUMN__)
+    VAR __Len = LEN(__SearchText)
+    VAR __Count = __Len - LEN(SUBSTITUTE(__SearchText,__Separator,\"\")) + 1
+    VAR __Table = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                GENERATESERIES(1,__Count,1),
+                \"__Word\",
+                    VAR __Text = SUBSTITUTE(__SearchText,__Separator,\"|\",IF([Value]=1,1,[Value]-1))
+                    VAR __Start =
+                        SWITCH(TRUE(),
+                            __Count = 1,1,
+                            [Value] = 1,1,
+                            FIND(\"|\",__Text)+1
+                        )
+                    VAR __End = 
+                        SWITCH(TRUE(),
+                            __Count = 1,__Len,
+                            [Value] = 1,FIND(\"|\",__Text) - 1,
+                            [Value] = __Count,__Len,
+                            FIND(__Separator,__Text,__Start)-1
+                        )
+                    VAR __Word = MID(__Text,__Start,__End - __Start + 1)
+                RETURN __Word
+            ),
+            \"__Key\",
+                SWITCH(TRUE(),
+                    SEARCH(\"day\",[__Word],,0)>0,\"day\",
+                    SEARCH(\"hour\",[__Word],,0)>0,\"hour\",
+                    SEARCH(\"minute\",[__Word],,0)>0,\"minute\",
+                    SEARCH(\"second\",[__Word],,0)>0,\"second\",
+                    BLANK()
+                )
+        )
+    VAR __Days = MAXX(FILTER(__Table,[Value] = MAXX(FILTER(__Table,[__Key]=\"day\"),[Value]) - 1),[__Word])+0
+    VAR __Hours = MAXX(FILTER(__Table,[Value] = MAXX(FILTER(__Table,[__Key]=\"hour\"),[Value]) - 1),[__Word])+0
+    VAR __Minutes = MAXX(FILTER(__Table,[Value] = MAXX(FILTER(__Table,[__Key]=\"minute\"),[Value]) - 1),[__Word])+0
+    VAR __Seconds = MAXX(FILTER(__Table,[Value] = MAXX(FILTER(__Table,[__Key]=\"second\"),[Value]) - 1),[__Word])+0
+RETURN
+    __Days * 1000000 + __Hours * 10000 + __Minutes * 100 + __Seconds",
+    "Notes": "Converts a text duration like 16 days, 22 hours, 7 minutes and 53 seconds to duration format 00:00:00:00",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Text-Duration-Conversion/td-p/2036198",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "CAPS!",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Text Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Separator",
+    "Parameter": ",",
+    "DAXCode": 
+"
+    VAR __Separator = \"__PARAM__\"
+    VAR __SearchText = MAX(__COLUMN__)
+    VAR __Len = LEN(__SearchText)
+    VAR __Count = __Len - LEN(SUBSTITUTE(__SearchText,__Separator,\"\")) + 1
+    VAR __Table = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                GENERATESERIES(1,__Count,1),
+                \"__Word\",
+                    VAR __Text = SUBSTITUTE(__SearchText,__Separator,\"|\",IF([Value]=1,1,[Value]-1))
+                    VAR __Start =
+                        SWITCH(TRUE(),
+                            __Count = 1,1,
+                            [Value] = 1,1,
+                            FIND(\"|\",__Text)+1
+                        )
+                    VAR __End = 
+                        SWITCH(TRUE(),
+                            __Count = 1,__Len,
+                            [Value] = 1,FIND(\"|\",__Text) - 1,
+                            [Value] = __Count,__Len,
+                            FIND(__Separator,__Text,__Start)-1
+                        )
+                    VAR __Word = MID(__Text,__Start,__End - __Start + 1)
+                RETURN __Word
+            ),
+            \"__Replace\", UPPER(LEFT([__Word],1)) & RIGHT([__Word],LEN([__Word])-1)
+        )
+RETURN
+    CONCATENATEX(__Table,[__Replace],__Separator,[Value])",
+    "Notes": "Capitalizes each word.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/CAPS/td-p/2028466",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "The Replacements",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Text to Replace Column",
+    "Column": "Choose Column",
+    "Column1Label": "Lookup Column",
+    "Column1": "Choose column",
+    "Column2Label": "Replacment Text Column",
+    "Column2": "Choose column",
+    "Parameter2Label": "Separator",
+    "Parameter2": ",",
+    "DAXCode": 
+"
+    VAR __Separator = \"__PARAM2__\"
+    VAR __SearchText = MAX(__COLUMN__)
+    VAR __Len = LEN(__SearchText)
+    VAR __Count = __Len - LEN(SUBSTITUTE(__SearchText,__Separator,\"\")) + 1
+    VAR __Table = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                GENERATESERIES(1,__Count,1),
+                \"__Word\",
+                    VAR __Text = SUBSTITUTE(__SearchText,__Separator,\"|\",IF([Value]=1,1,[Value]-1))
+                    VAR __Start =
+                        SWITCH(TRUE(),
+                            __Count = 1,1,
+                            [Value] = 1,1,
+                            FIND(\"|\",__Text)+1
+                        )
+                    VAR __End = 
+                        SWITCH(TRUE(),
+                            __Count = 1,__Len,
+                            [Value] = 1,FIND(\"|\",__Text) - 1,
+                            [Value] = __Count,__Len,
+                            FIND(__Separator,__Text,__Start)-1
+                        )
+                    VAR __Word = MID(__Text,__Start,__End - __Start + 1)
+                RETURN __Word
+            ),
+            \"__Replaced\",LOOKUPVALUE(__COLUMN1__,__COLUMN2__,[__Word])
+        )
+RETURN
+    CONCATENATEX(__Table,[__Replaced],__Separator,[Value])",
+    "Notes": "Replaces words in text. Finds words in Text to Replace Column and matches these using the Lookup Column and replaces them with Replacement Text Column. The Lookup Column should have matching words found in the Text to Replace Column. Lookup Column and Replacement Text Column should be in the same table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/The-Replacements/td-p/2008781",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Count of Items in List",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Text Column",
+    "Column": "Choose Text Column",
+    "ParameterLabel": "Separator",
+    "Parameter": ",",
+    "DAXCode": 
+"
+    VAR __Separator = \"__PARAM__\"
+    VAR __SearchText = MAX(__COLUMN__)
+    VAR __Len = LEN(__SearchText)
+    VAR __Count = __Len - LEN(SUBSTITUTE(__SearchText,__Separator,\"\")) + 1
+RETURN
+    __Count",
+    "Notes": "Counts the number of items in a list."
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Open Tickets",
+    "ColumnLabel": "ID Column",
+    "Column": "Choose Column",
+    "Column1Label": "Opened Date",
+    "Column1": "Choose Date Column",
+    "Column2Label": "Closed Date",
+    "Column2": "Choose Date Column",
+    "Column3Label": "Date Column",
+    "Column3": "Choose Date Column",
+    "DAXCode": 
+"
+    VAR tmpTickets = ADDCOLUMNS('__TABLENAME__',\"Effective Date\",IF(ISBLANK([__COLUMN2NAME__]),TODAY(),[__COLUMN2NAME__]))
+    VAR tmpTable =  
+    SELECTCOLUMNS(
+        FILTER(
+            GENERATE(
+                tmpTickets,
+                '__TABLE3NAME__'
+            ),
+            [__COLUMN3NAME__] >= [__COLUMN1NAME__] &&
+            [__COLUMN3NAME__] <= [Effective Date]
+        ),
+        \"ID\",[__COLUMNNAME__],
+        \"Date\",[__COLUMN3NAME__]
+    )
+    VAR tmpTable1 = GROUPBY(tmpTable,[ID],\"Count\",COUNTX(CURRENTGROUP(),[Date]))
+RETURN COUNTROWS(tmpTable1)",
+    "Notes": "Counts the number of open tickets at any point in time. Date Column should come from a separate calendar table. Use the same Date Column as the axis of your visual.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Open-Tickets/m-p/409364#M147",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "SVG Blinking Dot",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Fill Color",
+    "Parameter": "Red",
+    "Parameter1Label": "Line Color",
+    "Parameter1": "Black",
+    "Parameter2Label": "Line Thickness",
+    "Parameter2": "1",
+    "Parameter3Label": "Radius",
+    "Parameter3": "9",
+    "Parameter4Label": "Opacity",
+    "Parameter4": 1,
+    "DAXCode": 
+"
+    VAR __color = \"__PARAM__\"
+    VAR __lineColor = \"__PARAM1__\"
+    VAR __lineThickness = __PARAM2__
+    VAR __radius = __PARAM3__
+    VAR __opacity = __PARAM4__
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='20' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' stroke='\" & __lineColor & \"' stroke-width='\" & __lineThickness & \"'> \" & \"<animate attributeName='opacity' from='1' to='0' dur='1s' begin='0s' repeatCount='indefinite'\/><\/circle>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An SVG blinking dot. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Dynamic Slicer Title",
+    "ColumnLabel": "Choose Slicer Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Limit",
+    "Parameter": "4",
+    "DAXCode": 
+"
+    VAR __ALLTEXT = \"All\"
+    VAR __NONETEXT = \"No\"
+    VAR __DIRECTFILTERPRETEXT = \"You have chosen \"
+    VAR __CROSSFILTERPRETEXT = \"You have filtered down to \"
+    VAR __POSTTEXT = \" __COLUMNNAME__(s).\"
+    VAR __CONCATENATE_TEXT = \", \"
+    VAR __LASTCONCATENATE_TEXT = \" and \"
+    VAR __TOOMANY_MAX = __PARAM__
+    VAR __TOOMANY_PRETEXT = \" and \"
+    VAR __TOOMANY_POSTTEXT = \" more\"
+    VAR __USEPERCENT = FALSE() \/\/Change to TRUE() to use percentages
+    VAR __PERCENTTEXT = \" of\"
+    VAR __PERCENTZEROTEXT = \"0.00%\"
+    VAR __USEMULTIPLECOUNT = FALSE() \/\/Change to TRUE() to use counts after __TOOMANY_MAX is reached
+    VAR __USEMULTIPLECOUNTEXTENDED = FALSE() \/\/Change to TRUE() to use \"x of y\" format after __TOOMANY_MAX is reached
+    VAR __USEMULTIPLECOUNTEXTENDEDTEXT = \" of \"
+    VAR __USESIMPLEMULTIPLETEXT = FALSE() \/\/Change to TRUE() to use __SIMPLEMULTIPLETEXT after __TOOMANY_MAX is reached
+    VAR __SIMPLEMULTIPLETEXT = \"Multiple\" 
+    VAR __TOTAL_ROWS = COUNTROWS(DISTINCT(ALL(__COLUMN__)))
+    VAR __CURRENT_ROWS = COUNTROWS(DISTINCT(__COLUMN__))
+    VAR __MAINTEXT = 
+        IF(
+            __USEPERCENT,
+            VAR __PERCENT = DIVIDE(__CURRENT_ROWS,__TOTAL_ROWS,0)
+            RETURN IF(ISBLANK(__PERCENT),__PERCENTZEROTEXT & __PERCENTTEXT,FORMAT(__PERCENT,\"Percent\") & __PERCENTTEXT),
+            SWITCH(
+                TRUE(),
+                __CURRENT_ROWS = __TOTAL_ROWS,__ALLTEXT,
+                __CURRENT_ROWS = 0,__NONETEXT,
+                __CURRENT_ROWS = 1, MAX(__COLUMN__),
+                __CURRENT_ROWS < __TOOMANY_MAX,
+                    CONCATENATEX(
+                        TOPN(__CURRENT_ROWS - 1,DISTINCT(__COLUMN__)),
+                        [__COLUMNNAME__],
+                        __CONCATENATE_TEXT
+                    ) & __LASTCONCATENATE_TEXT & LASTNONBLANK(DISTINCT(__COLUMN__),TRUE()),
+                IF(
+                    __USESIMPLEMULTIPLETEXT,
+                    __SIMPLEMULTIPLETEXT,
+                    IF(
+                        __USEMULTIPLECOUNT,
+                        IF(
+                            __USEMULTIPLECOUNTEXTENDED,
+                            __CURRENT_ROWS & __USEMULTIPLECOUNTEXTENDEDTEXT & __TOTAL_ROWS,
+                            __CURRENT_ROWS
+                        ),
+                        VAR __OVERAGE = __CURRENT_ROWS - __TOOMANY_MAX + 1
+                        RETURN 
+                            CONCATENATEX(
+                                TOPN(__TOOMANY_MAX - 1,DISTINCT(__COLUMN__)),
+                                [__COLUMNNAME__],
+                                __CONCATENATE_TEXT
+                          ) & __TOOMANY_PRETEXT & __OVERAGE & __TOOMANY_POSTTEXT
+                    )
+                )
+            )
+        )
+    VAR __PRETEXT = IF(ISFILTERED(__COLUMN__),__DIRECTFILTERPRETEXT,__CROSSFILTERPRETEXT)
+RETURN __PRETEXT & __MAINTEXT & __POSTTEXT",
+    "Notes": "The most amazing dynamic slicer title measure ever... Use a column used in a slicer. Place the measure in a Card visual.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/The-Most-Amazing-Mind-Blowing-Dynamic-Slicer-Title-Measure-Ever/td-p/429587",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Measure Totals, The Final Word",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Summarization Column",
+    "Column": "Choose Column",
+    "Column1Label": "Value Column",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Single = __AGGREGATION__(__COLUMN1__) - 50
+    VAR __Table = SUMMARIZE('__TABLENAME__',[__COLUMNNAME__],\"__value\",__AGGREGATION__(__COLUMN1__) - 50)
+RETURN
+    IF(HASONEVALUE(__COLUMN__),__Single,SUMX(__Table,[__value]))
+",
+    "Notes": "Example of Measure Totals, The Final Word. Still generally recommend having a separate measure for the single rows but here it is all in one measure for reference. See Quick Measure Gallery link.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Measure-Totals-The-Final-Word/td-p/547907",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Custom",
+    "MeasureId": "Custom",
+    "MeasureGroup": "Custom",
+    "DisplayName": "Custom Measure Demo",
+    "Format": "##:00:#0",
+    "AggregationLabel": "Aggregation Label",
+    "Aggregation": "Visible",
+    "AggregationType": "MinMax",
+    "ColumnLabel": "Column Label",
+    "Column": "Choose Column",
+    "ParameterLabel": "Parameter Label",
+    "Parameter": "Parameter Default",
+    "Aggregation1Label": "Aggregation1 Label",
+    "Aggregation1": "Visible",
+    "Aggregation1Type": "All",
+    "Column1Label": "Column1 Label",
+    "Column1": "Choose Column1",
+    "Parameter1Label": "Parameter1 Label",
+    "Parameter1": "Parameter1 Default",
+    "Aggregation2Label": "Aggregation2 Label",
+    "Aggregation2": "Visible",
+    "Aggregation2Type": "MinMax",
+    "Column2Label": "Column2 Label",
+    "Column2": "Choose Column2",
+    "Parameter2Label": "Parameter2 Label",
+    "Parameter2": "Parameter2 Default",
+    "Aggregation3Label": "Aggregation3 Label",
+    "Aggregation3": "Visible",
+    "Aggregation3Type": "All",
+    "Column3Label": "Column3 Label",
+    "Column3": "Choose Column3",
+    "Parameter3Label": "Parameter3 Label",
+    "Parameter3": "Parameter3 Default",
+    "Aggregation4Label": "Aggregation4 Label",
+    "Aggregation4": "Visible",
+    "Aggregation4Type": "MinMax",
+    "ColumnLabel4": "Column4 Label",
+    "Column4": "Choose Column4",
+    "Parameter4Label": "Parameter4 Label",
+    "Parameter4": "Parameter4 Default",
+    "Aggregation5Label": "Aggregation5 Label",
+    "Aggregation5": "Visible",
+    "Aggregation5Type": "All",
+    "Column5Label": "Column5 Label",
+    "Column5": "Choose Column5",
+    "Parameter5Label": "Parameter5 Label",
+    "Parameter5": "Parameter5 Default",
+    "Aggregation6Label": "Aggregation6 Label",
+    "Aggregation6": "Visible",
+    "Aggregation6Type": "MinMax",
+    "Column6Label": "Column6 Label",
+    "Column6": "Choose Column6",
+    "Parameter6Label": "Parameter6 Label",
+    "Parameter6": "Parameter6 Default",
+    "Aggregation7Label": "Aggregation7 Label",
+    "Aggregation7": "Visible",
+    "Aggregation7Type": "All",
+    "ColumnLabel7": "Column7 Label",
+    "Column7": "Choose Column7",
+    "Parameter7Label": "Parameter7 Label",
+    "Parameter7": "Parameter7 Default",
+    "Aggregation8Label": "Aggregation8 Label",
+    "Aggregation8": "Visible",
+    "Aggregation8Type": "MinMax",
+    "Column8Label": "Column8 Label",
+    "Column8": "Choose Column8",
+    "Parameter8Label": "Parameter8 Label",
+    "Parameter8": "Parameter8 Default",
+    "Aggregation9Label": "Aggregation9 Label",
+    "Aggregation9": "Visible",
+    "Aggregation9Type": "All",
+    "Column9Label": "Column9 Label",
+    "Column9": "Choose Column9",
+    "Parameter9Label": "Parameter9 Label",
+    "Parameter9": "Parameter9 Default",
+    "Aggregation10Label": "Aggregation10 Label",
+    "Aggregation10": "Visible",
+    "Aggregation10Type": "MinMax",
+    "Column10Label": "Column10 Label",
+    "Column10": "Choose Column10",
+    "Parameter10Label": "Parameter10 Label",
+    "Parameter10": "Parameter10 Default",
+    "AreaFromLabel": "Area From Label",
+    "AreaFrom": "Visible",
+    "AreaToLabel": "Area To Label",
+    "AreaTo": "Visible",
+    "DensityFromLabel": "Density From Label",
+    "DensityFrom": "Visible",
+    "DensityToLabel": "Density To Label",
+    "DensityTo": "Visible",
+    "DistanceFromLabel": "Distance From Label",
+    "DistanceFrom": "Visible",
+    "DistanceToLabel": "Distance To Label",
+    "DistanceTo": "Visible",
+    "MassFromLabel": "Mass From Label",
+    "MassFrom": "Visible",
+    "MassToLabel": "Mass To Label",
+    "MassTo": "Visible",
+    "TempFromLabel": "Temp From Label",
+    "TempFrom": "Visible",
+    "TempToLabel": "Temp To Label",
+    "TempTo": "Visible",
+    "VelocityFromLabel": "Velocity From Label",
+    "VelocityFrom": "Visible",
+    "VelocityToLabel": "Velocity To Label",
+    "VelocityTo": "Visible",
+    "VolumeFromLabel": "Volume From Label",
+    "VolumeFrom": "Visible",
+    "VolumeToLabel": "Distance To Label",
+    "VolumeTo": "Visible",
+    "DurationLabel": "Duration Label",
+    "Duration": "Visible",
+    "DistanceUnitsLabel": "Distance Units Label",
+    "DistanceUnits": "Visible",
+    "WeekDayReturnLabel": "Weekday Return Label",
+    "WeekDayReturn": "Visible",
+    "WeekDayStartLabel": "Weekday Start Label",
+    "WeekDayStart": "Visible",
+    "WeekNumReturnLabel": "Weeknum Return Label",
+    "WeekNumReturn": "Visible",
+    "CaseSensitivityLabel": "Case Sensitivity Label",
+    "CaseSensitivity": "Visible",
+    "DAXCode": "
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __ValueX = __XAGGREGATION__('__TABLENAME__','__COLUMNNAME__')
+    VAR __Value1 = __AGGREGATION1__(__COLUMN1__)
+    VAR __Value1X = __XAGGREGATION1__('__TABLE1NAME__','__COLUMN1NAME__')
+    VAR __Value2 = __AGGREGATION2__(__COLUMN2__)
+    VAR __Value2X = __XAGGREGATION2__('__TABLE2NAME__','__COLUMN2NAME__')
+    VAR __Value3 = __AGGREGATION3__(__COLUMN3__)
+    VAR __Value3X = __XAGGREGATION3__('__TABLE3NAME__','__COLUMN3NAME__')
+    VAR __Value4 = __AGGREGATION4__(__COLUMN4__)
+    VAR __Value4X = __XAGGREGATION4__('__TABLE4NAME__','__COLUMN4NAME__')
+    VAR __Value5 = __AGGREGATION5__(__COLUMN5__)
+    VAR __Value5X = __XAGGREGATION5__('__TABLE5NAME__','__COLUMN5NAME__')
+    VAR __Value6 = __AGGREGATION6__(__COLUMN6__)
+    VAR __Value6X = __XAGGREGATION6__('__TABLE6NAME__','__COLUMN6NAME__')
+    VAR __Value7 = __AGGREGATION7__(__COLUMN7__)
+    VAR __Value7X = __XAGGREGATION7__('__TABLE7NAME__','__COLUMN7NAME__')
+    VAR __Value8 = __AGGREGATION8__(__COLUMN8__)
+    VAR __Value8X = __XAGGREGATION8__('__TABLE8NAME__','__COLUMN8NAME__')
+    VAR __Value9 = __AGGREGATION9__(__COLUMN9__)
+    VAR __Value9X = __XAGGREGATION9__('__TABLE9NAME__','__COLUMN9NAME__')
+    VAR __Value10 = __AGGREGATION10__(__COLUMN10__)
+    VAR __Value10X = __XAGGREGATION10__('__TABLE10NAME__','__COLUMN10NAME__')
+    VAR __Parameter = __PARAM__
+    VAR __Parameter1 = \"__PARAM1__\"
+    VAR __Parameter2 = __PARAM2__
+    VAR __Parameter3 = \"__PARAM3__\"
+    VAR __Parameter4 = __PARAM4__
+    VAR __Parameter5 = \"__PARAM5__\"
+    VAR __Parameter6 = __PARAM6__
+    VAR __Parameter7 = \"__PARAM7__\"
+    VAR __Parameter8 = __PARAM8__
+    VAR __Parameter9 = \"__PARAM9__\"
+    VAR __Parameter9 = __PARAM10__
+    VAR __AreaFrom = \"__AREAFROM__\"
+    VAR __AreaTo = \"__AREATO__\"
+    VAR __AreaConversionFactor = __AREACONVERSIONFACTOR__
+    VAR __DensityFrom = \"__DENSITYFROM__\"
+    VAR __DensityTo = \"__DENSITYTO__\"
+    VAR __DensityConversionFactor = __DENSITYCONVERSIONFACTOR__
+    VAR __DistanceFrom = \"__DISTANCEFROM__\"
+    VAR __DistanceTo = \"__DISTANCETO__\"
+    VAR __DistanceConversionFactor = __DISTANCECONVERSIONFACTOR__
+    VAR __MassFrom = \"__MASSFROM__\"
+    VAR __MassTo = \"__MASSTO__\"
+    VAR __MassConversionFactor = __MASSCONVERSIONFACTOR__
+    VAR __TempFrom = \"__TEMPFROM__\"
+    VAR __TempTo = \"__TEMPTO__\"
+    VAR __TempConversionFactor = __TEMPCONVERSIONFACTOR__
+    VAR __VelocityFrom = \"__VELOCITYFROM__\"
+    VAR __VelocityTo = \"__VELOCITYTO__\"
+    VAR __VelocityConversionFactor = __VELOCITYCONVERSIONFACTOR__
+    VAR __VolumeFrom = \"__VOLUMEFROM__\"
+    VAR __VolumeTo = \"__VOLUMETO__\"
+    VAR __VolumeConversionFactor = __VOLUMECONVERSIONFACTOR__
+    VAR __Duration = \"__DURATION__\"
+    VAR __DurationConversionFactor = __DURATIONCONVERSIONFACTOR__
+    VAR __DistanceUnits = \"__DISTANCEUNITS__\"
+    VAR __DistanceUnitsGlobalRadius = __DISTANCEUNITSGLOBALRADIUS__
+    VAR __WeekDayReturn = __WEEKDAYRETURN__
+    VAR __WeekDayStart = \"__WEEKDAYSTART__\"
+    VAR __WeekNumReturn = __WEEKNUMRETURN__
+    VAR __CaseSensitivity = \"__CASESENSITIVITY__\"
+    VAR __CaseSensitivityFunction = \"__CASESENSITIVITYFUNCTION__\"
+RETURN
+    \"MSHGQM\"",
+    "Notes": "Use this measure as a demo and guide when creating custom measures.
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __ValueX = __XAGGREGATION__('__TABLENAME__','__COLUMNNAME__')
+    VAR __Value1 = __AGGREGATION1__(__COLUMN1__)
+    VAR __Value1X = __XAGGREGATION1__('__TABLE1NAME__','__COLUMN1NAME__')
+    VAR __Value2 = __AGGREGATION2__(__COLUMN2__)
+    VAR __Value2X = __XAGGREGATION2__('__TABLE2NAME__','__COLUMN2NAME__')
+    VAR __Value3 = __AGGREGATION3__(__COLUMN3__)
+    VAR __Value3X = __XAGGREGATION3__('__TABLE3NAME__','__COLUMN3NAME__')
+    VAR __Value4 = __AGGREGATION4__(__COLUMN4__)
+    VAR __Value4X = __XAGGREGATION4__('__TABLE4NAME__','__COLUMN4NAME__')
+    VAR __Value5 = __AGGREGATION5__(__COLUMN5__)
+    VAR __Value5X = __XAGGREGATION5__('__TABLE5NAME__','__COLUMN5NAME__')
+    VAR __Value6 = __AGGREGATION6__(__COLUMN6__)
+    VAR __Value6X = __XAGGREGATION6__('__TABLE6NAME__','__COLUMN6NAME__')
+    VAR __Value7 = __AGGREGATION7__(__COLUMN7__)
+    VAR __Value7X = __XAGGREGATION7__('__TABLE7NAME__','__COLUMN7NAME__')
+    VAR __Value8 = __AGGREGATION8__(__COLUMN8__)
+    VAR __Value8X = __XAGGREGATION8__('__TABLE8NAME__','__COLUMN8NAME__')
+    VAR __Value9 = __AGGREGATION9__(__COLUMN9__)
+    VAR __Value9X = __XAGGREGATION9__('__TABLE9NAME__','__COLUMN9NAME__')
+    VAR __Value10 = __AGGREGATION10__(__COLUMN10__)
+    VAR __Value10X = __XAGGREGATION10__('__TABLE10NAME__','__COLUMN10NAME__')
+    VAR __Parameter = __PARAM__
+    VAR __Parameter1 = \"__PARAM1__\"
+    VAR __Parameter2 = __PARAM2__
+    VAR __Parameter3 = \"__PARAM3__\"
+    VAR __Parameter4 = __PARAM4__
+    VAR __Parameter5 = \"__PARAM5__\"
+    VAR __Parameter6 = __PARAM6__
+    VAR __Parameter7 = \"__PARAM7__\"
+    VAR __Parameter8 = __PARAM8__
+    VAR __Parameter9 = \"__PARAM9__\"
+    VAR __Parameter9 = __PARAM10__
+    VAR __AreaFrom = \"__AREAFROM__\"
+    VAR __AreaTo = \"__AREATO__\"
+    VAR __AreaConversionFactor = __AREACONVERSIONFACTOR__
+    VAR __DensityFrom = \"__DENSITYFROM__\"
+    VAR __DensityTo = \"__DENSITYTO__\"
+    VAR __DensityConversionFactor = __DENSITYCONVERSIONFACTOR__
+    VAR __DistanceFrom = \"__DISTANCEFROM__\"
+    VAR __DistanceTo = \"__DISTANCETO__\"
+    VAR __DistanceConversionFactor = __DISTANCECONVERSIONFACTOR__
+    VAR __MassFrom = \"__MASSFROM__\"
+    VAR __MassTo = \"__MASSTO__\"
+    VAR __MassConversionFactor = __MASSCONVERSIONFACTOR__
+    VAR __TempFrom = \"__TEMPFROM__\"
+    VAR __TempTo = \"__TEMPTO__\"
+    VAR __TempConversionFactor = __TEMPCONVERSIONFACTOR__
+    VAR __VelocityFrom = \"__VELOCITYFROM__\"
+    VAR __VelocityTo = \"__VELOCITYTO__\"
+    VAR __VelocityConversionFactor = __VELOCITYCONVERSIONFACTOR__
+    VAR __VolumeFrom = \"__VOLUMEFROM__\"
+    VAR __VolumeTo = \"__VOLUMETO__\"
+    VAR __VolumeConversionFactor = __VOLUMECONVERSIONFACTOR__
+    VAR __Duration = \"__DURATION__\"
+    VAR __DurationConversionFactor = __DURATIONCONVERSIONFACTOR__
+    VAR __DistanceUnits = \"__DISTANCEUNITS__\"
+    VAR __DistanceUnitsGlobalRadius = __DISTANCEUNITSGLOBALRADIUS__
+    VAR __WeekDayReturn = __WEEKDAYRETURN__
+    VAR __WeekDayStart = \"__WEEKDAYSTART__\"
+    VAR __WeekNumReturn = __WEEKNUMRETURN__
+    VAR __CaseSensitivity = \"__CASESENSITIVITY__\"
+    VAR __CaseSensitivityFunction = \"__CASESENSITIVITYFUNCTION__\"
+RETURN
+    \"MSHGQM\"",
+    "Hyperlink1": "https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/",
+    "Hyperlink1Text": "Microsoft Hates Greg's Quick Measures",
+    "Hyperlink2": "https://github.com/gdeckler/MicrosoftHatesGregsQuickMeasures",
+    "Hyperlink2Text": "MSHGQM GitHub",
+    "Hyperlink3": "https://www.youtube.com/channel/UCwBe41Y8QmLlL5S-_8XVabw",
+    "Hyperlink3Text": "MSHGQM YouTube",
+    "Hyperlink4": "https://www.amazon.com/DAX-Cookbook-analytics-reporting-intelligence/dp/1839217073/",
+    "Hyperlink4Text": "DAX Cookbook",
+    "Hyperlink5": "https://www.amazon.com/Microsoft-Power-Cookbook-expertise-hands/dp/1801813043/",
+    "Hyperlink5Text": "Microsoft Power BI Cookbook"
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Addition",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Addition aggregation",
+    "Column1Label": "Value to add",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    __AGGREGATION__(__COLUMN__) + __AGGREGATION1__(__COLUMN1__)
+",
+    "Notes": "Calculate the sum of the aggregations of two columns.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Subtraction",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Subtraction aggregation",
+    "Column1Label": "Value to subtract",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    __AGGREGATION__(__COLUMN__) - __AGGREGATION1__(__COLUMN1__)
+",
+    "Notes": "Calculate the difference between the aggregations of two columns.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Multiplication",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Multiple aggregation",
+    "Column1Label": "Value to multiply with",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    __AGGREGATION__(__COLUMN__) * __AGGREGATION1__(__COLUMN1__)
+",
+    "Notes": "Calculate the product of the aggregations of two columns.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Division",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Numerator aggregation",
+    "ColumnLabel": "Numerator",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Denominator aggregation",
+    "Column1Label": "Denominator",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    DIVIDE(__AGGREGATION__(__COLUMN__), __AGGREGATION1__(__COLUMN1__))
+",
+    "Notes": "Calculate the quotient of the aggregations of two columns.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Percentage difference",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Value to compare aggregation",
+    "Column1Label": "Value to compare",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Blanks",
+    "Parameter1": "0",
+    "DAXCode": 
+"
+    VAR __BASELINE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __VALUE_TO_COMPARE = __AGGREGATION1__(__COLUMN1__)
+    VAR __BLANKS = \"__PARAM1__\"
+RETURN
+    SWITCH(__BLANKS,
+        \"0\", DIVIDE(__VALUE_TO_COMPARE - __BASELINE_VALUE, __BASELINE_VALUE),
+        IF(
+            NOT ISBLANK(__VALUE_TO_COMPARE),
+            DIVIDE(__VALUE_TO_COMPARE - __BASELINE_VALUE, __BASELINE_VALUE)
+        )
+    )
+",
+    "Notes": "Calculate the percentage difference between the aggregations of two columns. A Blanks value of 0 treats blanks in \"Value to compare\" as zeros. Any other value will produce blanks in the output.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Correlation coefficient",
+    "ColumnLabel": "Category",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Column1Label": "Measure X",
+    "Column1": "Choose Column",
+    "Aggregation2": "Visible",
+    "Column2Label": "Measure Y",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __CORRELATION_TABLE = VALUES(__COLUMN__)
+    VAR __COUNT =
+        COUNTX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION1__(__COLUMN1__) * __AGGREGATION2__(__COLUMN2__))
+        )
+    VAR __SUM_X =
+        SUMX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION1__(__COLUMN1__))
+        )
+    VAR __SUM_Y =
+        SUMX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION2__(__COLUMN2__))
+        )
+    VAR __SUM_XY =
+        SUMX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION1__(__COLUMN1__) * __AGGREGATION2__(__COLUMN2__) * 1.)
+        )
+    VAR __SUM_X2 =
+        SUMX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION1__(__COLUMN1__) ^ 2)
+        )
+    VAR __SUM_Y2 =
+        SUMX(
+            KEEPFILTERS(__CORRELATION_TABLE),
+            CALCULATE(__AGGREGATION2__(__COLUMN2__) ^ 2)
+        )
+RETURN
+    DIVIDE(
+        __COUNT * __SUM_XY - __SUM_X * __SUM_Y * 1.,
+        SQRT(
+            (__COUNT * __SUM_X2 - __SUM_X ^ 2)
+            * (__COUNT * __SUM_Y2 - __SUM_Y ^ 2)
+        )
+    )
+",
+    "Notes": "Calculate the correlation coefficient between two values over a category. Originally suggested by Daniil Maslyuk.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Correlation-coefficient/m-p/196274#M21",  
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink2Text": "Learn More"
+  },
+  {
+    "Configuration": "Aggregate per category",
+    "MeasureId": "Aggregate per category",
+    "MeasureGroup": "Aggregate per category",
+    "DisplayName": "Aggregation per category",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Overall aggregation",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Base value aggregation",
+    "Column1Label": "Base value",
+    "Column1": "Choose Column",
+    "Column2Label": "Category",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    __XAGGREGATION__(
+        KEEPFILTERS(VALUES(__COLUMN2__)),
+        CALCULATE(__AGGREGATION1__(__COLUMN1__))
+)
+",
+    "Notes": "Calculate the aggregation of an aggregated base value within the category.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Aggregate per category",
+    "MeasureId": "Aggregate per category",
+    "MeasureGroup": "Aggregate per category",
+    "DisplayName": "Weighted average per category",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Aggregation1": "Visible",
+    "Aggregation1Label": "Weight aggregation",
+    "Column1Label": "Weight",
+    "Column1": "Choose Column",
+    "Column2Label": "Category",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __CATEGORY_VALUES = VALUES(__COLUMN2__)
+RETURN
+    DIVIDE(
+        SUMX(
+            KEEPFILTERS(__CATEGORY_VALUES),
+            CALCULATE(__AGGREGATION__(__COLUMN__) * __AGGREGATION1__(__COLUMN1__))
+        ),
+        SUMX(
+            KEEPFILTERS(__CATEGORY_VALUES),
+            CALCULATE(__AGGREGATION1__(__COLUMN1__))
+        )
+    )
+",
+    "Notes": "Calculate the weighted aggregation of an aggregated base value for each category. Multiply the value by the aggregated weight for each category, sum total and then divide by the sum total of the weight.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Filters",
+    "MeasureId": "Filters",
+    "MeasureGroup": "Filters",
+    "DisplayName": "Filtered value",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Filter Column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Filter values",
+    "Parameter1": "Comma separated list",
+    "DAXCode": 
+"
+    CALCULATE(__AGGREGATION__(__COLUMN__), __COLUMN1__ IN { __PARAM1__ })
+",
+    "Notes": "Calculate an aggregation with a filter applied.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Filters",
+    "MeasureId": "Filters",
+    "MeasureGroup": "Filters",
+    "DisplayName": "Difference from filtered value",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Filter Column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Filter values",
+    "Parameter1": "Comma separated list",
+    "Parameter2Label": "Blanks",
+    "Parameter2": "0",
+    "DAXCode": 
+"
+    VAR __BASELINE_VALUE = CALCULATE(__AGGREGATION__(__COLUMN__), __COLUMN1__ IN { __PARAM1__ })
+    VAR __MEASURE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __BLANKS = \"__PARAM2__\"
+RETURN
+    SWITCH(__BLANKS,
+        \"0\", __MEASURE_VALUE - __BASELINE_VALUE,
+        IF(NOT ISBLANK(__MEASURE_VALUE), __MEASURE_VALUE - __BASELINE_VALUE)
+    )
+",
+    "Notes": "Calculate the difference between an aggregated value and its value with a filter applied. A Blanks value of 0 treats blanks as zeros. Any other value will produce blanks in the output.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Filters",
+    "MeasureId": "Filters",
+    "MeasureGroup": "Filters",
+    "DisplayName": "Percentage difference from filtered value",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Filter Column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Filter values",
+    "Parameter1": "Comma separated list",
+    "Parameter2Label": "Blanks",
+    "Parameter2": "0",
+    "DAXCode": 
+"
+    VAR __BASELINE_VALUE = CALCULATE(__AGGREGATION__(__COLUMN__), __COLUMN1__ IN { __PARAM1__ })
+    VAR __MEASURE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __BLANKS = \"__PARAM2__\"
+RETURN
+    SWITCH(__BLANKS,
+        \"0\", DIVIDE(__MEASURE_VALUE - __BASELINE_VALUE, __BASELINE_VALUE),
+        IF(NOT ISBLANK(__MEASURE_VALUE), DIVIDE(__MEASURE_VALUE - __BASELINE_VALUE, __BASELINE_VALUE))
+    )
+",
+    "Notes": "Calculate the percentage difference between an aggregated value and its value with a filter applied. A Blanks value of 0 treats blanks as zeros. Any other value will produce blanks in the output.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Filters",
+    "MeasureId": "Filters",
+    "MeasureGroup": "Filters",
+    "DisplayName": "Sales from new customers",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Sales amount aggregation",
+    "ColumnLabel": "Sales amount",
+    "Column": "Choose Column",
+    "Column1Label": "Customer ID",
+    "Column1": "Choose Column",
+    "Column2Label": "Date",
+    "Column2": "Choose Date Column",
+    "DAXCode": 
+"
+    IF(
+        ISFILTERED(__COLUMN2__),
+        ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+        VAR __CURRENT_VALUES = SUMMARIZE(VALUES('__TABLE1NAME__'), __COLUMN1__)
+        VAR __EXISTING_VALUES =
+            CALCULATETABLE(
+                SUMMARIZE(VALUES('__TABLE1NAME__'), __COLUMN1__),
+                FILTER(
+                    ALL(__COLUMN2__.[Date]),
+                    __COLUMN2__.[Date] < MIN(__COLUMN2__.[Date])
+                ),
+                KEEPFILTERS(__CURRENT_VALUES)
+            )    
+        RETURN
+            CALCULATE(
+                SUM(__COLUMN__),
+                EXCEPT(__CURRENT_VALUES, __EXISTING_VALUES)
+            )
+    )
+",
+    "Notes": "Calculate the sales on a date to customers who were making their first purchase. You might also use this quick measure to find the number of first-time helpdesk callers, the average age of customers taking out a life insurance premium, etc.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Star rating",
+    "Aggregation": "Visible",
+    "AggregationLabel": "Base value aggregation",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Number of stars",
+    "Parameter": "5",
+    "Parameter1Label": "Value for lowest star rating",
+    "Parameter1": "0",
+    "Parameter2Label": "Value for highest star rating",
+    "Parameter2": "100",
+    "Parameter3Label": "Unicode Filled",
+    "Parameter3": "9733",
+    "Parameter4Label": "Unicode Unfilled",
+    "Parameter4": "9734",
+    "DAXCode": 
+"
+    VAR __MAX_NUMBER_OF_STARS = __PARAM__
+    VAR __MIN_RATED_VALUE = __PARAM1__
+    VAR __MAX_RATED_VALUE = __PARAM2__
+    VAR __BASE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __NORMALIZED_BASE_VALUE =
+        MIN(
+            MAX(
+                DIVIDE(
+                    __BASE_VALUE - __MIN_RATED_VALUE,
+                    __MAX_RATED_VALUE - __MIN_RATED_VALUE
+                ),
+                0
+            ),
+            1
+        )
+    VAR __STAR_RATING = ROUND(__NORMALIZED_BASE_VALUE * __MAX_NUMBER_OF_STARS, 0)
+RETURN
+    IF(
+        NOT ISBLANK(__BASE_VALUE),
+        REPT(UNICHAR(__PARAM3__), __STAR_RATING)
+            & REPT(UNICHAR(__PARAM4__), __MAX_NUMBER_OF_STARS - __STAR_RATING)
+    )
+",
+    "Notes": "Convert a numeric value into a variable star rating. Originally suggested by Chris Webb through the quick measure gallery.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Star-Ratings/m-p/166903",  
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink2Text": "Learn More"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Concatenated list of values",
+    "ColumnLabel": "Field",
+    "Column": "Choose Column",
+    "ParameterLabel": "Max values before truncation",
+    "Parameter": "3",
+    "Parameter1Label": "ASC/DESC",
+    "Parameter1": "ASC",
+    "DAXCode": 
+"
+    VAR __DISTINCT_VALUES_COUNT = DISTINCTCOUNT(__COLUMN__)
+    VAR __MAX_VALUES_TO_SHOW = __PARAM__
+RETURN
+    IF(
+        __DISTINCT_VALUES_COUNT > __MAX_VALUES_TO_SHOW,
+        CONCATENATE(
+            CONCATENATEX(
+                TOPN(
+                    __MAX_VALUES_TO_SHOW,
+                    VALUES(__COLUMN__),
+                   __COLUMN__,
+                   __PARAM1__
+                ),
+                __COLUMN__,
+                \", \",
+                __COLUMN__,
+                __PARAM1__
+            ),
+            \", etc.\"
+        ),
+        CONCATENATEX(
+            VALUES(__COLUMN__),
+            __COLUMN__,
+            \", \",
+            __COLUMN__,
+            __PARAM1__
+        )
+    )
+",
+    "Notes": "Create a comman separated list of distinct values in a column. When more values exist than the number specified, truncate and show 'etc.' at the end of the list. Originally suggested by Devin Knight in the quick measure gallery.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Concatenated-list-of-top-items/m-p/237585",  
+    "Hyperlink1Text": "Quick Measure Gallery",
+    "Hyperlink2": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink2Text": "Learn More"  
+  },
+  {
+    "Configuration": "Totals",
+    "MeasureId": "Totals",
+    "MeasureGroup": "Totals",
+    "DisplayName": "Running total",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Field",
+    "Column1": "Choose Column",
+    "Parameter1Label": "ASC/DESC",
+    "Parameter1": "DESC",
+    "DAXCode": 
+"
+CALCULATE(
+    __AGGREGATION__(__COLUMN__),
+    FILTER(
+        ALLSELECTED(__COLUMN1__),
+        ISONORAFTER(__COLUMN1__, MIN(__COLUMN1__), __PARAM1__)
+    )
+)
+",
+    "Notes": "Calculate the running total over a measure in a specific field. If you want Ascending, use DESC and ASC if you want Descending.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Totals",
+    "MeasureId": "Totals",
+    "MeasureGroup": "Totals",
+    "DisplayName": "Total for category",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Filters applied",
+    "Parameter1": "Yes",
+    "DAXCode": 
+"
+    VAR __APPLY_FILTERS = \"__PARAM1__\"
+RETURN
+    IF(
+        __APPLY_FILTERS = \"Yes\", 
+        CALCULATE(__AGGREGATION__(__COLUMN__), ALLSELECTED(__COLUMN1__)),
+        CALCULATE(__AGGREGATION__(__COLUMN__), ALL(__COLUMN1__))
+    )
+",
+    "Notes": "Calculate the total across values in a category. \"Filters applied\" of Yes means report filters on Category apply. Any other value overrides all filters on Category.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Year-to-date total",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    TOTALYTD(__AGGREGATION__(__COLUMN__), __COLUMN1__.[Date])
+)
+",
+    "Notes": "Calculate the total of the base value, starting from the beginning of the current year.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Quarter-to-date total",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    TOTALQTD(__AGGREGATION__(__COLUMN__), __COLUMN1__.[Date])
+)
+",
+    "Notes": "Calculate the total of the base value, starting from the beginning of the current quarter.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Month-to-date total",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    TOTALMTD(__AGGREGATION__(__COLUMN__), __COLUMN1__.[Date])
+)
+",
+    "Notes": "Calculate the total of the base value, starting from the beginning of the current month.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Year-over-year change",
+    "Format": "0.00%;-0.00%;0.00%",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "Parameter1Label": "Number of periods",
+    "Parameter1": "1",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    VAR __PREV_YEAR = CALCULATE(__AGGREGATION__(__COLUMN__), DATEADD(__COLUMN1__.[Date], -__PARAM1__, YEAR))
+    RETURN
+        DIVIDE(__AGGREGATION__(__COLUMN__) - __PREV_YEAR, __PREV_YEAR)
+)
+",
+    "Notes": "Calculate the year-over-year change of the base value.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Quarter-over-quarter change",
+    "Format": "0.00%;-0.00%;0.00%",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "Parameter1Label": "Number of periods",
+    "Parameter1": "1",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    VAR __PREV_QUARTER = CALCULATE(__AGGREGATION__(__COLUMN__), DATEADD(__COLUMN1__.[Date], -__PARAM1__, QUARTER))
+    RETURN
+        DIVIDE(__AGGREGATION__(__COLUMN__) - __PREV_QUARTER, __PREV_QUARTER)
+)
+",
+    "Notes": "Calculate the quarter-over-quarter change of the base value.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Month-over-month change",
+    "Format": "0.00%;-0.00%;0.00%",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "Parameter1Label": "Number of periods",
+    "Parameter1": "1",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    VAR __PREV_MONTH = CALCULATE(__AGGREGATION__(__COLUMN__), DATEADD(__COLUMN1__.[Date], -__PARAM1__, MONTH))
+    RETURN
+        DIVIDE(__AGGREGATION__(__COLUMN__) - __PREV_MONTH, __PREV_MONTH)
+)
+",
+    "Notes": "Calculate the month-over-month change of the base value.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Rolling average",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "Parameter1Label": "Periods",
+    "Parameter1": "DAY",
+    "Parameter2Label": "Periods before",
+    "Parameter2": "1",
+    "Parameter3Label": "Periods after",
+    "Parameter3": "1",
+    "DAXCode": 
+"
+IF(
+    ISFILTERED(__COLUMN1__),
+    ERROR(\"Time intelligence quick measures can only be grouped or filtered by the Power BI-provided date hierarchy or primary date column.\"),
+    VAR __LAST_DATE = LASTDATE(__COLUMN1__.[Date])
+    RETURN
+        AVERAGEX(
+            DATESBETWEEN(
+                __COLUMN1__.[Date],
+                DATEADD(__LAST_DATE, -__PARAM2__, __PARAM1__),
+                DATEADD(__LAST_DATE, __PARAM3__, __PARAM1__)
+            ),
+            CALCULATE(__AGGREGATION__(__COLUMN__))
+        )
+)
+",
+    "Notes": "Calculate the average of base value over a certain number of periods and/or after each date. For \"Period\", use DAY, MONTH, QUARTER or YEAR.",
+    "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
+    "Hyperlink1Text": "Learn More"  
+  }
+]
