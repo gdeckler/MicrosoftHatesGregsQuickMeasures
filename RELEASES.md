@@ -107,6 +107,8 @@ Features and Fixes<br/>
 - Dynamic Slicer Title
 - Measure Totals, The Final Word
 - Custom Measure Demo
+### supportedmeasures.json
+- Updated 12/20/2021 to include all out-of-the-box quick measures in Power BI Desktop
 
 ## Delta
 Planned Release:  June 2022<br/>
