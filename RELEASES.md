@@ -111,7 +111,42 @@ Features and Fixes<br/>
 - Updated 12/20/2021 to include all out-of-the-box quick measures in Power BI Desktop
 - Updated 12/27/2021 to include 37 new measures:
   - Percent of Total
-
+  - Compound Annual Growth Rate
+  - Rank per category
+  - Table/Matrix Totals
+  - Simple Aggregations
+  - Simple Iterator Aggregations
+  - Aggregation on Last Date
+  - Stephen Few 'Red Dot'
+  - Normalize Numeric Data
+  - Linear Interpolation
+  - The Most Amazing, Mind Blowing Dynamic Slicer Title Measure Ever
+  - Simple SVG KPI
+  - SVG Trend Indicator
+  - SVG Sparklines
+  - SVG Sparklines Categorical Columns
+  - SVG Color and Shape Indicators
+  - SVG Color and Shape Indicators 2
+  - SVG Color Star Rating
+  - SVG Heart
+  - SVG Flatline
+  - SVG Beating Heart
+  - SVG Bouncing Dot
+  - SVG Spinner
+  - SVG Square Animation
+  - SVG Swipe
+  - SVG Twirl
+  - SVG Gauge
+  - SVG Harveyball
+  - SVG Harveybox
+  - First Working Day of Week
+  - Is First Working Day of Week
+  - Last Working Day of Week
+  - Is Last Working Day of Week
+  - First Working Day of Month
+  - Is First Working Day of Month
+  - Last Working Day of Month
+  - Is Last Working Day of Month
 
 ## Delta
 Planned Release:  June 2022<br/>
