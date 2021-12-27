@@ -114,6 +114,7 @@ Features and Fixes<br/>
 Planned Release:  June 2022<br/>
 Possible Features: 
 - Add editor for creating new custom measures
+- Add Data Category JSON field
 - Add a table selector interface in DAX Source pane
 - Add a "reload" button for Calculations pane
 - Add a "reload" button for the Model
