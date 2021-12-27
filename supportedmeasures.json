@@ -5226,6 +5226,48 @@ RETURN
     "Configuration": "Date Intelligence",
     "MeasureId": "Date Intelligence",
     "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Last Working Day of Week",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekNum1\",WEEKNUM([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysWeekNum = WEEKNUM(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[WeekNum1]=TodaysWeekNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MAXX(Calendar4,[Date])
+RETURN
+    FORMAT(FirstWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the last working day of a week.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Working-Day-of-Week/td-p/391332",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is Last Working Day of Week",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekNum1\",WEEKNUM([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysWeekNum = WEEKNUM(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[WeekNum1]=TodaysWeekNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MAXX(Calendar4,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the last working day of a week, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Working-Day-of-Week/td-p/391332",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
     "DisplayName": "First Working Day of Month",
     "DAXCode": 
 "
