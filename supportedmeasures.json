@@ -2696,9 +2696,9 @@ RETURN COUNTROWS(tmpTable1)",
     "Hyperlink1Text": "Quick Measure Gallery"  
   },
   {
-    "Configuration": "Other",
-    "MeasureId": "Other",
-    "MeasureGroup": "Other",
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
     "DisplayName": "SVG Blinking Dot",
     "Aggregation": "Visible",
     "ColumnLabel": "Flag Column",
@@ -3793,5 +3793,1517 @@ IF(
     "Notes": "Calculate the average of base value over a certain number of periods and/or after each date. For \"Period\", use DAY, MONTH, QUARTER or YEAR.",
     "Hyperlink1": "https://docs.microsoft.com/en-us/power-bi/transform-model/desktop-quick-measures",  
     "Hyperlink1Text": "Learn More"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Percent of Total",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __BASE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __TOTAL_VALUE = CALCULATE(__AGGREGATION__(__COLUMN__), ALL(__COLUMN1__))
+RETURN
+    IF(
+        NOT ISBLANK(__BASE_VALUE),
+        DIVIDE(__BASE_VALUE, __TOTAL_VALUE)
+    )
+",
+    "Notes": "Calculate the percent that a value contributes to a parent category",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Percent-of-Total/td-p/163661",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Compound Annual Growth Rate",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Year",
+    "Column1": "Choose Year Column",
+    "DAXCode": 
+"
+    VAR __NUM_YEARS = MAX(__COLUMN1__) - MIN(__COLUMN1__)
+    VAR __BEGINNING_VALUE = CALCULATE(__AGGREGATION__(__COLUMN__), FILTER('__TABLENAME1__', __COLUMN1__ = MIN(__COLUMN1__))
+    VAR __ENDING_VALUE = CALCULATE(__AGGREGATION__(__COLUMN__), FILTER('__TABLENAME1__', __COLUMN1__ = MAX(__COLUMN1__))
+RETURN
+    DIVIDE(__ENDING_VALUE, __BEGINNING_VALUE, 0)^(1/__NUM_YEARS)-1
+",
+    "Notes": "Calculates the compound annual growth rate (CAGR) @Mike_Carlo",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Compound-Annual-Growth-Rate/td-p/164550",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Rank per category",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Order",
+    "Parameter1": "DESC",
+    "Parameter2Label": "Ties",
+    "Parameter2": "Skip",
+    "DAXCode": 
+"
+    RANKX(ALLSELECTED(__COLUMN1__, __AGGREGATION__(__COLUMN__),,__PARAM1__,__PARAM2__)
+",
+    "Notes": "This is a simple measure but one that I have used countless times for ranking of products. @GilbertQ. Use ASC or DESC for Order and Skip or Dense for Ties.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Ranking/td-p/164576",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Totals",
+    "MeasureId": "Totals",
+    "MeasureGroup": "Totals",
+    "DisplayName": "Table/Matrix Totals",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    IF(COUNTROWS(VALUES(__COLUMN1__)) = 1,
+        __AGGREGATION__(__COLUMN__),
+        SUMX(VALUES(__COLUMN1__), __AGGREGATION__(__COLUMN__))
+    )
+",
+    "Notes": "This is to be specifically used when using a table or maxtrix visual and you want the totals to be correct. @GilbertQ",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Table-Matrix-Totals-or-Subtotals/td-p/165941",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Simple Aggregations",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    __AGGREGATION__(__COLUMN__)
+",
+    "Notes": "Simple aggregations. @MattAllington",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Simple-Aggregation-Quick-Measures/td-p/210915",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Simple Iterator Aggregations",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    __XAGGREGATION__(__COLUMN__)
+",
+    "Notes": "Simple iterator aggregations. @MattAllington",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Simple-Aggregation-Quick-Measures/td-p/210915",
+    "Hyperlink1Text": "Quick Measures Gallery"
+  },
+  {
+    "Configuration": "Time Intelligence",
+    "MeasureId": "Time Intelligence",
+    "MeasureGroup": "Time Intelligence",
+    "DisplayName": "Aggregation on Last Date",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Date",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+    CALCULATE(__AGGREGATION__(__COLUMN__) ; LASTDATE(__COLUMN1__))
+",
+    "Notes": "This Quick Measure allows to get a value filtered on Last Date. It works like \"Filtered Value\", but it is more powerful because it updates automatically to get the last value that is not blank. @augustindelaf",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Filtered-Value-with-Variable-Last-Date/td-p/210358",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Stephen Few 'Red Dot'",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Target",
+    "Parameter": "Target value",
+    "DAXCode": 
+"
+    VAR __FLAG = IF(__AGGREGATION__(__COLUMN__) < __PARAM__, 1, 0)
+RETURN
+    REPT(UNICHAR(128308), __FLAG)
+",
+    "Notes": "This quick measure allows you to create red highlighting dots. @theBIbutler",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Stephen-Few-Red-Dot/td-p/209722",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Other",
+    "MeasureId": "Other",
+    "MeasureGroup": "Other",
+    "DisplayName": "Normalize Numeric Data",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category/Group",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __MIN_OF_GROUP = CALCULATE(MIN(__COLUMN__),ALLEXCEPT('__TABLE1NAME__',__COLUMN1__))
+    VAR __MAX_OF_GROUP = CALCULATE(MAX(__COLUMN__),ALLEXCEPT('__TABLE1NAME__',__COLUMN1__))
+    VAR __DETAIL_VALUE = MAX(__COLUMN__)
+RETURN
+    DIVIDE(__DETAIL_VALUE - __MIN_OF_GROUP, __MAX_OF_GROUP - __MIN_OF_GROUP,0)
+",
+    "Notes": "Normalize numeric data from several independent ranges to a uniform scale ranging from 0 to 1. This can be used as a precursor for clustering, creating parallel coordinates plots, and more. @deldersveld",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Normalize-Numeric-Data/td-p/221651",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Maths",
+    "MeasureId": "Maths",
+    "MeasureGroup": "Maths",
+    "DisplayName": "Linear Interpolation",
+    "AggregationLabel": "Known value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Known value",
+    "Column": "Choose Column",
+    "Column1Label": "Lookup table known value",
+    "Column1": "Choose Column",
+    "Column2Label": "Lookup table unknown value",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __x3 = MAX(__COLUMN__)
+    VAR __match = CALCULATE(MAX(__COLUMN2__),FILTER('__TABLE1NAME__',[__COLUMN1NAME__]=__x3))
+    VAR __x1 = CALCULATE(MAX(__COLUMN1__),FILTER('__TABLE1NAME__',[__COLUMN1NAME__]<=__x3))
+    VAR __x2 = CALCULATE(MIN(__COLUMN1__),FILTER('__TABLE1NAME__',[__COLUMN1NAME__]>=__x3))
+    VAR __y1 = CALCULATE(MAX(__COLUMN2__),FILTER('__TABLE1NAME__',[__COLUMN1NAME__]<=__x3))
+    VAR __y2 = CALCULATE(MIN(__COLUMN2__),FILTER('__TABLE1NAME__',[__COLUMN1NAME__]>=__x3))
+RETURN IF(NOT(ISBLANK(__match)),__match,__y1 + (__x3 - __x1) * (__y2 - __y1)/(__x2 - __x1))
+",
+    "Notes": "In the mathematical field of numerical analysis, interpolation is a method of constructing new data points within the range of a discrete set of known data points. Anyone that has done mechanical engineering knows all about interpolation. I swear my Thermo and Fluids professor, Dr. Jed Marquart was a sadist, half of our homework and tests was just interpolation. If I can save just one engineering student time with their homework...The assumption with linear interpolation is that the two points (x1, y1) and (x2, y2) are connected with a line. Using the two point equation of a line, we get: y - y1 = m (x - x1), where m is the slope and is calculated as m = (y2 - y1)/(x2 - x1) Thus for x3 that is between x1 and x2, we get: y3 = y1 + (x3 - x1) (y2 - y1)/(x2 - x1). So, this quick measure performs the linear interpolation but also accounts for when linear interpolation does not need to occur (because the values are already in the set of known value). The example attached uses a thermodynamic steam table.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Linear-Interpolation/td-p/330712",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "Text",
+    "MeasureId": "Text",
+    "MeasureGroup": "Text",
+    "DisplayName": "Amazing Dynamic Title",
+    "ColumnLabel": "Title column",
+    "Column": "Choose Column",
+    "ParameterLabel": "All text",
+    "Parameter": "All",
+    "Parameter1Label": "None text",
+    "Parameter1": "No",
+    "Parameter2Label": "Direct filter text",
+    "Parameter2": "You have chosen ",
+    "Parameter3Label": "Cross filter text",
+    "Parameter3": "You have filtered down to ",
+    "Parameter4Label": "Post text",
+    "Parameter4": " brand(s).",
+    "Parameter5Label": "Max items",
+    "Parameter5": "4",
+    "Parameter6Label": "Use %",
+    "Parameter6": "FALSE",
+    "Parameter7Label": "Use multiple count",
+    "Parameter7": "FALSE",
+    "Parameter8Label": "Use multiple x of y",
+    "Parameter8": "FALSE",
+    "Parameter9Label": "Use simple multiple",
+    "Parameter9": "FALSE",
+    "Parameter10Label": "Simple multiple text",
+    "Parameter10": "Multiple",
+    "DAXCode": 
+"
+    VAR __ALLTEXT = \"__PARAM__\"
+    VAR __NONETEXT = \"__PARAM1__\"
+    VAR __DIRECTFILTERPRETEXT = \"__PARAM2__\"
+    VAR __CROSSFILTERPRETEXT = \"__PARAM3__\"
+    VAR __POSTTEXT = \"__PARAM4__\"
+    VAR __CONCATENATE_TEXT = \", \"
+    VAR __LASTCONCATENATE_TEXT = \" and \"
+    VAR __TOOMANY_MAX = __PARAM5__
+    VAR __TOOMANY_PRETEXT = \" and \"
+    VAR __TOOMANY_POSTTEXT = \" more\"
+    VAR __USEPERCENT = __PARAM6__() \/\/Change to TRUE() to use percentages
+    VAR __PERCENTTEXT = \" of\"
+    VAR __PERCENTZEROTEXT = \"0.00%\"
+    VAR __USEMULTIPLECOUNT = __PARAM7__() \/\/Change to TRUE() to use counts after __TOOMANY_MAX is reached
+    VAR __USEMULTIPLECOUNTEXTENDED = __PARAM8__() \/\/Change to TRUE() to use \"x of y\" format after __TOOMANY_MAX is reached
+    VAR __USEMULTIPLECOUNTEXTENDEDTEXT = \" of \"
+    VAR __USESIMPLEMULTIPLETEXT = __PARAM9__() \/\/Change to TRUE() to use __SIMPLEMULTIPLETEXT after __TOOMANY_MAX is reached
+    VAR __SIMPLEMULTIPLETEXT = \"__PARAM10__\" 
+    VAR __TOTAL_ROWS = COUNTROWS(DISTINCT(ALL(__COLUMN__)))
+    VAR __CURRENT_ROWS = COUNTROWS(DISTINCT(__COLUMN__))
+    VAR __MAINTEXT = 
+        IF(
+            __USEPERCENT,
+                VAR __PERCENT = DIVIDE(__CURRENT_ROWS,__TOTAL_ROWS,0)
+            RETURN IF(ISBLANK(__PERCENT),__PERCENTZEROTEXT & __PERCENTTEXT,FORMAT(__PERCENT,\"Percent\") & __PERCENTTEXT),
+            SWITCH(
+                TRUE(),
+                __CURRENT_ROWS = __TOTAL_ROWS,__ALLTEXT,
+                __CURRENT_ROWS = 0,__NONETEXT,
+                __CURRENT_ROWS = 1, MAX(__COLUMN__),
+                __CURRENT_ROWS < __TOOMANY_MAX,
+                    CONCATENATEX(
+                        TOPN(__CURRENT_ROWS - 1,DISTINCT(__COLUMN__)),
+                        [__COLUMNNAME__],
+                        __CONCATENATE_TEXT
+                    ) & __LASTCONCATENATE_TEXT & LASTNONBLANK(DISTINCT(__COLUMN__),TRUE()),
+                IF(
+                    __USESIMPLEMULTIPLETEXT,
+                    __SIMPLEMULTIPLETEXT,
+                    IF(
+                        __USEMULTIPLECOUNT,
+                        IF(
+                            __USEMULTIPLECOUNTEXTENDED,
+                            __CURRENT_ROWS & __USEMULTIPLECOUNTEXTENDEDTEXT & __TOTAL_ROWS,
+                            __CURRENT_ROWS
+                        ),
+                            VAR __OVERAGE = __CURRENT_ROWS - __TOOMANY_MAX + 1
+                        RETURN 
+                            CONCATENATEX(
+                                TOPN(__TOOMANY_MAX - 1,DISTINCT(__COLUMN__)),
+                                [__COLUMNNAME__],
+                                __CONCATENATE_TEXT
+                          ) & __TOOMANY_PRETEXT & __OVERAGE & __TOOMANY_POSTTEXT
+                    )
+                )
+            )
+        )
+    VAR __PRETEXT = IF(ISFILTERED(__COLUMN__),__DIRECTFILTERPRETEXT,__CROSSFILTERPRETEXT)
+RETURN
+    __PRETEXT & __MAINTEXT & __POSTTEXT
+",
+    "Notes": "Sure, there are numerous dynamic title Quick Measures here in the gallery, but none are truly as mind blowingly dynamic and versatile as this one! This dynamic title measure understands all of the usual dynamic title things like everything selected, nothing selected, etc, but also understands direct and cross filtering context and can be easily modified to support any text formatting as well as display percentages, counts and simple text when picking multiple items. Use TRUE and FALSE for the true/false parameters.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/The-Most-Amazing-Mind-Blowing-Dynamic-Slicer-Title-Measure-Ever/td-p/429587",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "Simple SVG KPI",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Goal value",
+    "Parameter": "80",
+    "Parameter1Label": "Max value",
+    "Parameter1": "100",
+    "Parameter2Label": "Goal text",
+    "Parameter2": "Goal",
+    "Parameter3Label": "Good color",
+    "Parameter3": "Green",
+    "Parameter4Label": "Bad color",
+    "Parameter4": "Red",
+    "Parameter5Label": "Goal color",
+    "Parameter5": "Orange",
+    "DAXCode": 
+"
+------------------------DATA (replace values)-------------------------
+    VAR MainValue = __COLUMN__ 
+    VAR GoalValue = __PARAM__
+    VAR MaxValue = __PARAM1__ \/\/End value of bar must be higher than value and goal
+    VAR GoalTxt = \"__PARAM2__\"
+-----------------------COLORS--------------------
+    VAR ColorGood= \"__PARAM3__\"
+    VAR ColorBad = \"__PARAM4__\"
+    VAR GoalColor = \"__PARAM5__\"
+----------------IF statement for colors------------------------------------------
+    VAR KPIColor = if(GoalValue<=MainValue;ColorGood;ColorBad)
+---------------------------------------
+    VAR ValuePos = MainValue/MaxValue*100
+    VAR GoalPos = GoalValue/MaxValue*100
+    VAR PicHigh = \"150\"
+    VAR PicWidth =\"150\"
+------------------- SVG code
+    VAR SvgC = 
+\"
+<text x='0' y='25' font-size='35' fill='\"&KPIColor&\"'>\"&MainValue&\"</text>
+<text x='0' y='55' font-size='25' fill='Orange'>\"&GoalTxt&\" \"&GoalValue&\"</text>
+<rect x='0' y='70' rx='0,5' ry='20' width='100%' height='25'
+  style='fill:white;stroke:black' />
+<rect x='0' y='70' rx='0,5' ry='20' width='\"&ValuePos&\"%' height='25'
+  style='fill:\"&KPIColor&\";stroke:black' />
+<line x1='\"&GoalPos&\"%' y1='65' x2='\"&GoalPos&\"%' y2='200' style='stroke:\"&GoalColor&\";stroke-width:3' />
+\"
+------------SVG - start code & end code
+    VAR Cd1=
+\"data:image/svg+xml;charset=utf-8,\" &
+\"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px'
+    width='\"&PicWidth&\"' 
+    height='\"&PicHigh&\"' 
+     viewBox = '0 0 100 100'> \"
+    VAR Cd2 = \" </svg>\"
+RETURN
+    Cd1&SvgC&Cd2
+",
+    "Notes": "Based on values KPI color is changing to green or red. User can also change colors or edit if function for color changing. Measure category has to be Image URL. Visualisation only works in table visual. @matemusic",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/Simple-SVG-KPI-Power-BI-august-2018-update/td-p/485505",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Trend Indicator",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Message text",
+    "Parameter": "",
+    "Parameter1Label": "Radius",
+    "Parameter1": "9",
+    "Parameter2Label": "Neutral color",
+    "Parameter2": "blue",
+    "Parameter3Label": "Opacity",
+    "Parameter3": "0.75",
+    "DAXCode": 
+"
+    VAR MessageText = \"__PARAM__\"
+    VAR Radius = __PARAM1__
+    VAR Colour = \"__PARAM2__\"
+    VAR Opacity = __PARAM3__
+    VAR SVG_Neutral = \"data:image/svg+xml;utf8,\" &
+              \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='50' height='20'>\" &
+              \"<circle cx='25' cy='10' r='\" & Radius & \"' fill='\" & Colour & \"' fill-opacity='\" & Opacity & \"' />\" &
+              \"</svg>\"
+    VAR SVG_UP = \"data:image/svg+xml;utf8,\" &
+              \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='50' height='20'>\" &
+              \"<polygon points=\"\"05,20 45,20 25,1\"\" style=\"\"fill:green;stroke:green;stroke-width:0;fill-rule:evenodd;\"\" />\" &
+              \"</svg>\"
+    VAR SVG_DN = \"data:image/svg+xml;utf8,\" &
+              \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='50' height='20'>\" &
+              \"<polygon points=\"\"05,1 45,1 25,20\"\" style=\"\"fill:red;stroke:red;stroke-width:0;fill-rule:evenodd;\"\" />\" &
+              \"</svg>\"
+RETURN
+    IF(__AGGREGATION__(__COLUMN__) > 0, SVG_UP, IF(__AGGREGATION__(__COLUMN__) < 0, SVG_DN, SVG_Neutral))
+",
+    "Notes": "Just like SVG SparkLines this DAX produces a Trend indicator, Up/Down/Neutral. Add it as a field in your table, keyed off a numeric value to give you the up/down/neutral. One additional trick is to set the image size as small as possible (24) under Grid as part of the formatting. @dgwilson",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Trend-Indicator/td-p/488382",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Sparklines Categorical Columns",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "Category column",
+    "Column1": "Choose Column",
+    "ParameterLabel": "Bar color",
+    "Parameter": "%2301B8AA",
+    "Parameter1Label": "Bar outline color",
+    "Parameter1": "%23DDDDDD",
+    "Parameter2Label": "Bar outline width",
+    "Parameter2": "2",
+    "DAXCode": 
+"
+    VAR BarColor = \"__PARAM__\"
+    VAR BarOutlineColor = \"__PARAM1__\"
+    VAR BarOutlineWidth = __PARAM2__
+    \/\/ Obtain number of columns - width generated based on column count (~20 column maximum for bar chart)
+    VAR BarCount = DISTINCTCOUNT(__COLUMN1__)
+    VAR BarWidth = INT(DIVIDE(100,BarCount))
+    \/\/ Obtain overall min and overall max measure values when evaluated for each column
+    VAR YMinValue = MINX(VALUES(__COLUMN1__),CALCULATE(__AGGREGATION__(__COLUMN__)))
+    VAR YMaxValue = MAXX(VALUES(__COLUMN1__),CALCULATE(__AGGREGATION__(__COLUMN__)))
+    VAR YRange = SWITCH(TRUE(),
+                    YMinValue >= 0 && YMaxValue >= 0, YMaxValue,
+                    YMinValue < 0 && YMaxValue < 0, ABS(YMinValue),
+                    YMaxValue + ABS(YMinValue)
+                 )
+    \/\/ Build table of X & Y coordinates and fit to 100 x 100 viewbox
+    VAR SparklineTable = ADDCOLUMNS(
+        SUMMARIZE('__TABLE1NAME__','__COLUMN1__),
+            \"X\",INT(RANKX('__TABLE1NAME__',__COLUMN1__,__COLUMN1__,ASC,DENSE)),
+            \"Y\",SWITCH(TRUE(),
+                    YMinValue >= 0 && YMaxValue >= 0, 100-INT(100 * DIVIDE(__AGGREGATION__(__COLUMN__),YMaxValue)),
+                    YMinValue < 0 && YMaxValue < 0, 0,
+                    YMinValue < 0 && YMaxValue >= 0 && __AGGREGATION__(__COLUMN__) >= 0, INT(100 * DIVIDE(YMaxValue - __AGGREGATION__(__COLUMN__),YRange)),
+                    YMinValue < 0 && YMaxValue >= 0 && __AGGREGATION__(__COLUMN__) < 0, INT(100 * DIVIDE(YMaxValue,YRange))
+                ),
+            \"Height\", INT(100 * DIVIDE([Measure Value],YRange))
+        )
+    \/\/ Concatenate X & Y coordinates to build the sparkline
+    VAR Cols = CONCATENATEX(SparklineTable,\"<rect x='\" & [X] * BarWidth - BarWidth & 
+        \"' y='\" & [Y] &
+        \"' width='\" & BarWidth & 
+        \/\/ display slim bar if height = 0
+        \"' height='\" & IF([Height] = 0, 1, ABS([Height])) &
+        \"' style='fill:\" & BarColor & 
+        \";stroke-width:\" & BarOutlineWidth & 
+        \";stroke:\" & BarOutlineColor & 
+        \"' />\",\"\")
+    \/\/ Add to SVG, and verify Data Category is set to Image URL for this measure
+    VAR SVGImageURL = IF(HASONEVALUE(__COLUMN1__),
+        \"data:image/svg+xml;utf8,\" & 
+        \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px'
+	         viewBox='0 0 100 100'>\" &
+        Cols &
+        \"</svg>\",
+        BLANK())
+RETURN
+    SVGImageURL
+",
+    "Notes": "Since the x axis is categorical, it is built and sorted using RANKX. Bar Width is found by dividing 100 by the number of distinct categories, and columns are adjusted to the range 0-100 by multiplying Rank * Bar Width. The y axis is complex because of the need to account for a mix of positive and negative values. If all Y values were positive, the axis could use [Measure Value] \/ Max and would be fairly simple. Instead, depending on the combination of positive only, negative only, and mixing negative and positive values, there are SWITCH( ) statements used for establishing both the SVG Y value and the Height of the bar. CONCATENATEX combines the separate SVG rectangles. Use %23 instead of # for Firefox compatibility. @deldersveld",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Sparklines-Categorical-Columns/td-p/489533",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Sparklines",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "Column1Label": "X-axis column",
+    "Column1": "Choose Column",
+    "Column2Label": "Category column",
+    "Column2": "Choose Column",
+    "ParameterLabel": "Line color",
+    "Parameter": "%2301B8AA",
+    "DAXCode": 
+"
+    \/\/ Static line color - use %23 instead of # for Firefox compatibility
+    VAR LineColor = \"__PARAM__\"
+
+    \/\/ \"Date\" field used in this example along the X axis
+    VAR XMinDate = MIN(__COLUMN1__)
+    VAR XMaxDate = MAX(__COLUMN1__)
+
+    \/\/ Obtain overall min and overall max measure values when evaluated for each date
+    VAR YMinValue = MINX(VALUES(__COLUMN1__),CALCULATE(__AGGREGATION__(__COLUMN__)))
+    VAR YMaxValue = MAXX(VALUES(__COLUMN1__),CALCULATE(__AGGREGATION__(__COLUMN__)))
+
+    \/\/ Build table of X & Y coordinates and fit to 100 x 100 viewbox
+    VAR SparklineTable = ADDCOLUMNS(
+        SUMMARIZE('__TABLE1NAME__',__COLUMN1__),
+            \"X\",INT(100 * DIVIDE(__COLUMN1__ - XMinDate, XMaxDate - XMinDate)),
+            \"Y\",INT(100 * DIVIDE(__AGGREGATION__(__COLUMN__) - YMinValue,YMaxValue - YMinValue)))
+
+    \/\/ Concatenate X & Y coordinates to build the sparkline
+    VAR Lines = CONCATENATEX(SparklineTable,[X] & \",\" & 100-[Y],\" \", [__COLUMN1NAME__])
+
+    \/\/ Add to SVG, and verify Data Category is set to Image URL for this measure
+    VAR SVGImageURL = IF(HASONEVALUE(__COLUMN2__),
+        \"data:image/svg+xml;utf8,\" & 
+        \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' viewBox='0 0 100 100'>\" &
+         \"<polyline fill='none' stroke='\" & LineColor & 
+         \"' stroke-width='3' points='\" & Lines & 
+         \"'/></svg>\",
+         BLANK())
+RETURN
+    SVGImageURL
+",
+    "Notes": "The x axis is built by establishing the min and max values for each date and adjusting the range so that the min corresponds to 0 and max corresponds to 100. The y axis is built by finding the min and max measure values and adjusting the range from 0 to 100 similar to the x axis. The measure value's position is based on ([Measure Value] - Min) \/ (Max - Min), a key calculation that I added awhile ago as another Quick Measure. In the case of the y axis though, SVG works from the top to the bottom (0 at top), so 100 - [Y] makes it render correctly. Otherwise, the chart would appear upside down. After building a table of X and Y coordinates, CONCATENATEX is the magic function that puts the points together into a line. Static line color - use %23 instead of # for Firefox compatibility. @deldersveld",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Sparklines-Line/td-p/486271",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Color and Shape Indicators",
+    "AggregationLabel": "Indicator aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Indicator value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Shape",
+    "Parameter": "Circle",
+    "Parameter1Label": "Size",
+    "Parameter1": "9",
+    "Parameter2Label": "Opacity",
+    "Parameter2": "0.75",
+    "DAXCode": 
+"
+    VAR __shape = \"__PARAM__\"
+    VAR __indicator = __AGGREGATION__(__COLUMN__)
+    VAR __radius = __PARAM1__
+    VAR __opacity = __PARAM2__
+    VAR __color = 
+        SWITCH(
+            TRUE(),
+            __indicator<=-5,\"DarkOrchid\",
+            __indicator<=-4,\"DarkBlue\",
+            __indicator<=-3,\"Blue\",
+            __indicator<=-2,\"FireBrick\",
+            __indicator<=-1,\"Red\",
+            __indicator=0,\"Gold\",
+            __indicator>=5,\"HotPink\",
+            __indicator>=4,\"Orange\",
+            __indicator>=3,\"Tomato\",
+            __indicator>=2,\"SpringGreen\",
+            __indicator>=1,\"Green\",
+            \"White\"
+        )
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+                   \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='50' height='20'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='10' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' />\"
+    VAR __shapeTextTriangle = \"<polygon points=\"\"0,20 20,20 10,0\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextDot = \"<circle cx='10' cy='10' r='\" & 1 & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' />\"
+    VAR __shapeTextSquare = \"<polygon points=\"\"0,20 0,0, 20,1 20,20\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextDiamond = \"<polygon points=\"\"10,0 20,10, 10,20 0,10\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextRect = \"<polygon points=\"\"0,20 0,0, 40,1 40,20\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextHex = \"<polygon points=\"\"10,0 20,4 20,16 10,20 0,16 0,4\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextOct = \"<polygon points=\"\"6,0 14,0 20,6 20,14 14,20 6,20 0,14 0,6\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextPent = \"<polygon points=\"\"10,0 20,8 16,20 4,20 0,8\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar = \"<polygon points=\"\"10,0 12,9 20,8 13,13 16,20 10,15 4,20 7,13 0,9 8,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeText = 
+        SWITCH(__shape,
+            \"Triangle\",__shapeTextTriangle,
+            \"Circle\",__shapeTextCircle,
+            \"Dot\",__shapeTextDot,
+            \"Square\",__shapeTextSquare,
+            \"Rectangle\",__shapeTextRect,
+            \"Hexagon\",__shapeTextHex,
+            \"Octagon\",__shapeTextOct,
+            \"Pentagon\",__shapeTextPent,
+            \"Star\",__shapeTextStar,
+            \"Diamond\",__shapeTextDiamond,
+            __shapeTextCircle
+        )
+    VAR __return = __header & __shapeText & __footer
+RETURN
+    __return
+",
+    "Notes": "Produces shapes with different colors based upon indicator values. Shapes can be the following:
+Circle
+Triangle
+Dot
+Square
+Rectangle
+Hexagon
+Octagon
+Pentagon
+Star
+Diamond
+",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Multi-Shape-Multi-Color-Indicators/td-p/500486",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Color and Shape Indicators 2",
+    "AggregationLabel": "Indicator aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Indicator value",
+    "Column": "Choose Column",
+    "Parameter1Label": "Size",
+    "Parameter1": "9",
+    "Parameter2Label": "Opacity",
+    "Parameter2": "0.75",
+    "DAXCode": 
+"
+    VAR __indicator = __AGGREGATION__(__COLUMN__)
+    VAR __radius = __PARAM1__
+    VAR __opacity = __PARAM2__
+    VAR __color = 
+        SWITCH(
+            TRUE(),
+            __indicator<=-5,\"DarkOrchid\",
+            __indicator<=-4,\"DarkBlue\",
+            __indicator<=-3,\"Blue\",
+            __indicator<=-2,\"FireBrick\",
+            __indicator<=-1,\"Red\",
+            __indicator=0,\"Gold\",
+            __indicator>=5,\"HotPink\",
+            __indicator>=4,\"Orange\",
+            __indicator>=3,\"Tomato\",
+            __indicator>=2,\"SpringGreen\",
+            __indicator>=1,\"Green\",
+            \"White\"
+        )
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+                   \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='50' height='20'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='10' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' />\"
+    VAR __shapeTextTriangle = \"<polygon points=\"\"0,20 20,20 10,0\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextDot = \"<circle cx='10' cy='10' r='\" & 1 & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' />\"
+    VAR __shapeTextSquare = \"<polygon points=\"\"0,20 0,0, 20,1 20,20\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextDiamond = \"<polygon points=\"\"10,0 20,10, 10,20 0,10\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextRect = \"<polygon points=\"\"0,20 0,0, 40,1 40,20\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextHex = \"<polygon points=\"\"10,0 20,4 20,16 10,20 0,16 0,4\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextOct = \"<polygon points=\"\"6,0 14,0 20,6 20,14 14,20 6,20 0,14 0,6\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextPent = \"<polygon points=\"\"10,0 20,8 16,20 4,20 0,8\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar = \"<polygon points=\"\"10,0 12,9 20,8 13,13 16,20 10,15 4,20 7,13 0,9 8,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeText = 
+        SWITCH(
+            TRUE(),
+            __indicator<=-5,__shapeTextCircle,
+            __indicator<=-4,__shapeTextDot,
+            __indicator<=-3,__shapeTextHex,
+            __indicator<=-2,__shapeTextOct,
+            __indicator<=-1,__shapeTextPent,
+            __indicator=0,__shapeTextRect,
+            __indicator>=5,__shapeTextSquare,
+            __indicator>=4,__shapeTextTriangle,
+            __indicator>=3,__shapeTextStar,
+            __indicator>=2,__shapeTextDiamond,
+            __indicator>=1,__shapeTextCircle,
+            __shapeTextCircle
+        )
+    VAR __return = __header & __shapeText & __footer
+RETURN
+    __return
+",
+    "Notes": "Produces shapes with different colors based upon indicator values.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Multi-Shape-Multi-Color-Indicators/td-p/500486",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Color Star Rating",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Shape",
+    "Parameter": "Star",
+    "Parameter1Label": "Max number stars",
+    "Parameter1": "5",
+    "Parameter2Label": "Min value",
+    "Parameter2": "0",
+    "Parameter3Label": "Max value",
+    "Parameter3": "5",
+    "Parameter4Label": "Color",
+    "Parameter4": "Red",
+    "Parameter5Label": "Background color",
+    "Parameter5": "White",
+    "Parameter6Label": "Opacity",
+    "Parameter6": "0.75",
+    "DAXCode": 
+"
+    VAR __MAX_NUMBER_OF_STARS = __PARAM1__
+    VAR __MIN_RATED_VALUE = __PARAM2__
+    VAR __MAX_RATED_VALUE = __PARAM3__
+    VAR __BASE_VALUE = __AGGREGATION__(__COLUMN__)
+    VAR __NORMALIZED_BASE_VALUE =
+	    MIN(
+		    MAX(
+			    DIVIDE(
+				    __BASE_VALUE - __MIN_RATED_VALUE,
+				    __MAX_RATED_VALUE - __MIN_RATED_VALUE
+			    ),
+			    0
+		    ),
+		    1
+	    )
+    VAR __STAR_RATING = ROUND(__NORMALIZED_BASE_VALUE * __MAX_NUMBER_OF_STARS, 0)
+    VAR __shape = \"__PARAM__\"
+    VAR __color = \"__PARAM4__\"
+    VAR __backgroundColor = \"__PARAM5__\"
+    VAR __opacity = __PARAM6__
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+                   \"<svg xmlns='http://www.w3.org/2000/svg' x='0px' y='0px' width='\" & 20*__MAX_RATED_VALUE & \"' height='20'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeTextStar1 = \"<polygon points=\"\"10,0 12,9 20,8 13,13 16,20 10,15 4,20 7,13 0,9 8,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar2 = \"<polygon points=\"\"30,0 32,9 40,8 33,13 36,20 30,15 24,20 27,13 20,9 28,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar3 = \"<polygon points=\"\"50,0 52,9 60,8 53,13 56,20 50,15 44,20 47,13 40,9 48,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar4 = \"<polygon points=\"\"70,0 72,9 80,8 73,13 76,20 70,15 64,20 67,13 60,9 68,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStar5 = \"<polygon points=\"\"90,0 92,9 100,8 93,13 96,20 90,15 84,20 87,13 80,9 88,9\"\" style=\"\"fill:\" & __color & \";stroke:\" & __color & \";stroke-width:0;fill-rule:evenodd;\"\" />\" 
+
+    VAR __shapeTextStarBackground1 = \"<polygon cx='0' cy='0' points=\"\"10,0 12,9 20,8 13,13 16,20 10,15 4,20 7,13 0,9 8,9\"\" style=\"\"fill:\" & __backgroundColor & \";stroke:\" & __color & \";stroke-width:1;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStarBackground2 = \"<polygon points=\"\"30,0 32,9 40,8 33,13 36,20 30,15 24,20 27,13 20,9 28,9\"\" style=\"\"fill:\" & __backgroundColor & \";stroke:\" & __color & \";stroke-width:1;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStarBackground3 = \"<polygon points=\"\"50,0 52,9 60,8 53,13 56,20 50,15 44,20 47,13 40,9 48,9\"\" style=\"\"fill:\" & __backgroundColor & \";stroke:\" & __color & \";stroke-width:1;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStarBackground4 = \"<polygon points=\"\"70,0 72,9 80,8 73,13 76,20 70,15 64,20 67,13 60,9 68,9\"\" style=\"\"fill:\" & __backgroundColor & \";stroke:\" & __color & \";stroke-width:1;fill-rule:evenodd;\"\" />\" 
+    VAR __shapeTextStarBackground5 = \"<polygon points=\"\"90,0 92,9 100,8 93,13 96,20 90,15 84,20 87,13 80,9 88,9\"\" style=\"\"fill:\" & __backgroundColor & \";stroke:\" & __color & \";stroke-width:1;fill-rule:evenodd;\"\" />\" 
+
+    VAR __shapeText1 = __shapeTextStar1
+    VAR __shapeText2 = __shapeTextStar2
+    VAR __shapeText3 = __shapeTextStar3
+    VAR __shapeText4 = __shapeTextStar4
+    VAR __shapeText5 = __shapeTextStar5
+
+    VAR __shapeTextBackground1 = __shapeTextStarBackground1
+    VAR __shapeTextBackground2 = __shapeTextStarBackground2
+    VAR __shapeTextBackground3 = __shapeTextStarBackground3
+    VAR __shapeTextBackground4 = __shapeTextStarBackground4
+    VAR __shapeTextBackground5 = __shapeTextStarBackground5
+    VAR __rating = 
+	    IF(
+		    NOT ISBLANK(__BASE_VALUE),
+            SWITCH(__STAR_RATING,
+                0,__shapeTextBackground1&__shapeTextBackground2&__shapeTextBackground3&__shapeTextBackground4&__shapeTextBackground5,
+                1,__shapeText1&__shapeTextBackground2&__shapeTextBackground3&__shapeTextBackground4&__shapeTextBackground5,
+                2,__shapeText1&__shapeText2&__shapeTextBackground3&__shapeTextBackground4&__shapeTextBackground5,
+                3,__shapeText1&__shapeText2&__shapeText3&__shapeTextBackground4&__shapeTextBackground5,
+                4,__shapeText1&__shapeText2&__shapeText3&__shapeText4&__shapeTextBackground5,
+                5,__shapeText1&__shapeText2&__shapeText3&__shapeText4&__shapeText5,
+                \"\"
+            )   
+    	)
+    VAR __return = __header & __rating & __footer
+RETURN
+    __return
+",
+    "Notes": "First, I would say that this is a bit of a work in progress as I want to add scaling and more shapes to this. Currently \"Star\" is the only valid shape. Second, this measure builds off of @cwebb's Star Rating Quick Measure that was included in the Power BI Desktop. Essentially, the desire was to move beyond the limitations of unicode characters to achieve star ratings with colors.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Color-Star-Rating/td-p/505223",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Heart",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http://purl.org/dc/elements/1.1/'
+                xmlns:cc='http://creativecommons.org/ns#'
+                xmlns:svg='http://www.w3.org/2000/svg'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 150 150' version='1.1'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeTextCircle = \"
+<g>
+    <circle cx='30' cy='50' r='30' stroke='Red' fill='Red'/>
+    <circle cx='70' cy='50' r='30' stroke='Red' fill='Red'/>
+    <path stroke-width='2' stroke='Red' fill='Red' d='M7 70, L50 112, L93 70'/>
+    <!-- <path stroke-width='2' stroke='Red' fill='Red' d='M60,30 a30,30 0 0,1 0,60 L0,90 0,30 a30,30 0 0,1 60,0' /> --><\/g>
+\"
+RETURN
+    IF(__AGGREGATION__(__COLUMN__),\"\",__header & __shapeTextCircle & __footer)
+",
+    "Notes": "A simple SVG heart based on a flag field.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Have-a-Heart/td-p/518109",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Flatline",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http://purl.org/dc/elements/1.1/'
+                xmlns:cc='http://creativecommons.org/ns#'
+                xmlns:svg='http://www.w3.org/2000/svg'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 20 10' version='1.1'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeText = \"
+        <path stroke-width='.5' stroke='Red' fill='none' d='M-13 7, L-10 7, L-9 1, L-8 9, L-7 7, L-4 7, L-3 1, L-2 9, L-1 7, L2 7, L3 1, L4 9, L5 7, L8 7, L9 1, L10 9, L11 7, L14 7, L15 1, L16 9, L17 7, L20 7' stroke-dasharray='120' stroke-dashoffset='0'>
+        <animateTransform 
+               attributeName='transform' 
+               attributeType='XML'
+               type='translate'
+               from='0 0'
+               to='12 0' 
+               dur='5s'
+               begin='0s'
+               repeatCount='indefinite'
+               \/>
+        </path>
+    \"
+    VAR __shapeTextFlat = \"
+        <path stroke-width='.5' stroke='Red' fill='none' d='M0 7, L20 7'/>
+    \"
+RETURN
+    IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextFlat & __footer,__header & __shapeText & __footer)
+",
+    "Notes": "A simple heartbeat/flatline animation based on a flag field.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Have-a-Heart/td-p/518109",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Beating Heart",
+    "AggregationLabel": "Base value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Base value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __header = \"data:image/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http://purl.org/dc/elements/1.1/'
+                xmlns:cc='http://creativecommons.org/ns#'
+                xmlns:svg='http://www.w3.org/2000/svg'
+                xmlns='http://www.w3.org/2000/svg'
+                viewBox='0 0 150 150' version='1.1'>\"
+    VAR __footer = \"</svg>\"
+    VAR __shapeTextCircle = \"
+    <g>
+        <circle cx='30' cy='50' r='30' stroke='Red' fill='Red'/>
+        <circle cx='70' cy='50' r='30' stroke='Red' fill='Red'/>
+        <path stroke-width='2' stroke='Red' fill='Red' d='M7 70, L50 112, L93 70'/>
+        <animateTransform 
+           attributeName='transform' 
+           attributeType='XML'
+           type='scale'
+           from='1'
+           to='1.1' 
+           dur='1s'
+           begin='0s'
+           repeatCount='indefinite'
+        \/>
+    <\/g>
+    \"
+RETURN
+    IF(__AGGREGATION__(__COLUMN__),\"\",__header & __shapeTextCircle & __footer)
+",
+    "Notes": "An animated beating heart based on a flag field.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Have-a-Heart/td-p/518109",  
+    "Hyperlink1Text": "Quick Measures Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Bouncing Dot",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Fill Color",
+    "Parameter": "Red",
+    "Parameter1Label": "Line Color",
+    "Parameter1": "Black",
+    "Parameter2Label": "Line Thickness",
+    "Parameter2": "1",
+    "Parameter3Label": "Radius",
+    "Parameter3": "9",
+    "Parameter4Label": "Opacity",
+    "Parameter4": 1,
+    "DAXCode": 
+"
+    VAR __color = \"__PARAM__\"
+    VAR __lineColor = \"__PARAM1__\"
+    VAR __lineThickness = __PARAM2__
+    VAR __radius = __PARAM3__
+    VAR __opacity = __PARAM4__
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='30' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' stroke='\" & __lineColor & \"' stroke-width='\" & __lineThickness & \"'> \" & \"<animate attributeName='cy' from='30' to='9' dur='.5s' begin='0s' repeatCount='indefinite'/></circle>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An SVG bouncing dot. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Spinner",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeText = \"  <rect stroke='Black' width='50' height='50' x='25' y='25' fill='Red'>
+  
+  <animateTransform 
+           attributeName='transform' 
+           attributeType='XML'
+           type='rotate'
+           from='0 50 50'
+           to='360 50 50' 
+           dur='2s'
+           begin='0s'
+           repeatCount='indefinite'
+           \/><\/rect>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An SVG bouncing dot. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Square Animation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Fill Color",
+    "Parameter": "Red",
+    "Parameter1Label": "Line Color",
+    "Parameter1": "Black",
+    "Parameter2Label": "Line Thickness",
+    "Parameter2": "1",
+    "Parameter3Label": "Radius",
+    "Parameter3": "9",
+    "Parameter4Label": "Opacity",
+    "Parameter4": 1,
+    "DAXCode": 
+"
+    VAR __color = \"__PARAM__\"
+    VAR __lineColor = \"__PARAM1__\"
+    VAR __lineThickness = __PARAM2__
+    VAR __radius = __PARAM3__
+    VAR __opacity = __PARAM4__
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='30' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' stroke='\" & __lineColor & \"' stroke-width='\" & __lineThickness & \"'> \" & \"  <animateMotion 
+    dur='1s'
+    begin='1s'
+    fill='freeze'
+    path='M0,0 L0 10, L10 10, L10 0, L0 0'
+    repeatCount='indefinite' \/>
+</circle>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An circle animated to move in a square pattern. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Swipe",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Fill Color",
+    "Parameter": "Red",
+    "Parameter1Label": "Line Color",
+    "Parameter1": "Black",
+    "Parameter2Label": "Line Thickness",
+    "Parameter2": "1",
+    "Parameter3Label": "Radius",
+    "Parameter3": "9",
+    "Parameter4Label": "Opacity",
+    "Parameter4": 1,
+    "DAXCode": 
+"
+    VAR __color = \"__PARAM__\"
+    VAR __lineColor = \"__PARAM1__\"
+    VAR __lineThickness = __PARAM2__
+    VAR __radius = __PARAM3__
+    VAR __opacity = __PARAM4__
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeTextCircle = \"<circle cx='10' cy='30' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' stroke='\" & __lineColor & \"' stroke-width='\" & __lineThickness & \"'> \" & \"  <animateMotion 
+    dur='1s'
+    begin='5s'
+    fill='freeze'
+    path='M0,0c3.2-3.4,18.4-0.6,23.4-0.6c5.7,0.1,10.8,0.9,16.3,2.3    c13.5,3.5,26.1,9.6,38.5,16.2c12.3,6.5,21.3,16.8,31.9,25.4c10.8,8.7,21,18.3,31.7,26.9c9.3,7.4,20.9,11.5,31.4,16.7
+    c13.7,6.8,26.8,9.7,41.8,9c21.4-1,40.8-3.7,61.3-10.4c10.9-3.5,18.9-11.3,28.5-17.8c5.4-3.7,10.4-6.7,14.8-11.5
+    c1.9-2.1,3.7-5.5,6.5-6.5' 
+    repeatCount='indefinite' \/>
+</circle>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An circle animated to swipe across the screen. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Twirl",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Flag Column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Fill Color",
+    "Parameter": "Red",
+    "Parameter1Label": "Line Color",
+    "Parameter1": "Black",
+    "Parameter2Label": "Line Thickness",
+    "Parameter2": "1",
+    "Parameter3Label": "Radius",
+    "Parameter3": "9",
+    "Parameter4Label": "Opacity",
+    "Parameter4": 1,
+    "DAXCode": 
+"
+    VAR __color = \"__PARAM__\"
+    VAR __lineColor = \"__PARAM1__\"
+    VAR __lineThickness = __PARAM2__
+    VAR __radius = __PARAM3__
+    VAR __opacity = __PARAM4__
+    VAR __header = \"data:image\/svg+xml;utf8,\" &
+              \"<svg 
+                xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+                xmlns:cc='http:\/\/creativecommons.org\/ns#'
+                xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+                xmlns='http:\/\/www.w3.org\/2000\/svg'
+                width='100%' height='100%'>\"
+    VAR __footer = \"<\/svg>\"
+    VAR __shapeTextCircle = \"<circle cx='20' cy='30' r='\" & __radius & \"' fill='\" & __color & \"' fill-opacity='\" & __opacity & \"' stroke='\" & __lineColor & \"' stroke-width='\" & __lineThickness & \"'> \" & \"
+ <animateTransform 
+           attributeName='transform' 
+           attributeType='XML'
+           type='rotate'
+           from='0 25 25'
+           to='360 25 25' 
+           dur='1s'
+           begin='0s'
+           repeatCount='indefinite'\/>
+</circle>\"
+RETURN IF(__AGGREGATION__(__COLUMN__),__header & __shapeTextCircle & __footer,\"\")",
+    "Notes": "An circle animated to twirl. In the Quick Measure Gallery, you must replace the &colon; in the header with an actual colon (:).",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Animation-Bouncing-Blinking-Stephen-Few-Red-Dot/td-p/517631",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Gauge",
+    "AggregationLabel": "Value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Value column",
+    "Column": "Choose Column",
+    "Column1Label": "Category column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Target",
+    "Parameter1": "80",
+    "Parameter2Label": "Min Target",
+    "Parameter2": "40",
+    "Parameter3Label": "Low color",
+    "Parameter3": "#cc3232",
+    "Parameter4Label": "Middle color",
+    "Parameter4": "#ffc90d",
+    "Parameter5Label": "High color",
+    "Parameter5": "#99c140",
+    "Parameter6Label": "Size",
+    "Parameter6": "50",
+    "DAXCode": 
+"
+    VAR SourceMeasure = __AGGREGATION__(__COLUMN__) \/\/Actual value
+    VAR TargetMeasure = __PARAM1__ \/\/Target value (end of the yellow zone)
+    VAR RedZoneMeasure = __PARAM2__ \/\/Minimum target value (end of the red zone)
+    VAR MaxValue = SWITCH(TRUE(),SourceMeasure>TargetMeasure,SourceMeasure*1.2,TargetMeasure*1.2) \/\/Defines max value of the scale
+    VAR RedZoneColor = \"__PARAM3__\" \/\/Red zone color
+    VAR YellowZoneColor = \"__PARAM4__\" \/\/Yellow zone color
+    VAR MainZoneColor = \"__PARAM5__\" \/\/Green zone color
+    VAR Size = __PARAM6__ \/\/ SVG-image size
+    VAR Radius = Size*0.4 \/\/Defines the gauge radius
+    Var Circumference = 2*PI()*Radius
+    VAR RedZone = (RedZoneMeasure\/MaxValue)*PI()*Radius \/\/Red zone lenght
+    VAR YellowZone = ((TargetMeasure-RedZoneMeasure)\/MaxValue)*PI()*Radius \/\/Yellow zone length
+    VAR LineAngle
+    = ROUND(SourceMeasure*180\/MaxValue,
+    0) \/\/Actual
+    value -
+    arrow rotation
+    angle VAR
+    YellowZoneAngle =
+    180+ROUND(RedZoneMeasure*180\/MaxValue,
+    0) \/\/Yellow
+    circle rotation
+    angle \/\/Defines the svg image
+    VAR Output = \"data:image\/svg+xml;utf8,\"
+        & \"<svg xmlns='http:\/\/www.w3.org\/2000\/svg' x= '0px' y = '0px' width='\" & Size & \"' height='\" & Size\/2 & \"'>\"
+        &\"<circle r='\"&Radius&\"' cx='\" & Size\/2  & \"' cy='\" & Size\/2&\"' stroke='\"&MainZoneColor&\"' stroke-width='\"&Size*0.1&\"' stroke-dasharray='\"&Circumference*RedZone&\",\"& Circumference&\"' transform= 'rotate(240,\"&Size\/2&\",\"&Size\/2&\")' fill='none'></circle>\" \/\/ Green zone
+        & \"<circle cx='\" & Size\/2 & \"' cy='\" & Size\/2 & \"' r='\"   & Radius& \"' stroke='\"&RedZoneColor&\"' fill = 'none'  stroke-width='\"&Size*0.1&\"' \" 
+        &\"stroke-dasharray='\"& RedZone &\",\"& Circumference &\"' transform= 'rotate(180,\"& Size\/2 &\",\"& Size\/2 &\")' />\" \/\/Red zone
+        & \"<circle cx = '\" & Size\/2 & \"' cy='\" & Size\/2 & \"' r='\"   & Radius& \"' stroke='\"&YellowZoneColor&\"' fill = 'none'  stroke-width='\"&Size*0.1&\"' \"
+        &\"stroke-dasharray='\"& YellowZone &\",\"& Circumference &\"' transform= 'rotate(\"&YellowZoneAngle&\",\"& Size\/2 &\",\"& Size\/2 &\")' />\" \/\/Yellow zone
+
+        &\"<line x1='\"&Size\/2&\"' y1='\"&Size\/2&\"' x2='\"&Size*0.1&\"' y2='\"&Size\/2&\"' stroke='black' stroke-width='2' transform='rotate(\"&LineAngle&\",\"&Size\/2&\",\"&Size\/2&\")' \/>\"
+        & \"<\/svg>\"
+RETURN \/\/Use HASONEVALUE expression in order to eliminate issue with totals
+    IF ( HASONEVALUE ( __COLUMN1__ )&&SourceMeasure<>BLANK(), Output, BLANK () )
+",
+    "Notes": "The measure displays 3-position gauge based on input measures. @dmitriisolovev",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Gauges/td-p/490058",
+    "Hyperlink1Text": "Quick Measure Gallery"
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Harveyball",
+    "AggregationLabel": "Achievement aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Achievement column",
+    "Column": "Choose Column",
+    "Aggregation1Label": "Effort aggregation",
+    "Aggregation1": "Visible",
+    "Column1Label": "Effort column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Show background",
+    "Parameter1": "TRUE",
+    "Parameter2Label": "Background color",
+    "Parameter2": "#D9D9D9",
+    "Parameter3Label": "Show front",
+    "Parameter3": "TRUE",
+    "Parameter4Label": "Color good",
+    "Parameter4": "#68CDFE",
+    "Parameter5Label": "Color bad",
+    "Parameter5": "#E86232",
+    "Parameter6Label": "Show text",
+    "Parameter6": "FALSE",
+    "Parameter7Label": "Text label",
+    "Parameter7": "a measure",
+    "DAXCode": 
+"
+    \/\/ **********************************************************************
+    \/\/ input parameters
+    \/\/ Background Circle: represents percentage of current achievements (100% means everything is done)
+    var ShowBackGrndCircle = __PARAM1__()
+    var BackGrndPercent = __AGGREGATION__(__COLUMN__) \/\/ value has to be >= 0 and <=1
+    \/\/ using Firefox one has to use \"%23\" instead of the \"#\"-sign
+    var BackGrndColor = \"__PARAM2__\" \/\/D9D9D9
+    \/\/ Front Circle: represents effort spent for the current achievements in percent of available ressources (100% means there are no more ressources available
+    var ShowFrontCircle = __PARAM3__()
+    var FrontPercent =  __AGGREGATION1__(__COLUMN1__) \/\/ value has to be >= 0 and <=1
+    var FrontColorGood = \"__PARAM4__\" 
+    var FrontColorBad =  \"__PARAM5__\" 
+    \/\/ Show text below the circles
+    var ShowText = __PARAM6__()
+    var HarveyBallSubtitle = \"__PARAM7__\" \/\/replace the string by a value or string that will be printed
+    \/\/ **********************************************************************
+    \/\/calculate the settings for the background layer - the segment of the larger circle
+    var BackGrndPercentValidated = IF(OR(ISBLANK(BackGrndPercent),NOT(ISNUMBER(BackGrndPercent))),-1,BackGrndPercent)
+    var BackgroundInvalidParameters =
+    \tIF(ISNUMBER(BackGrndPercentValidated) && (BackGrndPercentValidated >= 0 && BackGrndPercentValidated <= 1)
+    \t\t      ,\"True\"
+    \t\t      ,\"Check 'BackGrndPercent'\"
+    )
+    var BackGrndCirclePercent = 180 - (BackGrndPercentValidated * 360)
+    var BackGrndBoolean = if(BackGrndCirclePercent < 0, 1,0)
+    var BackGrndRadians = RADIANS(BackGrndCirclePercent
+    var BackGrndXArcEnd = sin(BackGrndRadians)
+    var BackGrndYArcEnd = cos(BackGrndRadians)
+    \/\/ **********************************************************************
+    \/\/calculate the settings for the font layer - the segment of the larger circle
+    var FrontPercentValidated = IF(OR(ISBLANK(FrontPercent),NOT(ISNUMBER(FrontPercent))),-1,FrontPercent)
+    var FrontInvalidParameters =
+    \tIF(ISNUMBER(FrontPercentValidated) && (FrontPercentValidated >= 0 && FrontPercentValidated <= 1)
+    \t\t,\"True\"
+    \t\t,\"Check: FrontPercent\"
+    \t)
+    var FrontCirclePercent = 180 - (IF(FrontPercentValidated > .9999, .9999, FrontPercentValidated) * 360)
+    var FrontShortDistance = if(FrontCirclePercent < 0, 1,0)
+    var FrontRadians = RADIANS(FrontCirclePercent)
+    var FrontXArcEnd = sin(FrontRadians)*.8
+    var FrontYArcEnd = cos(FrontRadians)*.8
+    var colorFrontCircle = IF(FrontPercentValidated > BackGrndPercentValidated,FrontColorBad,FrontColorGood)
+    \/\/ **********************************************************************
+    \/\/ build the svg string 
+    var svgHeader = 
+    \"data:image\/svg+xml;utf8,<svg 
+    xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+    xmlns:cc='http:\/\/creativecommons.org\/ns#'
+    xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+    xmlns='http:\/\/www.w3.org\/2000\/svg'\"
+    var ViewBox = 
+    IF(ShowText,\" viewBox='-1 -1 2 2.5'>\",\" viewBox='-1 -1 2 2'>\") 
+      
+    var BackGrndArc =\t
+    \tIF(ShowBackGrndCircle
+    \t\t,IF(BackgroundInvalidParameters = \"True\"
+    \t\t\t,\"<path d='M 0 -1 A 1 1 0 \" & BackGrndBoolean & \" 1 \" & BackGrndXArcEnd & \" \" & BackGrndYArcEnd & \"  L 0 0 z' fill='\" & BackGrndColor & \"'><\/path>\"
+    \t\t\t,\"<text x='-1' y='20%' text-anchor='left' font-family='Verdana' font-size='0.2px'>\" & BackgroundInvalidParameters & \"<\/text>\"
+    \t\t)
+    \t\t,BLANK()
+    \t)
+    var FrontArc =
+    IF(ShowFrontCircle
+    \t   ,IF(FrontInvalidParameters = \"True\"
+    \t\t  ,\"<path d='M 0 -.8 A 0.8 0.8 0 \" & FrontShortDistance & \" 1 \" & FrontXArcEnd & \" \" & FrontYArcEnd & \"  L 0 0 z' fill='\" & colorFrontCircle & \"'><\/path>\"
+    \t\t  ,\"<text x='-1' y='30%' text-anchor='left' font-family='Verdana' font-size='0.2px'>\" & FrontInvalidParameters & \"<\/text>\"
+    \t   )
+    ,BLANK()
+    )
+    var TextFooter =
+    \tIF(ShowText
+    \t\t,\"<text x='20%' y='59%' text-anchor='middle' font-family='Verdana' font-size='0.3px'>\" & HarveyBallSubtitle & \"<\/text>\"
+    \t\t,BLANK()
+    \t)
+    var svgFooter = \"<\/svg>\"
+    return svgHeader & ViewBox & BackGrndArc & FrontArc & TextFooter & svgFooter
+",
+    "Notes": "Harveyball basically compares two percentages. The Harveyball visual can also be used with just one circle, or better just a segement an arc. Everything is controlled with two measures. Achievement controls the larger circle of the Harveyball. Effort controls the smaller circle of the Harveyball. Replace the calculation with your own calculation and make sure that the measure returns a value >= 0 and <= 1. @TomMartens",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Microchart-Harveyball-and-Harveybox/td-p/489599",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "SVG",
+    "MeasureId": "SVG",
+    "MeasureGroup": "SVG",
+    "DisplayName": "SVG Harveybox",
+    "AggregationLabel": "Achievement aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Achievement column",
+    "Column": "Choose Column",
+    "Aggregation1Label": "Effort aggregation",
+    "Aggregation1": "Visible",
+    "Column1Label": "Effort column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "Show Harveybox",
+    "Parameter1": "TRUE",
+    "Parameter2Label": "Color good",
+    "Parameter2": "#68CDFE",
+    "Parameter3Label": "Color bad",
+    "Parameter3": "#E86232",
+    "Parameter4Label": "Show background",
+    "Parameter4": "TRUE",
+    "Parameter5Label": "Background color",
+    "Parameter5": "#D9D9D9",
+    "DAXCode": 
+"
+    \/\/ **********************************************************************
+    \/\/ input parameters
+    \/\/ HarveyBox: left vertical represents effort, right vertical represents achievement\/\/Cost Paramater
+    var ShowHarveyBox = __PARAM1__()
+    var costPercentageLeftVertical = __AGGREGATION1__(COLUMN1) \/\/ value has to be >= 0 and <=1
+    \/\/ using Firefox one has to use \"%23\" instead of the \"#\"-sign
+    var HarveyBoxColorBad =  \"__PARAM3__\"
+    \/\/Revenue Paramater
+    var revenuePercentageRightVertical = __AGGREGATION__(__COLUMN__) \/\/ value has to be >= 0 and <=1
+    var HarveyBoxColorGood = \"__PARAM2__\"
+    \/\/ Background Box: draws a box, that represents 100%
+    var ShowBackGrndBox = __PARAM4__()
+    var BackGrndBoxColor = \"__PARAM5__\"
+
+    \/\/calculate the settings for the HarveyBox
+    var costPercentageLeftVerticalValidated = IF(OR(ISBLANK(costPercentageLeftVertical),NOT(ISNUMBER(costPercentageLeftVertical))),-1,costPercentageLeftVertical)
+    var costPercentageLeftVerticalInvalidParameters =
+    \tIF(
+            ISNUMBER(costPercentageLeftVerticalValidated) && (costPercentageLeftVerticalValidated >= 0 && costPercentageLeftVerticalValidated <= 1)
+             ,\"True\"
+             ,\"Check: cost Parameter\"
+    \t)
+    \t
+    var revenuePercentageRightVerticalValidated = IF(OR(ISBLANK(revenuePercentageRightVertical),NOT(ISNUMBER(revenuePercentageRightVertical))),-1,revenuePercentageRightVertical)
+    var revenuePercentageRightVerticalInvalidParameters =
+    \tIF(
+            ISNUMBER(revenuePercentageRightVerticalValidated) && (revenuePercentageRightVerticalValidated >= 0 && revenuePercentageRightVerticalValidated <= 1)
+             ,\"True\"
+             ,\"Check: revenue Parameter\"
+    \t)
+    var costPosition = 1 - costPercentageLeftVerticalValidated
+    var revenuePosition = 1 - revenuePercentageRightVerticalValidated
+    var HarveyBoxColor = IF(costPercentageLeftVerticalValidated < revenuePercentageRightVerticalValidated, HarveyBoxColorGood,HarveyBoxColorBad)
+
+    \/\/ **********************************************************************
+    \/\/ build the svg string 
+    var svgHeader = 
+    \"data:image\/svg+xml;utf8,<svg 
+    xmlns:dc='http:\/\/purl.org\/dc\/elements\/1.1\/'
+       xmlns:cc='http:\/\/creativecommons.org\/ns#'
+       xmlns:svg='http:\/\/www.w3.org\/2000\/svg'
+       xmlns='http:\/\/www.w3.org\/2000\/svg'\"
+    var ViewBox = 
+        \" viewBox='0 0 1 1'>\"
+    var BackGrndBox =
+    \tIF(ShowBackGrndBox
+    \t\t,\"<path d='M 0 1 L 0 0 L 1 0 L 1 1 z' fill='\" & BackGrndBoxColor & \"'><\/path>\"
+    \t\t,BLANK()
+    \t)
+    var HarveyBox =
+        IF(ShowHarveyBox \t
+    \t\t,IF(AND(costPercentageLeftVerticalInvalidParameters = \"True\",revenuePercentageRightVerticalInvalidParameters = \"True\")
+            ,\"<path d='M 0 1 L 0 \" & costPosition & \" L 1 \" & revenuePosition & \" L 1 1 z' fill='\" & HarveyBoxColor & \"'><\/path>\"
+            ,\"<text x='0%' y='60%' text-anchor='right' font-family='Verdana' font-size='0.1px'>\" & costPercentageLeftVerticalInvalidParameters & \"<\/text>\" & \"<text x='0%' y='30%' text-anchor='right' font-family='Verdana' font-size='0.1px'>\" & revenuePercentageRightVerticalInvalidParameters & \"<\/text>\"
+            )
+    \t\t,BLANK()
+    \t)\t\t
+
+
+    var svgFooter = \"<\/svg>\"
+return svgHeader & ViewBox & BackGrndBox & HarveyBox & svgFooter
+",
+    "Notes": "Harveybox basically compares two percentages. Everything is controlled with two measures. Achievement controls the right vertical line of the Harveybox. Effort controls the left vertical line of the Harveybox. Replace the calculation with your own calculation and make sure that the measure returns a value >= 0 and <= 1. @TomMartens",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SVG-Microchart-Harveyball-and-Harveybox/td-p/489599",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "First Working Day of Week",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekNum1\",WEEKNUM([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysWeekNum = WEEKNUM(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[WeekNum1]=TodaysWeekNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar4,[Date])
+RETURN
+    FORMAT(FirstWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the first working day of a week.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Working-Day-of-Week/td-p/391332",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is First Working Day of Week",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekNum1\",WEEKNUM([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysWeekNum = WEEKNUM(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[WeekNum1]=TodaysWeekNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar4,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the first working day of a week, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Working-Day-of-Week/td-p/391332",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "First Working Day of Month",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"MonthNum1\",MONTH([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysMonthNum = MONTH(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar4,[Date])
+RETURN
+    FORMAT(FirstWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the first working day of a month.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is First Working Day of Month",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"MonthNum1\",MONTH([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysMonthNum = MONTH(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar4,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the first working day of a month, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Last Working Day of Month",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"MonthNum1\",MONTH([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysMonthNum = MONTH(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR LastWorkingDay = MAXX(Calendar4,[Date])
+RETURN
+    FORMAT(LastWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the last working day of a month.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is Last Working Day of Month",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"MonthNum1\",MONTH([Date]))
+    VAR Calendar3 = ADDCOLUMNS(Calendar2,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR TodaysMonthNum = MONTH(TodaysDate)
+    VAR Calendar4 = FILTER(Calendar3,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MAXX(Calendar4,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the last working day of a month, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
   }
 ]
