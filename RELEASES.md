@@ -110,7 +110,7 @@ Features and Fixes<br/>
 ### supportedmeasures.json
 - Updated 12/20/2021 to include all out-of-the-box quick measures in Power BI Desktop
 - Updated 12/27/2021 to include 37 new measures:
--- Percent of Total
+  - Percent of Total
 
 
 ## Delta
