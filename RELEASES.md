@@ -147,6 +147,42 @@ Features and Fixes<br/>
   - Is First Working Day of Month
   - Last Working Day of Month
   - Is Last Working Day of Month
+- Updated 1/4/2022 to include 35 new measures (Total 200 measures!):
+  - First Working Day of Year
+  - Is First Working Day of Year
+  - Last Working Day of Year
+  - Is Last Working Day of Year
+  - COMPLEX
+  - IMAGINARY
+  - IMREAL
+  - IMCONJUGATE
+  - IMSUM
+  - IMLN
+  - IMLOG10
+  - IMLOG2
+  - IMEXP
+  - IMPOWER
+  - IMCOS
+  - IMSIN
+  - IMSQRT
+  - DAYS360
+  - LARGE
+  - SMALL
+  - F.DIST
+  - F.DIST.CUMULATIVE
+  - F.DIST.RT
+  - F.INV
+  - F.INV.RT
+  - BASE
+  - DECIMAL
+  - DEC2HEX
+  - DEC2OCT
+  - DEC2BIN
+  - BIN2DEC
+  - XOR
+  - ARABIC
+  - ROMAN
+  - SERIESSUM
 
 ## Delta
 Planned Release:  June 2022<br/>
