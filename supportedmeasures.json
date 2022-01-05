@@ -5347,5 +5347,1745 @@ RETURN
     "Notes": "Returns true if it is the last working day of a month, otherwise false.",
     "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
     "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "First Working Day of Year",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR Calendar3 = FILTER(Calendar2,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar3,[Date])
+RETURN
+    FORMAT(FirstWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the first working day of a year.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is First Working Day of Year",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR Calendar3 = FILTER(Calendar2,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MINX(Calendar3,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the first working day of a year, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Last Working Day of Year",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR Calendar3 = FILTER(Calendar2,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR LastWorkingDay = MAXX(Calendar3,[Date])
+RETURN
+    FORMAT(LastWorkingDay,\"mm/dd/yyyy\")
+",
+    "Notes": "Returns the last working day of a year.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Date Intelligence",
+    "MeasureId": "Date Intelligence",
+    "MeasureGroup": "Date Intelligence",
+    "DisplayName": "Is Last Working Day of Year",
+    "DAXCode": 
+"
+    VAR TodaysDate = TODAY()
+    VAR Calendar1 = CALENDAR(DATE(YEAR(TodaysDate),1,1),DATE(YEAR(TodaysDate),12,31))
+    VAR Calendar2 = ADDCOLUMNS(Calendar1,\"WeekDay1\",WEEKDAY([Date],2))
+    VAR Calendar3 = FILTER(Calendar2,[MonthNum1]=TodaysMonthNum&&[WeekDay1]<6)
+    VAR FirstWorkingDay = MAXX(Calendar3,[Date])
+RETURN
+    IF(TodaysDate=FirstWorkingDay,TRUE(),FALSE())
+",
+    "Notes": "Returns true if it is the last working day of a year, otherwise false.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/First-Last-Working-Days/td-p/391545",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "COMPLEX",
+    "AggregationLabel": "Real value aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Real value",
+    "Column": "Choose Column",
+    "Aggregation1Label": "Imaginary value aggregation",
+    "Aggregation1": "Visible",
+    "Column1Label": "Imaginary value",
+    "Column1": "Choose Column",
+    "Column2Label": "Suffix",
+    "Column2": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Real = __AGGREGATION__(__COLUMN__)
+    VAR __i = __AGGREGATION1__(__COLUMN1__)
+    VAR __suffix = IF(MAX(__COLUMN2__)=\"\",\"i\",MAX(__COLUMN2__))
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns a complex number based on a real and imaginary numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/COMPLEX/td-p/1064604",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMAGINARY",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex = MAX(__COLUMN___)
+RETURN
+    SWITCH(TRUE(),
+        __Complex = \"i\" || __Complex = \"j\",1, // handle i
+        __Complex = \"-i\" || __Complex = \"-j\",-1, // handle -i
+        FIND(\"i\",__Complex,,-1) = -1 && FIND(\"j\",__Complex,,-1) = -1,0, // handle only real numbers
+        FIND(\"+\",__Complex,,-1) <> -1 && LEN(__Complex) - FIND(\"+\",__Complex,,-1) = 2,1,
+        FIND(\"+\",__Complex,,-1) <> -1,MID(__Complex,FIND(\"+\",__Complex)+1,LEN(__Complex) - 1 - FIND(\"+\",__Complex)) + 0, // handle positive i
+        FIND(\"-\",__Complex,2,-1) <> -1,MID(__Complex,FIND(\"-\",__Complex,2)+1,LEN(__Complex) - 1 - FIND(\"-\",__Complex,2)) * -1, // handle both negative real and negative i
+        MID(__Complex,FIND(\"-\",__Complex)+1,LEN(__Complex) - 1 - FIND(\"-\",__Complex)) * -1 // handle just negative i
+    )
+",
+    "Notes": "Returns the imaginary component of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMAGINARY/td-p/1064643",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMREAL",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex = MAX(__COLUMN__)
+RETURN
+    SWITCH(TRUE(),
+        __Complex = \"i\" || __Complex = \"j\" || __Complex = \"-i\" || __Complex = \"-j\",0, // handle i/j -i/-j
+        FIND(\"i\",__Complex,,-1) = -1 && FIND(\"j\",__Complex,,-1) = -1,__Complex + 0, // handle only real numbers
+        FIND(\"+\",__Complex,,-1) <> -1,LEFT(__Complex,FIND(\"+\",__Complex)-1) + 0, // handle positive i
+        FIND(\"-\",__Complex,2,-1) <> -1,LEFT(__Complex,FIND(\"-\",__Complex,2)-1) + 0, // handle both negative real and negative i
+        0 // handle just negative i
+    )
+",
+    "Notes": "Returns the real component of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMREAL/td-p/1064656",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMCONJUGATE",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex = MAX(__COLUMN__)
+RETURN
+    SWITCH(TRUE(),
+        __Complex = \"i\",\"-i\",
+        __Complex = \"j\",\"-j\",
+        __Complex = \"-i\",\"i\",
+        __Complex = \"-j\",\"j\",
+        FIND(\"i\",__Complex,,-1) = -1 && FIND(\"j\",__Complex,,-1) = -1,__Complex & \"\", // handle only real numbers
+        FIND(\"+\",__Complex,,-1) <> -1,SUBSTITUTE(__Complex,\"+\",\"-\"), // handle positive i
+        FIND(\"-\",__Complex,2,-1) <> -1,SUBSTITUTE(__Complex,\"-\",\"+\"), // handle both negative or positive real and negative i
+        SUBSTITUTE(__Complex,\"-\",\"\") // handle just negative i
+    )
+",
+    "Notes": "Returns the conjugate of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMREAL/td-p/1064656",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMSUM",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "Column1Label": "Complex value",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Complex2 = MAX(__COLUMN1__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __Real2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\" || __Complex2 = \"-i\" || __Complex2 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,__Complex2 + 0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1,LEFT(__Complex2,FIND(\"+\",__Complex2)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,LEFT(__Complex2,FIND(\"-\",__Complex2,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __i2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\",1, // handle i
+            __Complex2 = \"-i\" || __Complex2 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1 && LEN(__Complex2) - FIND(\"+\",__Complex2,,-1) = 2,1,
+            FIND(\"+\",__Complex2,,-1) <> -1,MID(__Complex2,FIND(\"+\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"+\",__Complex2)) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,MID(__Complex2,FIND(\"-\",__Complex2,2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2,2)) * -1, // handle both negative real and negative i
+            MID(__Complex2,FIND(\"-\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2)) * -1 // handle just negative i
+        )
+    VAR __Real = __Real1 + __Real2
+    VAR __i = __i1 + __i2
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the sum of two complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMSUM/td-p/1064821",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMSUB",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "Column1Label": "Complex value",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Complex2 = MAX(__COLUMN1__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __Real2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\" || __Complex2 = \"-i\" || __Complex2 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,__Complex2 + 0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1,LEFT(__Complex2,FIND(\"+\",__Complex2)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,LEFT(__Complex2,FIND(\"-\",__Complex2,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __i2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\",1, // handle i
+            __Complex2 = \"-i\" || __Complex2 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1 && LEN(__Complex2) - FIND(\"+\",__Complex2,,-1) = 2,1,
+            FIND(\"+\",__Complex2,,-1) <> -1,MID(__Complex2,FIND(\"+\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"+\",__Complex2)) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,MID(__Complex2,FIND(\"-\",__Complex2,2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2,2)) * -1, // handle both negative real and negative i
+            MID(__Complex2,FIND(\"-\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2)) * -1 // handle just negative i
+        )
+
+    VAR __Real = __Real1 - __Real2
+    VAR __i = __i1 - __i2
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the difference of two complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMSUB/td-p/1064832",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMPRODUCT",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "Column1Label": "Complex value",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Complex2 = MAX(__COLUMN1__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __Real2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\" || __Complex2 = \"-i\" || __Complex2 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,__Complex2 + 0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1,LEFT(__Complex2,FIND(\"+\",__Complex2)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,LEFT(__Complex2,FIND(\"-\",__Complex2,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __i2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\",1, // handle i
+            __Complex2 = \"-i\" || __Complex2 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1 && LEN(__Complex2) - FIND(\"+\",__Complex2,,-1) = 2,1,
+            FIND(\"+\",__Complex2,,-1) <> -1,MID(__Complex2,FIND(\"+\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"+\",__Complex2)) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,MID(__Complex2,FIND(\"-\",__Complex2,2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2,2)) * -1, // handle both negative real and negative i
+            MID(__Complex2,FIND(\"-\",__Complex2)+1,LEN(__Complex2) - 1 - FIND(\"-\",__Complex2)) * -1 // handle just negative i
+        )
+
+    VAR __Real = __Real1 * __Real2 - __i1 * __i2
+    VAR __i = __Real1 * __i2 + __i1 * __Real2
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the product of two complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMPRODUCT/td-p/1067397",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMDIV",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "Column1Label": "Complex value",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Complex2 = MAX(__COLUMN1__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __Real2 = 
+        SWITCH(TRUE(),
+            __Complex2 = \"i\" || __Complex2 = \"j\" || __Complex2 = \"-i\" || __Complex2 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex2,,-1) = -1 && FIND(\"j\",__Complex2,,-1) = -1,__Complex2 + 0, // handle only real numbers
+            FIND(\"+\",__Complex2,,-1) <> -1,LEFT(__Complex2,FIND(\"+\",__Complex2)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex2,2,-1) <> -1,LEFT(__Complex2,FIND(\"-\",__Complex2,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+
+
+    VAR __Real = DIVIDE(__Real1 * __Real2 + __i1 * __i2, POWER(__Real2,2) + POWER(__i2,2),0)
+    VAR __i = DIVIDE(-1 * __Real1 * __i2 + __i1 * __Real2, POWER(__Real2,2) + POWER(__i2,2),0)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the quotient of two complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMDIV/td-p/1067433",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMLN",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = LN( SQRT( POWER(__Real1,2) + POWER(__i1,2) ) )
+    VAR __i = ATAN(DIVIDE(__i1,__Real1,0))
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the natural log of a complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMLN/td-p/1068048",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMLOG10",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = LOG(EXP(1),10) * LN( SQRT( POWER(__Real1,2) + POWER(__i1,2) ) )
+    VAR __i = LOG(EXP(1),10) * ATAN(DIVIDE(__i1,__Real1,0))
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the log, base 10, of a complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMLOG10/td-p/1068058",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMLOG2",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = LOG(EXP(1),2) * LN( SQRT( POWER(__Real1,2) + POWER(__i1,2) ) )
+    VAR __i = LOG(EXP(1),2) * ATAN(DIVIDE(__i1,__Real1,0))
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the log, base 2, of a complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMLOG2/td-p/1068061",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMEXP",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = EXP(__Real1) * COS(__i1)
+    VAR __i = EXP(__Real1) * SIN(__i1)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the exponential of a complex numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMEXP/td-p/1068066",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMPOWER",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "ParameterLabel": "Power",
+    "Parameter": "2",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __power = __PARAM__
+    VAR __r = POWER(SQRT(POWER(__Real1,2) + POWER(__i1,2)),__power)
+    VAR __theta = ATAN(__i1/__Real1)
+    VAR __Real = __r * COS(__power * __theta)
+    VAR __i = __r * SIN(__power * __theta)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns a complex number raised to a specified power.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMPOWER/td-p/1069194",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMCOS",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = COS(__Real1) * COSH(__i1)
+    VAR __i = -1 * SIN(__Real1) * SINH(__i1)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the cosine of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMCOS/td-p/1073753",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMSIN",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __Real = SIN(__Real1) * COSH(__i1)
+    VAR __i = -1 * COS(__Real1) * SINH(__i1)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the sine of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMSIN/td-p/1073750",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "IMSQRT",
+    "ColumnLabel": "Complex value",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Complex1 = MAX(__COLUMN__)
+    VAR __Real1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\" || __Complex1 = \"-i\" || __Complex1 = \"-j\",0, // handle i/j -i/-j
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,__Complex1 + 0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1,LEFT(__Complex1,FIND(\"+\",__Complex1)-1) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,LEFT(__Complex1,FIND(\"-\",__Complex1,2)-1) + 0, // handle both negative real and negative i
+            0 // handle just negative i
+        )
+    VAR __i1 = 
+        SWITCH(TRUE(),
+            __Complex1 = \"i\" || __Complex1 = \"j\",1, // handle i
+            __Complex1 = \"-i\" || __Complex1 = \"-j\",-1, // handle -i
+            FIND(\"i\",__Complex1,,-1) = -1 && FIND(\"j\",__Complex1,,-1) = -1,0, // handle only real numbers
+            FIND(\"+\",__Complex1,,-1) <> -1 && LEN(__Complex1) - FIND(\"+\",__Complex1,,-1) = 2,1,
+            FIND(\"+\",__Complex1,,-1) <> -1,MID(__Complex1,FIND(\"+\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"+\",__Complex1)) + 0, // handle positive i
+            FIND(\"-\",__Complex1,2,-1) <> -1,MID(__Complex1,FIND(\"-\",__Complex1,2)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1,2)) * -1, // handle both negative real and negative i
+            MID(__Complex1,FIND(\"-\",__Complex1)+1,LEN(__Complex1) - 1 - FIND(\"-\",__Complex1)) * -1 // handle just negative i
+        )
+    VAR __r = SQRT(POWER(__Real1,2) + POWER(__i1,2))
+    VAR __theta = ATAN(__i1/__Real1)
+    VAR __Real = SQRT(__r) * COS(__theta/2)
+    VAR __i = SQRT(__r) * SIN(__theta/2)
+    VAR __suffix = IF(FIND(\"i\",__Complex1,,-1) = -1,\"j\",\"i\")
+RETURN
+    SWITCH(TRUE(),
+        __Real = 0 && __i = 1, __suffix,
+        __Real = 0 && __i = -1, \"-\" & __suffix,
+        __Real = 0, __i & __suffix,
+        __i = 0, __Real & \"\",
+        __i < 0 && __i = -1, __Real & \"-\" & __suffix,
+        __i < 0, __Real & \"-\" & ABS(__i) & __suffix,
+        __i = 1, __Real & \"+\" & __suffix,
+        __Real & \"+\" & __i & __suffix
+    )
+",
+    "Notes": "Returns the square root of a complex number.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/IMSQRT/td-p/1069762",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DAYS360",
+    "ColumnLabel": "Begin Date",
+    "Column": "Choose Date Column",
+    "Column1Label": "End Date",
+    "Column1": "Choose Date Column",
+    "DAXCode": 
+"
+    VAR __Date1 = MAX(__COLUMN__)
+    VAR __Date2 = MAX(__COLUMN1__)
+    VAR __CalendarBase =
+        FILTER(
+            CALENDAR(__Date1,__Date2),
+            DAY([Date]) <= 30
+        )
+    VAR __FebCal =
+        SUMMARIZE(
+            ADDCOLUMNS(
+                FILTER(
+                    __CalendarBase,
+                    MONTH([Date]) = 2 && (DAY([Date]) = 28 || DAY([Date]) = 29) ||
+                        MONTH([Date]) = 3 && DAY([Date]) = 1
+                ),
+                \"Year\",YEAR([Date])
+            ),
+            [Year],
+            \"FebExtraDays\",
+                VAR __Year = [Year]
+                VAR __Div4 = IF(MOD(__Year,4)=0,TRUE(),FALSE())
+                VAR __Div100 = IF(MOD(__Year,100)=0,TRUE(),FALSE())
+                VAR __Div400 = IF(MOD(__Year,400)=0,TRUE(),FALSE())
+                VAR __IsLeapYear = IF(__Div4 && NOT(__Div100),TRUE(),IF(__Div4 && __Div100 && __Div400,TRUE(),FALSE()))
+            RETURN IF(__IsLeapYear,1,2)
+        )
+    VAR __Adjustment = IF(DAY(__Date1)>30 || DAY(__Date2)>30,0,-1)
+RETURN
+   COUNTROWS(__CalendarBase) + SUMX(__FebCal,[FebExtraDays]) + __Adjustment
+",
+    "Notes": "The DAYS360 function returns the number of days between two dates based on a 360-day year (twelve 30-day months), which is used in some accounting calculations. Use this function to help compute payments if your accounting system is based on twelve 30-day months.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DAYS360/td-p/1062952",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "LARGE",
+    "ColumnLabel": "Values column",
+    "Column": "Choose Column",
+    "ParameterLabel": "kth value",
+    "Parameter": "3",
+    "DAXCode": 
+"
+    VAR __k = __PARAM__
+    VAR __Table =
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"Rank\",RANKX('__TABLENAME__',[__COLUMNNAME__])
+        )
+    VAR __RanksTable = DISTINCT(SELECTCOLUMNS(__Table,\"Rank\",[Rank]))
+    VAR __RanksTable1 = 
+        ADDCOLUMNS(
+            __RanksTable,
+            \"LargeRank\",RANKX(__RanksTable,[Rank],,ASC)
+        )
+    VAR __Rank = MAXX(FILTER(__RanksTable1,[LargeRank] = __k),[Rank])
+RETURN
+    MAXX(FILTER(__Table,[Rank]=__Rank),[Value])
+",
+    "Notes": "Returns the nth largest value from a given set of values.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/LARGE/td-p/1076232",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "SMALL",
+    "ColumnLabel": "Values column",
+    "Column": "Choose Column",
+    "ParameterLabel": "kth value",
+    "Parameter": "3",
+    "DAXCode": 
+"
+    VAR __k = __PARAM__
+    VAR __Table =
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"Rank\",RANKX('__TABLENAME__',[__COLUMNNAME__])
+        )
+    VAR __RanksTable = DISTINCT(SELECTCOLUMNS(__Table,\"Rank\",[Rank]))
+    VAR __RanksTable1 = 
+        ADDCOLUMNS(
+            __RanksTable,
+            \"SmallRank\",RANKX(__RanksTable,[Rank],,DESC)
+        )
+    VAR __Rank = MAXX(FILTER(__RanksTable1,[SmallRank] = __k),[Rank])
+RETURN
+    MAXX(FILTER(__Table,[Rank]=__Rank),[Value])
+",
+    "Notes": "Returns the nth smallest value from a given set of values.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SMALL/td-p/1076265",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "F.DIST",
+    "AggregationLabel": "x aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "x column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Degree of freedom 1",
+    "Parameter": "6",
+    "Parameter1Label": "Degree of freedom 2",
+    "Parameter1": "4",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __Deg1 = __PARAM__
+    VAR __Deg2 = __PARAM1__
+    VAR __GAMMA1 = 
+        VAR __zInput = (__Deg2 + __Deg1) / 2
+        VAR __p =
+            {
+                (0, 676.5203681218851),
+                (1, -1259.1392167224028),
+                (2, 771.32342877765313),
+                (3, -176.61502916214059),
+                (4, 12.507343278686905),
+                (5, -0.13857109526572012),
+                (6, 9.9843695780195716e-6),
+                (7, 1.5056327351493116e-7)
+            }
+        VAR __EPSILON = 1e-7
+        VAR __z = IF(__zInput < 0.5, 1 - __zInput - 1,__zInput - 1)
+        VAR __pTable = 
+            ADDCOLUMNS(
+                __p,
+                \"x\",[Value2] / (__z + [Value1] + 1)
+            )
+        VAR __x = 0.99999999999980993 + SUMX(__pTable,[x])
+        VAR __t = __z + COUNTROWS(__pTable) - .5
+        VAR __y = 
+            IF(
+                __zInput < 0.5,
+                PI() / (SIN(PI() * __zInput) * SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x),
+                SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x
+            )
+    RETURN
+        __y
+    VAR __GAMMA2 = 
+        VAR __zInput = (__Deg1) / 2
+        VAR __p =
+            {
+                (0, 676.5203681218851),
+                (1, -1259.1392167224028),
+                (2, 771.32342877765313),
+                (3, -176.61502916214059),
+                (4, 12.507343278686905),
+                (5, -0.13857109526572012),
+                (6, 9.9843695780195716e-6),
+                (7, 1.5056327351493116e-7)
+            }
+        VAR __EPSILON = 1e-7
+        VAR __z = IF(__zInput < 0.5, 1 - __zInput - 1,__zInput - 1)
+        VAR __pTable = 
+            ADDCOLUMNS(
+                __p,
+                \"x\",[Value2] / (__z + [Value1] + 1)
+            )
+        VAR __x = 0.99999999999980993 + SUMX(__pTable,[x])
+        VAR __t = __z + COUNTROWS(__pTable) - .5
+        VAR __y = 
+            IF(
+                __zInput < 0.5,
+                PI() / (SIN(PI() * __zInput) * SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x),
+                SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x
+            )
+    RETURN
+        __y
+    VAR __GAMMA3 = 
+        VAR __zInput = (__Deg2) / 2
+        VAR __p =
+            {
+                (0, 676.5203681218851),
+                (1, -1259.1392167224028),
+                (2, 771.32342877765313),
+                (3, -176.61502916214059),
+                (4, 12.507343278686905),
+                (5, -0.13857109526572012),
+                (6, 9.9843695780195716e-6),
+                (7, 1.5056327351493116e-7)
+            }
+        VAR __EPSILON = 1e-7
+        VAR __z = IF(__zInput < 0.5, 1 - __zInput - 1,__zInput - 1)
+        VAR __pTable = 
+            ADDCOLUMNS(
+                __p,
+                \"x\",[Value2] / (__z + [Value1] + 1)
+            )
+        VAR __x = 0.99999999999980993 + SUMX(__pTable,[x])
+        VAR __t = __z + COUNTROWS(__pTable) - .5
+        VAR __y = 
+            IF(
+                __zInput < 0.5,
+                PI() / (SIN(PI() * __zInput) * SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x),
+                SQRT(2*PI()) * POWER(__t,__z+0.5) * EXP(-1*__t) * __x
+            )
+    RETURN
+        __y
+RETURN
+    DIVIDE(__GAMMA1,__GAMMA2 * __GAMMA3) * 
+        POWER(__Deg1/__Deg2,__Deg1/2) *
+            DIVIDE(
+                POWER(__x,(__Deg1-2)/2),
+                POWER(1+(__Deg1/__Deg2)*__x,(__Deg1+__Deg2)/2)
+            )
+",
+    "Notes": "Returns the F probability distribution.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/F-DIST/td-p/1082417",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "F.DIST.CUMULATIVE",
+    "AggregationLabel": "x aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "x column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Degree of freedom 1",
+    "Parameter": "6",
+    "Parameter1Label": "Degree of freedom 2",
+    "Parameter1": "4",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __df1 = __PARAM__
+    VAR __df2 = __PARAM1__
+RETURN
+    BETA.DIST(
+        __x*__df1/(__x*__df1+__df2),
+        __df1/2,
+        __df2/2,
+        TRUE
+    )
+",
+    "Notes": "Returns the cumulative F distribution function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/F-DIST/td-p/1082417",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "F.DIST.RT",
+    "AggregationLabel": "x aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "x column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Degree of freedom 1",
+    "Parameter": "6",
+    "Parameter1Label": "Degree of freedom 2",
+    "Parameter1": "4",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __df1 = __PARAM__
+    VAR __df2 = __PARAM1__
+RETURN
+    1 - BETA.DIST(
+        __x*__df1/(__x*__df1+__df2),
+        __df1/2,
+        __df2/2,
+        TRUE
+    )
+",
+    "Notes": "Returns the right-tailed F probability distribution.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/F-DIST/td-p/1082417",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "F.INV",
+    "AggregationLabel": "x aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "x column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Degree of freedom 1",
+    "Parameter": "6",
+    "Parameter1Label": "Degree of freedom 2",
+    "Parameter1": "4",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __df1 = __PARAM__
+    VAR __df2 = __PARAM1__
+    VAR __p = 
+        BETA.DIST(
+            __x*__df1/(__x*__df1+__df2),
+            __df1/2,
+            __df2/2,
+            TRUE
+        )
+RETURN
+    BETA.INV(__p,__df1/2,__df2/2) * __df2/(__df1*(1-BETA.INV(__p,__df1/2,__df2/2)))
+",
+    "Notes": "Returns the inverse of the F probability distribution.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/F-DIST/td-p/1082417",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "F.INV.RT",
+    "AggregationLabel": "x aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "x column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Degree of freedom 1",
+    "Parameter": "6",
+    "Parameter1Label": "Degree of freedom 2",
+    "Parameter1": "4",
+    "DAXCode": 
+"
+    VAR __x = __AGGREGATION__(__COLUMN__)
+    VAR __df1 = __PARAM__
+    VAR __df2 = __PARAM1__
+    VAR __p = 
+        1 - BETA.DIST(
+            __x*__df1/(__x*__df1+__df2),
+            __df1/2,
+            __df2/2,
+            TRUE
+        )
+RETURN
+    BETA.INV(__p,__df1/2,__df2/2) * __df2/(__df1*(1-BETA.INV(__p,__df1/2,__df2/2)))
+",
+    "Notes": "Returns the inverse of the right-tailed F probability distribution.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/F-DIST/td-p/1082417",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BASE",
+    "AggregationLabel": "Decimal aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Decimal column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Radix (2-36)",
+    "Parameter": "36",
+    "DAXCode": 
+"
+    VAR __DecimalNumber = __AGGREGATION__(__COLUMN__)
+    VAR __Radix = __PARAM__
+    VAR __Dec2Base = 
+        { 
+            (10, \"A\"), 
+            (11, \"B\"), 
+            (12, \"C\"), 
+            (13, \"D\"), 
+            (14, \"E\"), 
+            (15, \"F\"), 
+            (16, \"G\"), 
+            (17, \"H\"), 
+            (18, \"I\"), 
+            (19, \"J\"), 
+            (20, \"K\"), 
+            (21, \"L\"), 
+            (22, \"M\"), 
+            (23, \"N\"), 
+            (24, \"O\"), 
+            (25, \"P\"), 
+            (26, \"Q\"), 
+            (27, \"R\"),
+            (28, \"S\"),
+            (29, \"T\"),
+            (30, \"U\"),
+            (31, \"V\"),
+            (32, \"W\"),
+            (33, \"X\"),
+            (34, \"Y\"),
+            (35, \"Z\")
+        }    
+RETURN
+    IF(
+        __DecimalNumber = 0,
+        \"0\",
+            VAR __Table = 
+                ADDCOLUMNS(
+                    ADDCOLUMNS(
+                        GENERATESERIES(0,LOG(__DecimalNumber,__Radix),1),
+                        \"BaseInDecimal\",MOD(TRUNC(__DecimalNumber / POWER(__Radix,[Value])),__Radix)
+                    ),
+                    \"Base\",IF([BaseInDecimal] < 10,[BaseInDecimal],MAXX(FILTER(__Dec2Base,[Value1] = [BaseInDecimal]),[Value2]))
+                )
+        RETURN
+            CONCATENATEX(__Table,[Base],\"\",[Value],DESC)
+    )
+",
+    "Notes": "Convert decimal numbers to base 2 - 36 just like the Excel BASE function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BASE/td-p/1062171",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DECIMAL",
+    "AggregationLabel": "Base aggregation",
+    "Aggregation": "MinMax",
+    "ColumnLabel": "Base column",
+    "Column": "Choose Column",
+    "ParameterLabel": "Radix (2-36)",
+    "Parameter": "36",
+    "DAXCode": 
+"
+    VAR __Text = __AGGREGATION__(__COLUMN__)
+    VAR __Radix = __PARAM__
+    VAR __Dec2Base = 
+        { 
+            (0, \"0\"),
+            (1, \"1\"),
+            (2, \"2\"),
+            (3, \"3\"),
+            (4, \"4\"),
+            (5, \"5\"),
+            (6, \"6\"),
+            (7, \"7\"),
+            (8, \"8\"),
+            (9, \"9\"),
+            (10, \"A\"), 
+            (11, \"B\"), 
+            (12, \"C\"), 
+            (13, \"D\"), 
+            (14, \"E\"), 
+            (15, \"F\"), 
+            (16, \"G\"), 
+            (17, \"H\"), 
+            (18, \"I\"), 
+            (19, \"J\"), 
+            (20, \"K\"), 
+            (21, \"L\"), 
+            (22, \"M\"), 
+            (23, \"N\"), 
+            (24, \"O\"), 
+            (25, \"P\"), 
+            (26, \"Q\"), 
+            (27, \"R\"),
+            (28, \"S\"),
+            (29, \"T\"),
+            (30, \"U\"),
+            (31, \"V\"),
+            (32, \"W\"),
+            (33, \"X\"),
+            (34, \"Y\"),
+            (35, \"Z\")
+        }    
+    VAR __Table = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                ADDCOLUMNS(
+                    GENERATESERIES(0,LEN(__Text)-1,1),
+                    \"Text\",MID(__Text,LEN(__Text) - [Value],1)
+                ),
+                \"Text2Decimal\",MAXX(FILTER(__Dec2Base,[Value2] = [Text]),[Value1])
+            ),
+            \"Decimal\",POWER(__Radix,[Value]) * [Text2Decimal]
+        )
+RETURN
+    SUMX(__Table,[Decimal])
+",
+    "Notes": "Convert bases 2 - 36 to decimal just like the Excel DECIMAL function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DECIMAL/td-p/1062752",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DEC2HEX",
+    "AggregationLabel": "Decimal aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Decimal column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __DecimalNumber = __AGGREGATION__(__COLUMN__)
+    VAR __Dec2Hex = { (10, \"A\"), (11, \"B\"), (12, \"C\"), (13, \"D\"), (14, \"E\"), (15, \"F\") }
+RETURN
+    IF(
+        __DecimalNumber = 0,
+        \"0\",
+            VAR __Table = 
+                ADDCOLUMNS(
+                    ADDCOLUMNS(
+                        GENERATESERIES(0,LOG(__DecimalNumber,16),1),
+                        \"HexInDecimal\",MOD(TRUNC(__DecimalNumber / POWER(16,[Value])),16)
+                    ),
+                    \"Hex\",IF([HexInDecimal] < 10,[HexInDecimal],MAXX(FILTER(__Dec2Hex,[Value1] = [HexInDecimal]),[Value2]))
+                )
+        RETURN
+            CONCATENATEX(__Table,[Hex],\"\",[Value],DESC)
+    )
+",
+    "Notes": "Convert decimal to hex just like the Excel DEC2HEX function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DEC2HEX-Decimal-to-Hexadecimal/td-p/1062151",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DEC2OCT",
+    "AggregationLabel": "Decimal aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Decimal column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __DecimalNumber = __AGGREGATION__(__COLUMN__)
+RETURN
+    IF(
+        __DecimalNumber = 0,
+        \"0\",
+            VAR __Table = 
+                ADDCOLUMNS(
+                    GENERATESERIES(0,LOG(__DecimalNumber,8),1),
+                    \"Oct\",MOD(TRUNC(__DecimalNumber / POWER(8,[Value])),8)
+                )
+        RETURN
+            CONCATENATEX(__Table,[Oct],\"\",[Value],DESC)
+    )
+",
+    "Notes": "Convert decimal to octal just like the Excel DEC2OCT function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DEC2OCT-Decimal-to-Octal/td-p/1062140",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "DEC2BIN",
+    "AggregationLabel": "Decimal aggregation",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Decimal column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __DecimalNumber = __AGGREGATION__(__COLUMN__)
+RETURN
+    IF(
+        __DecimalNumber = 0,
+        \"0\",
+            VAR __Table = 
+                ADDCOLUMNS(
+                    GENERATESERIES(0,LOG(__DecimalNumber,2),1),
+                    \"Bit\",MOD(TRUNC(__DecimalNumber / POWER(2,[Value])),2)
+                )
+        RETURN
+            CONCATENATEX(__Table,[Bit],\"\",[Value],DESC)
+    )
+",
+    "Notes": "Convert decimal to binary just like the Excel DEC2BIN function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/DEC2BIN-Decimal-to-Binary/td-p/1061556",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "BIN2DEC",
+    "AggregationLabel": "Binary aggregation",
+    "Aggregation": "MinMax",
+    "ColumnLabel": "Binary column",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Binary = __AGGREGATION__(__COLUMN__)
+    VAR __Table = 
+        ADDCOLUMNS(
+            GENERATESERIES(0,LEN(__Binary)-1,1),
+            \"Decimal\",POWER(2,[Value]) * MID(__Binary,LEN(__Binary) - [Value],1)
+        )
+RETURN
+    SUMX(__Table,[Decimal])
+",
+    "Notes": "Convert binary to decimal just like the Excel BIN2DEC function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/BIN2DEC-Binary-to-Decimal/td-p/1061621",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "XOR",
+    "ColumnLabel": "Logical value 1",
+    "Column": "Choose Column",
+    "Column1Label": "Logical value 2",
+    "Column1": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Logical1 = MAXA(__COLUMN__)
+    VAR __Logical2 = MAXA(__COLUMN1__)
+    VAR __Table = { CONVERT(__Logical1, BOOLEAN), CONVERT(__Logical2, BOOLEAN) }
+    VAR __TrueRows = COUNTROWS(FILTER(__Table,[Value] = TRUE()))
+RETURN
+    IF(ISEVEN(__TrueRows),FALSE,TRUE)
+",
+    "Notes": "The ever populare XOR logical function.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/XOR/td-p/1062091",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "ROMAN",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Arabic number",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Value = __AGGREGATION__(__COLUMN__)
+    VAR __Classic = 
+        DATATABLE(
+            \"Arabic\",INTEGER,
+            \"Roman\",STRING,
+            {
+                { 1, \"I\" },
+                { 4, \"IV\" },
+                { 5, \"V\" },
+                { 9, \"IX\" },
+                { 10, \"X\" },
+                { 40, \"XL\" },
+                { 50, \"L\" },
+                { 90, \"XC\" },
+                { 100, \"C\" },
+                { 400, \"CD\" },
+                { 500, \"D\" },
+                { 900, \"CM\" },
+                { 1000, \"M\" }
+            }
+        )
+    VAR __Concise1 = 
+        DATATABLE(
+            \"Arabic\",INTEGER,
+            \"Roman\",STRING,
+            {
+                { 1, \"I\" },
+                { 4, \"IV\" },
+                { 5, \"V\" },
+                { 9, \"IX\" },
+                { 10, \"X\" },
+                { 40, \"XL\" },
+                { 45, \"VL\" },
+                { 50, \"L\" },
+                { 90, \"XC\" },
+                { 95, \"VC\" },
+                { 100, \"C\" },
+                { 400, \"CD\" },
+                { 450, \"LD\" },
+                { 500, \"D\" },
+                { 900, \"CM\" },
+                { 1000, \"M\" }
+            }
+        )
+    VAR __Convert = __Classic
+\/\/ 1st digit
+    VAR __1 = __Value
+    VAR __1Table = ADDCOLUMNS(__Convert,\"Diff\",__1 - [Arabic])
+    VAR __1Min = MINX(FILTER(__1Table,[Diff] >= 0),[Diff])
+    VAR __1R = MAXX(FILTER(__1Table,[Diff] = __1Min),[Roman])
+    VAR __1A = MAXX(FILTER(__1Table,[Diff] = __1Min),[Arabic])
+\/\/ 2nd digit
+    VAR __2 = __Value - __1A
+    VAR __2Table = ADDCOLUMNS(__Convert,\"Diff\",__2 - [Arabic])
+    VAR __2Min = MINX(FILTER(__2Table,[Diff] >= 0),[Diff])
+    VAR __2R = MAXX(FILTER(__2Table,[Diff] = __2Min),[Roman])
+    VAR __2A = MAXX(FILTER(__2Table,[Diff] = __2Min),[Arabic])
+\/\/ 3rd digit
+    VAR __3 = __Value - __1A - __2A
+    VAR __3Table = ADDCOLUMNS(__Convert,\"Diff\",__3 - [Arabic])
+    VAR __3Min = MINX(FILTER(__3Table,[Diff] >= 0),[Diff])
+    VAR __3R = MAXX(FILTER(__3Table,[Diff] = __3Min),[Roman])
+    VAR __3A = MAXX(FILTER(__3Table,[Diff] = __3Min),[Arabic])
+\/\/ 4th digit
+    VAR __4 = __Value - __1A - __2A - __3A
+    VAR __4Table = ADDCOLUMNS(__Convert,\"Diff\",__4 - [Arabic])
+    VAR __4Min = MINX(FILTER(__4Table,[Diff] >= 0),[Diff])
+    VAR __4R = MAXX(FILTER(__4Table,[Diff] = __4Min),[Roman])
+    VAR __4A = MAXX(FILTER(__4Table,[Diff] = __4Min),[Arabic])
+\/\/ 5th digit
+    VAR __5 = __Value - __1A - __2A - __3A - __4A
+    VAR __5Table = ADDCOLUMNS(__Convert,\"Diff\",__5 - [Arabic])
+    VAR __5Min = MINX(FILTER(__5Table,[Diff] >= 0),[Diff])
+    VAR __5R = MAXX(FILTER(__5Table,[Diff] = __5Min),[Roman])
+    VAR __5A = MAXX(FILTER(__5Table,[Diff] = __5Min),[Arabic])
+\/\/ 6th digit
+    VAR __6 = __Value - __1A - __2A - __3A - __4A - __5A
+    VAR __6Table = ADDCOLUMNS(__Convert,\"Diff\",__6 - [Arabic])
+    VAR __6Min = MINX(FILTER(__6Table,[Diff] >= 0),[Diff])
+    VAR __6R = MAXX(FILTER(__6Table,[Diff] = __6Min),[Roman])
+    VAR __6A = MAXX(FILTER(__6Table,[Diff] = __6Min),[Arabic])
+\/\/ 7th digit
+    VAR __7 = __Value - __1A - __2A - __3A - __4A - __5A - __6A
+    VAR __7Table = ADDCOLUMNS(__Convert,\"Diff\",__7 - [Arabic])
+    VAR __7Min = MINX(FILTER(__7Table,[Diff] >= 0),[Diff])
+    VAR __7R = MAXX(FILTER(__7Table,[Diff] = __7Min),[Roman])
+    VAR __7A = MAXX(FILTER(__7Table,[Diff] = __7Min),[Arabic])
+\/\/ 8th digit
+    VAR __8 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A
+    VAR __8Table = ADDCOLUMNS(__Convert,\"Diff\",__8 - [Arabic])
+    VAR __8Min = MINX(FILTER(__8Table,[Diff] >= 0),[Diff])
+    VAR __8R = MAXX(FILTER(__8Table,[Diff] = __8Min),[Roman])
+    VAR __8A = MAXX(FILTER(__8Table,[Diff] = __8Min),[Arabic])
+\/\/ 9th digit
+    VAR __9 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A
+    VAR __9Table = ADDCOLUMNS(__Convert,\"Diff\",__9 - [Arabic])
+    VAR __9Min = MINX(FILTER(__9Table,[Diff] >= 0),[Diff])
+    VAR __9R = MAXX(FILTER(__9Table,[Diff] = __9Min),[Roman])
+    VAR __9A = MAXX(FILTER(__9Table,[Diff] = __9Min),[Arabic])
+\/\/ 10th digit
+    VAR __10 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A
+    VAR __10Table = ADDCOLUMNS(__Convert,\"Diff\",__10 - [Arabic])
+    VAR __10Min = MINX(FILTER(__10Table,[Diff] >= 0),[Diff])
+    VAR __10R = MAXX(FILTER(__10Table,[Diff] = __10Min),[Roman])
+    VAR __10A = MAXX(FILTER(__10Table,[Diff] = __10Min),[Arabic])
+\/\/ 11th digit
+    VAR __11 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A
+    VAR __11Table = ADDCOLUMNS(__Convert,\"Diff\",__11 - [Arabic])
+    VAR __11Min = MINX(FILTER(__11Table,[Diff] >= 0),[Diff])
+    VAR __11R = MAXX(FILTER(__11Table,[Diff] = __11Min),[Roman])
+    VAR __11A = MAXX(FILTER(__11Table,[Diff] = __11Min),[Arabic])
+\/\/ 12th digit
+    VAR __12 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A
+    VAR __12Table = ADDCOLUMNS(__Convert,\"Diff\",__12 - [Arabic])
+    VAR __12Min = MINX(FILTER(__12Table,[Diff] >= 0),[Diff])
+    VAR __12R = MAXX(FILTER(__12Table,[Diff] = __12Min),[Roman])
+    VAR __12A = MAXX(FILTER(__12Table,[Diff] = __12Min),[Arabic])
+\/\/ 13th digit
+    VAR __13 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A
+    VAR __13Table = ADDCOLUMNS(__Convert,\"Diff\",__13 - [Arabic])
+    VAR __13Min = MINX(FILTER(__13Table,[Diff] >= 0),[Diff])
+    VAR __13R = MAXX(FILTER(__13Table,[Diff] = __13Min),[Roman])
+    VAR __13A = MAXX(FILTER(__13Table,[Diff] = __13Min),[Arabic])
+\/\/ 14th digit
+    VAR __14 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A
+    VAR __14Table = ADDCOLUMNS(__Convert,\"Diff\",__14 - [Arabic])
+    VAR __14Min = MINX(FILTER(__14Table,[Diff] >= 0),[Diff])
+    VAR __14R = MAXX(FILTER(__14Table,[Diff] = __14Min),[Roman])
+    VAR __14A = MAXX(FILTER(__14Table,[Diff] = __14Min),[Arabic])
+\/\/ 15th digit
+    VAR __15 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A
+    VAR __15Table = ADDCOLUMNS(__Convert,\"Diff\",__15 - [Arabic])
+    VAR __15Min = MINX(FILTER(__15Table,[Diff] >= 0),[Diff])
+    VAR __15R = MAXX(FILTER(__15Table,[Diff] = __15Min),[Roman])
+    VAR __15A = MAXX(FILTER(__15Table,[Diff] = __15Min),[Arabic])
+\/\/ 16th digit
+    VAR __16 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A - __15A
+    VAR __16Table = ADDCOLUMNS(__Convert,\"Diff\",__16 - [Arabic])
+    VAR __16Min = MINX(FILTER(__16Table,[Diff] >= 0),[Diff])
+    VAR __16R = MAXX(FILTER(__16Table,[Diff] = __16Min),[Roman])
+    VAR __16A = MAXX(FILTER(__16Table,[Diff] = __16Min),[Arabic])
+\/\/ 17th digit
+    VAR __17 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A - __15A - __16A
+    VAR __17Table = ADDCOLUMNS(__Convert,\"Diff\",__17 - [Arabic])
+    VAR __17Min = MINX(FILTER(__17Table,[Diff] >= 0),[Diff])
+    VAR __17R = MAXX(FILTER(__17Table,[Diff] = __17Min),[Roman])
+    VAR __17A = MAXX(FILTER(__17Table,[Diff] = __17Min),[Arabic])
+\/\/ 18th digit
+    VAR __18 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A - __15A - __16A - __17A
+    VAR __18Table = ADDCOLUMNS(__Convert,\"Diff\",__18 - [Arabic])
+    VAR __18Min = MINX(FILTER(__18Table,[Diff] >= 0),[Diff])
+    VAR __18R = MAXX(FILTER(__18Table,[Diff] = __18Min),[Roman])
+    VAR __18A = MAXX(FILTER(__18Table,[Diff] = __18Min),[Arabic])
+\/\/ 19th digit
+    VAR __19 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A - __15A - __16A - __17A - __18A
+    VAR __19Table = ADDCOLUMNS(__Convert,\"Diff\",__19 - [Arabic])
+    VAR __19Min = MINX(FILTER(__19Table,[Diff] >= 0),[Diff])
+    VAR __19R = MAXX(FILTER(__19Table,[Diff] = __19Min),[Roman])
+    VAR __19A = MAXX(FILTER(__19Table,[Diff] = __19Min),[Arabic])
+\/\/ 20th digit
+    VAR __20 = __Value - __1A - __2A - __3A - __4A - __5A - __6A - __7A - __8A - __9A - __10A - __11A - __12A - __13A - __14A - __15A - __16A - __17A - __18A - __19A
+    VAR __20Table = ADDCOLUMNS(__Convert,\"Diff\",__20 - [Arabic])
+    VAR __20Min = MINX(FILTER(__20Table,[Diff] >= 0),[Diff])
+    VAR __20R = MAXX(FILTER(__20Table,[Diff] = __20Min),[Roman])
+    VAR __20A = MAXX(FILTER(__20Table,[Diff] = __20Min),[Arabic])
+RETURN
+    CONCATENATEX(
+        { __1R, __2R, __3R, __4R, __5R, __6R, __7R, __8R, __9R, __10R, __11R, __12R, __13R, __14R, __15R, __16R, __17R, __18R, __19R, __20R },
+        [Value]
+    )
+",
+    "Notes": "Converts Arabic numbers to Roman numerals.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/ROMAN/td-p/1249458",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "ARABIC",
+    "Aggregation": "Visible",
+    "ColumnLabel": "Roman numeral",
+    "Column": "Choose Column",
+    "DAXCode": 
+"
+    VAR __Roman = __AGGREGATION__(__COLUMN__)
+    VAR __Classic = 
+        DATATABLE(
+            \"Arabic\",INTEGER,
+            \"Roman\",STRING,
+            {
+                { 1, \"I\" },
+                { 4, \"IV\" },
+                { 5, \"V\" },
+                { 9, \"IX\" },
+                { 10, \"X\" },
+                { 40, \"XL\" },
+                { 50, \"L\" },
+                { 90, \"XC\" },
+                { 100, \"C\" },
+                { 400, \"CD\" },
+                { 500, \"D\" },
+                { 900, \"CM\" },
+                { 1000, \"M\" }
+            }
+        )
+    VAR __Convert = __Classic
+    VAR __Table =
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                GENERATESERIES(1,LEN(__Roman),1),
+                \"__Previous\",[Value] - 1,
+                \"__Next\",[Value] + 1,
+                \"__Roman\",MID(__Roman,[Value],1)
+            ),
+            \"__Arabic\",MAXX(FILTER(__Convert,[Roman] = [__Roman]),[Arabic])
+        )
+    VAR __Table1 = 
+        ADDCOLUMNS(
+            ADDCOLUMNS(
+                ADDCOLUMNS(
+                    __Table,
+                    \"__PreviousRoman\",MAXX(FILTER(__Table,[Value] = EARLIER([__Previous])),[__Roman]),
+                    \"__NextRoman\",MAXX(FILTER(__Table,[Value] = EARLIER([__Next])),[__Roman])
+                ),
+                \"__PreviousArabic\",MAXX(FILTER(__Convert,[Roman] = [__PreviousRoman]),[Arabic]),
+                \"__NextArabic\",MAXX(FILTER(__Convert,[Roman] = [__NextRoman]),[Arabic])
+            ),
+            \"__Final\",
+                SWITCH(TRUE(),
+                    [__NextArabic] > [__Arabic],0,
+                    [__PreviousArabic]<[__Arabic],[__Arabic]-[__PreviousArabic],
+                    [__Arabic]
+                )
+        )
+RETURN
+    SUMX(__Table1,[__Final])    
+",
+    "Notes": "Converts Roman numerals to Arabic numbers.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/ARABIC/td-p/1083214",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
+  },
+  {
+    "Configuration": "Excel",
+    "MeasureId": "Excel",
+    "MeasureGroup": "Excel",
+    "DisplayName": "SERIESSUM",
+    "ColumnLabel": "Index column",
+    "Column": "Choose Column",
+    "Column1Label": "Values column",
+    "Column1": "Choose Column",
+    "Parameter1Label": "x Value",
+    "Parameter1": "0.785398163",
+    "Parameter2Label": "Initial power (n)",
+    "Parameter2": "0",
+    "Parameter3Label": "Step to increase n",
+    "Parameter3": "2",
+    "DAXCode": 
+"
+    VAR __Table = 
+        ADDCOLUMNS(
+            '__TABLENAME__',
+            \"Product\",[__COLUMN1NAME__]*POWER(__PARAM1__,__PARAM2__+__PARAM3__*([__COLUMNNAME__]-1))
+        )
+RETURN
+    SUMX(__Table,[Product])    
+",
+    "Notes": "Many functions can be approximated by a power series expansion.",
+    "Hyperlink1": "https://community.powerbi.com/t5/Quick-Measures-Gallery/SERIESSUM/td-p/1076913",  
+    "Hyperlink1Text": "Quick Measure Gallery"  
   }
 ]
