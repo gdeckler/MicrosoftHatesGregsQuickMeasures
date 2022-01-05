@@ -109,7 +109,7 @@ Features and Fixes<br/>
 - Custom Measure Demo
 ### supportedmeasures.json
 - Updated 12/20/2021 to include all out-of-the-box quick measures in Power BI Desktop
-- Updated 12/27/2021 to include 37 new measures:
+- Updated 12/27/2021 to include 37 new measures (The "SVG" Update):
   - Percent of Total
   - Compound Annual Growth Rate
   - Rank per category
@@ -147,7 +147,7 @@ Features and Fixes<br/>
   - Is First Working Day of Month
   - Last Working Day of Month
   - Is Last Working Day of Month
-- Updated 1/4/2022 to include 35 new measures (Total 200 measures!):
+- Updated 1/4/2022 to include 35 new measures (Total 200 measures!) (The "Excel" Update):
   - First Working Day of Year
   - Is First Working Day of Year
   - Last Working Day of Year
