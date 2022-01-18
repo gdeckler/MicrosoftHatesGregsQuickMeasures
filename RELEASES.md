@@ -33,7 +33,10 @@ Possible Features:
 
 ## Future
 - Add automatic or manual "reload" button for the Model
-- Add ability to add custom unit conversion types?
+- Make Calculations pane expand and collapse groups/filter
+- Make Model columns pane expand and collapse groups/filter
+- Add Details pane for specifying AggregationType, etc.
+- Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
 - Add Data type for columns?
 - Include DAX Template JSON support from powerbi.tips? 
