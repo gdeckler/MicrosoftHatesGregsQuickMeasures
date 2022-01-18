@@ -1,68 +1,42 @@
 # RELEASES
 
-## Alpha
-Released: October 6th, 2021
-- 30+ formulas
+## Delta
+Planned Release:  June 2022<br/>
+Possible Features: 
+- Added editor for creating new custom measures
+- Added editing of existing measure definitions
+- Added a "Raw" button to view raw code before replacements happen
+- Added automatic reload for Calculations pane
+- Added support for measures as well as columns when choosing a column
+- DAX editor now supports returns and tabs
+- Added Data Category JSON field and GUI setting
+- Added Group field to categorize measure definitions
+- Added a table selector interface in DAX Source pane
+- Added ability to control tooltips and tooltips GUI
+- Added a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
+- Exposed Type field to visually verify if measure or column is created
+- Added Create and Set buttions with File dialogs to create or set Custom Measure File
+- Added the ability to remove custom measure definitions
+- Various minor fixes
+- Added Ascending/Descending control
+- Added Skip/Dense control
+- Added Yes/No control 
+- AND Slicer (Patient cohort)
+- AND Slicer (Count)
+- Speed improvements
 
-## Beta
-Planned Release:  December 2021<br/>
-Planned Features: 
-- Code clean-up and refactoring
-- 30 additional formulas
+## Future
+- Add automatic or manual "reload" button for the Model
+- Add ability to add custom unit conversion types?
+- Fix expansion of Notes pane
+- Add Data type for columns?
+- Include DAX Template JSON support from powerbi.tips? 
+- Add color formatting to DAX source code? 
+- Add intellisense? 
+- Add Days, Months, Quarters, Years control 
 
-Actual Release:   October 25th, 2021<br/>
-Features and Fixes<br/>
--	Fixed bug in Lookup Min/Max not switch between measures and columns - Note on 11/8/2021 uploaded a minor DAX fix for these
--	Fixed minor DAX code error in Week Ending and Week Starting
--	45 New Formulas
-- WEEKDAY
-- WEEKNUM
-- FIND or SEARCH
-- Near (Distance)
-- Near (Square)
-- Overlap
-- No Overlap
-- Fuzzy
-- Blowout!
-- The Mythical DAX Index
-- WEIBULL.DIST
-- WEIBULL.DIST.CUMULATIVE
-- NEGBINOM.DIST
-- NEGBINOM.DIST.CUMULATIVE
-- BINOM.DIST
-- BINOM.DIST.CUMULATIVE
-- BINOM.INV
-- HARMEAN
-- MULTINOMIAL
-- FISHER
-- FISHERINV
-- DEVSQ
-- Transitive Closure
-- For Loop
-- While Loop
-- Jarque-Bera
-- Compound Interest
-- Kendall's Tau
-- Is Prime
-- Unix2UTC
-- UTC2Unix
-- Is Leap Year
-- Days in Year
-- Day of Year
-- Date of Year
-- Greeting
-- Sequential
-- Shannon Entropy
-- Covariance
-- Running Product
-- DELTA
-- Macauly Duration
-- Previous Row
-- Gross Margin %
-- Revenue
-- Cost
-
-## Gamma
+## Past Releases
+### Gamma
 Planned Release:  February 2022<br/>
 Planned Features: 
 - Remove initial column selection pane
@@ -107,7 +81,7 @@ Features and Fixes<br/>
 - Dynamic Slicer Title
 - Measure Totals, The Final Word
 - Custom Measure Demo
-### supportedmeasures.json
+#### supportedmeasures.json
 - Updated 12/20/2021 to include all out-of-the-box quick measures in Power BI Desktop
 - Updated 12/27/2021 to include 37 new measures (The "SVG" Update):
   - Percent of Total
@@ -184,37 +158,64 @@ Features and Fixes<br/>
   - ROMAN
   - SERIESSUM
 
-## Delta
-Planned Release:  June 2022<br/>
-Possible Features: 
-- Added editor for creating new custom measures
-- Added editing of existing measure definitions
-- Added a "Raw" button to view raw code before replacements happen
-- Added automatic reload for Calculations pane
-- Added support for measures as well as columns when choosing a column
-- DAX editor now supports returns and tabs
-- Added Data Category JSON field and GUI setting
-- Added Group field to categorize measure definitions
-- Added a table selector interface in DAX Source pane
-- Added ability to control tooltips and tooltips GUI
-- Added a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
-- Exposed Type field to visually verify if measure or column is created
-- Added Create and Set buttions with File dialogs to create or set Custom Measure File
-- Added the ability to remove custom measure definitions
-- Various minor fixes
-- Added Ascending/Descending control
-- Added Skip/Dense control
-- Added Yes/No control 
-- AND Slicer (Patient cohort)
-- AND Slicer (Count)
-- Speed improvements
+### Beta
+Planned Release:  December 2021<br/>
+Planned Features: 
+- Code clean-up and refactoring
+- 30 additional formulas
 
-## Future
-- Add automatic or manual "reload" button for the Model
-- Add ability to add custom unit conversion types?
-- Fix expansion of Notes pane
-- Add Data type for columns?
-- Include DAX Template JSON support from powerbi.tips? 
-- Add color formatting to DAX source code? 
-- Add intellisense? 
-- Add Days, Months, Quarters, Years control 
+Actual Release:   October 25th, 2021<br/>
+Features and Fixes<br/>
+-	Fixed bug in Lookup Min/Max not switch between measures and columns - Note on 11/8/2021 uploaded a minor DAX fix for these
+-	Fixed minor DAX code error in Week Ending and Week Starting
+-	45 New Formulas
+- WEEKDAY
+- WEEKNUM
+- FIND or SEARCH
+- Near (Distance)
+- Near (Square)
+- Overlap
+- No Overlap
+- Fuzzy
+- Blowout!
+- The Mythical DAX Index
+- WEIBULL.DIST
+- WEIBULL.DIST.CUMULATIVE
+- NEGBINOM.DIST
+- NEGBINOM.DIST.CUMULATIVE
+- BINOM.DIST
+- BINOM.DIST.CUMULATIVE
+- BINOM.INV
+- HARMEAN
+- MULTINOMIAL
+- FISHER
+- FISHERINV
+- DEVSQ
+- Transitive Closure
+- For Loop
+- While Loop
+- Jarque-Bera
+- Compound Interest
+- Kendall's Tau
+- Is Prime
+- Unix2UTC
+- UTC2Unix
+- Is Leap Year
+- Days in Year
+- Day of Year
+- Date of Year
+- Greeting
+- Sequential
+- Shannon Entropy
+- Covariance
+- Running Product
+- DELTA
+- Macauly Duration
+- Previous Row
+- Gross Margin %
+- Revenue
+- Cost
+
+### Alpha
+Released: October 6th, 2021
+- 30+ formulas
