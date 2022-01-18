@@ -25,7 +25,8 @@ Possible Features:
 - Various minor fixes
 - Added Ascending/Descending control
 - Added Skip/Dense control
-- Added Yes/No control 
+- Added Yes/No control
+- Added "on-the-fly" measure creation
 - AND Slicer (Patient cohort) quick measure
 - AND Slicer (Count) quick measure
 - MC Aggregations quick measure
