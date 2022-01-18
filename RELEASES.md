@@ -3,9 +3,10 @@
 ## Delta
 Planned Release:  June 2022<br/>
 Possible Features: 
-- Added editor for creating new custom measures
+- Added editor for creating new custom measure definitions
 - Added editing of existing measure definitions
 - Added ability to edit labels
+- Added suggested code and comments for new measure definitions
 - Added a "Raw" button to view raw code before replacements happen
 - Added automatic reload for Calculations pane
 - Added support for measures as well as columns when choosing a column
