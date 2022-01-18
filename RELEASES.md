@@ -187,23 +187,33 @@ Features and Fixes<br/>
 ## Delta
 Planned Release:  June 2022<br/>
 Possible Features: 
-- Add editor for creating new custom measures
-- Add Data Category JSON field
-- Add a table selector interface in DAX Source pane
-- Add a "reload" button for Calculations pane
-- Add a "reload" button for the Model
-- Add a "Raw" button to view raw code before replacements happen
-- Add a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
-- Add support for measures as well as columns when choosing a column
-- More spacing between aggregation elements
-- Add Ascending/Descending control
-- Add True/False control or Yes/No control
-- Add Days, Months, Quarters, Years control
-- Add ability to control tooltips
-- Add Annotations?
-- Fix expansion of Notes pane
-- Include DAX Template JSON support from powerbi.tips?
-- Add color formatting to DAX source code?
-- Add intellisense?
+- Added editor for creating new custom measures
+- Added editing of existing measure definitions
+- Added a "Raw" button to view raw code before replacements happen
+- Added automatic reload for Calculations pane
+- Added support for measures as well as columns when choosing a column
+- DAX editor now supports returns and tabs
+- Added Data Category JSON field and GUI setting
+- Added Group field to categorize measure definitions
+- Added a table selector interface in DAX Source pane
+- Added ability to control tooltips and tooltips GUI
+- Added a "MaxMin" type for aggregation comboboxes that defaults to Maximum in stead of Minimum
+- Exposed Type field to visually verify if measure or column is created
+- Added Create and Set buttions with File dialogs to create or set Custom Measure File
+- Added the ability to remove custom measure definitions
+- Various minor fixes
+- Added Ascending/Descending control
+- Added Skip/Dense control
+- Added Yes/No control 
+- AND Slicer (Patient cohort)
+- AND Slicer (Count)
+- Speed improvements
+
+
+- Add automatic or manual "reload" button for the Model
 - Add ability to add custom unit conversion types?
-- Additional formulas
+- Fix expansion of Notes pane 
+- Include DAX Template JSON support from powerbi.tips? 
+- Add color formatting to DAX source code? 
+- Add intellisense? 
+- Add Days, Months, Quarters, Years control 
