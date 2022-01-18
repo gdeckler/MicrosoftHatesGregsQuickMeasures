@@ -28,10 +28,12 @@ Possible Features:
 - Added Yes/No control
 - Added "on-the-fly" measure creation
 - Preview tooltips
+- Speed improvements
+- 3 New measure definitions
 - AND Slicer (Patient cohort) quick measure
 - AND Slicer (Count) quick measure
 - MC Aggregations quick measure
-- Speed improvements
+
 
 ## Future
 - Add automatic or manual "reload" button for the Model
