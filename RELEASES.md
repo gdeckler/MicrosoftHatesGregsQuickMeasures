@@ -27,6 +27,7 @@ Possible Features:
 - Added Skip/Dense control
 - Added Yes/No control
 - Added "on-the-fly" measure creation
+- Preview tooltips
 - AND Slicer (Patient cohort) quick measure
 - AND Slicer (Count) quick measure
 - MC Aggregations quick measure
@@ -38,7 +39,6 @@ Possible Features:
 - Add Details pane for specifying AggregationType, etc.
 - Make Calculations pane expand and collapse groups/filter
 - Make Model columns pane expand and collapse groups/filter
-- Preview tooltips
 - Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
 - Add Data type for columns?
