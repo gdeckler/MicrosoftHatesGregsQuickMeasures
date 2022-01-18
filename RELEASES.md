@@ -19,6 +19,9 @@ Possible Features:
 - Exposed Type field to visually verify if measure or column is created
 - Added Create and Set buttions with File dialogs to create or set Custom Measure File
 - Added the ability to remove custom measure definitions
+- Added ability to hide/show Notes panel
+- Expanded DAX code editing text box
+- Added ability to set Display Folder
 - Various minor fixes
 - Added Ascending/Descending control
 - Added Skip/Dense control
