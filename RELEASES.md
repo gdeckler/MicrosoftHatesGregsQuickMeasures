@@ -209,10 +209,11 @@ Possible Features:
 - AND Slicer (Count)
 - Speed improvements
 
-
+## Future
 - Add automatic or manual "reload" button for the Model
 - Add ability to add custom unit conversion types?
-- Fix expansion of Notes pane 
+- Fix expansion of Notes pane
+- Add Data type for columns?
 - Include DAX Template JSON support from powerbi.tips? 
 - Add color formatting to DAX source code? 
 - Add intellisense? 
