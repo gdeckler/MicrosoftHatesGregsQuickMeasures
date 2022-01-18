@@ -5,6 +5,7 @@ Planned Release:  June 2022<br/>
 Possible Features: 
 - Added editor for creating new custom measures
 - Added editing of existing measure definitions
+- Added ability to edit labels
 - Added a "Raw" button to view raw code before replacements happen
 - Added automatic reload for Calculations pane
 - Added support for measures as well as columns when choosing a column
