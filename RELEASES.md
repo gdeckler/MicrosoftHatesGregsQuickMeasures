@@ -47,6 +47,9 @@ Planned Release:  June 2022<br/>
 - Make Calculations pane expand and collapse groups/filter
 - Make Model columns pane expand and collapse groups/filter
 - Add more controls
+- Add color picker control
+- Add date control
+- Add JSON attribute to specify control type?
 - Add advanced checkbox for seeing all controls
 - Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
