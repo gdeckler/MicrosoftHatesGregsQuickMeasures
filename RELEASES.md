@@ -2,7 +2,9 @@
 
 ## Delta
 Planned Release:  June 2022<br/>
-Possible Features: 
+
+Actual Release:   January 19th, 2022<br/>
+Features and Fixes:<br/>
 - Added editor for creating new custom measure definitions
 - Added editing of existing measure definitions
 - Added ability to edit labels
@@ -19,6 +21,7 @@ Possible Features:
 - Exposed Type field to visually verify if measure or column is created
 - Added Create and Set buttions with File dialogs to create or set Custom Measure File
 - Added the ability to remove custom measure definitions
+- Added automatic reload of Model pane with newly created measures/columns
 - Added ability to hide/show Notes panel
 - Expanded DAX code editing text box
 - Added ability to set Display Folder
@@ -36,7 +39,7 @@ Possible Features:
 
 
 ## Future
-- Add automatic or manual "reload" button for the Model
+Planned Release:  June 2022<br/>
 - Add ability to change order of controls
 - Add Details pane for specifying AggregationType, etc.
 - Make Calculations pane expand and collapse groups/filter
@@ -62,7 +65,7 @@ Planned Features:
 - Additional formulas
 
 Actual Release:   December 6th, 2021<br/>
-Features and Fixes<br/>
+Features and Fixes:<br/>
 - Removed initial column selection pane
 - Consolidated to a single, dynamic measure configuration pane
 - Preserved table name and column name when choosing a column in the column selection pane
@@ -181,7 +184,7 @@ Planned Features:
 - 30 additional formulas
 
 Actual Release:   October 25th, 2021<br/>
-Features and Fixes<br/>
+Features and Fixes:<br/>
 -	Fixed bug in Lookup Min/Max not switch between measures and columns - Note on 11/8/2021 uploaded a minor DAX fix for these
 -	Fixed minor DAX code error in Week Ending and Week Starting
 -	45 New Formulas
