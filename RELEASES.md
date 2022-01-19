@@ -41,6 +41,8 @@ Possible Features:
 - Add Details pane for specifying AggregationType, etc.
 - Make Calculations pane expand and collapse groups/filter
 - Make Model columns pane expand and collapse groups/filter
+- Add more controls
+- Add advanced checkbox for seeing all controls
 - Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
 - Add Data type for columns?
