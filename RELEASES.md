@@ -40,16 +40,18 @@ Features and Fixes:<br/>
 
 ## Future
 Planned Release:  June 2022<br/>
+- Include DAX Template JSON support from powerbi.tips? 
 - Add ability to change order of controls
 - Add Details pane for specifying AggregationType, etc.
+- Add drop down controls and DropdownList attributes to dynamically build drop down items 
 - Make Calculations pane expand and collapse groups/filter
 - Make Model columns pane expand and collapse groups/filter
 - Add more controls
 - Add advanced checkbox for seeing all controls
 - Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
+- SVG Wizard measure
 - Add Data type for columns?
-- Include DAX Template JSON support from powerbi.tips? 
 - Add color formatting to DAX source code? 
 - Add intellisense? 
 - Add Days, Months, Quarters, Years control 
