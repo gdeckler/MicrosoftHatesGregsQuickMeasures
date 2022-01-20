@@ -51,6 +51,8 @@ Planned Release:  June 2022<br/>
 - Add date control
 - Add JSON attribute to specify control type?
 - Add advanced checkbox for seeing all controls
+- Add ability to create custom controls
+- Add support for Calculation Groups
 - Add ability to add custom unit conversion types
 - Fix expansion of Notes pane
 - SVG Wizard measure
