@@ -2,20 +2,21 @@
 An external tool for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
 <img src="MSHGQM_Gamma.png" />
 ## Installation
-1. Download the <strong>MSHGQM_Gamma.zip</strong> file
-2. Extract the files in the .zip to some location, such as <strong>C:\Program Files (x86)\MicrosoftHatesGregsQuickMeasures</strong> I right-click the zip file and use Open with and then Windows Explorer and then you can simply copy the top directory and paste it to a new location.
-3. Go to where you extracted the files
-4. Copy <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong>
-5. Paste <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong> to your Power BI Desktop "External Tools" directory (<strong>C:\Program Files (x86)\Common Files\Microsoft Shared\Power BI Desktop\External Tools</strong>)
-6. Open <strong>MicrosoftHatesGregsQuickMeasures.pbitool.json</strong> in Notepad and edit the <strong>Path</strong> element to point to the executable file. Please note that you need to use double backslashes \\ for each backslash in the file path, so for example <strong>C:\\\\Program Files\\\\MSHGQM\\\\MicrosoftHatesGregsQuickmeasures.exe</strong>
-7. Launch Power BI and go to the "<strong>External Tools</strong>" tab
-8. Click "<strong>Microsoft Hates Greg</strong>" icon
+1. Download the <strong>MSHGQM Installer.msi</strong> file
+2. Run the msi file
+3. Next, Next, Next, Close
+4. Launch Power BI and go to the "<strong>External Tools</strong>" tab
+5. Click "<strong>MSHGQM</strong>" icon
+
+## Removal
+1. Run the msi file again to remove or use <strong>Add or remove programs</strong>
 
 ## How to Use
 1. Choose a quick measure in the <strong>Calculations</strong> pane
 2. In the quick measure's configuration pane, configure the measure
-3. Click "<strong>Generate DAX</strong>"
+3. Click "<strong>DAX</strong>"
 4. In the "<strong>Dax Measure</strong>" pane, click "<strong>Create</strong>" to create the measure or column in the chosen Table
+5. Watch this video: https://youtu.be/EQFnIRWspek
 
 ## Start Creating Your Own Quick Measures
 1. Create a JSON file with the appropriate fields. More information coming otherwise find the <strong>suppotedmeasures.json</strong> file for the format
