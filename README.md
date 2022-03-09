@@ -1,6 +1,7 @@
 # MSHGQM and MSHGQM Power Sort
 External tools for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
 <img src="MSHGQM_Gamma.png" />
+<img src="MSHGQMPowerSort.png" />
 ## Installation
 1. Download the <strong>MSHGQM Installer.msi</strong> and/or the <strong>Power Sort Installer.msi</strong> files
 2. Run the msi file
@@ -11,7 +12,10 @@ External tools for creating quick measures or columns in Power BI Desktop or tab
 ## Removal
 1. Run the msi file again to remove or use <strong>Add or remove programs</strong>
 
-## How to Use
+## How to Use MSHGQM Power Sort
+1. Follow the directions in the Notes pane.
+
+## How to Use MSHGQM
 1. Choose a quick measure in the <strong>Calculations</strong> pane
 2. In the quick measure's configuration pane, configure the measure
 3. Click "<strong>DAX</strong>"
