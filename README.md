@@ -7,7 +7,7 @@ External tools for creating quick measures or columns in Power BI Desktop or tab
 2. Run the msi file
 3. Next, Next, Next, Close
 4. Launch Power BI and go to the "<strong>External Tools</strong>" tab
-5. Click "<strong>MSHGQM</strong>" icon
+5. Click "<strong>MSHGQM</strong>" icon or <strong>MSHGQM Power Sort</strong> icon
 
 ## Removal
 1. Run the msi file again to remove or use <strong>Add or remove programs</strong>
