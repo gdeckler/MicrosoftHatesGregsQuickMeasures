@@ -1,8 +1,8 @@
-# Microsoft Hates Greg's Quick Measures
-An external tool for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
+# MSHGQM and MSHGQM Power Sort
+External tools for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
 <img src="MSHGQM_Gamma.png" />
 ## Installation
-1. Download the <strong>MSHGQM Installer.msi</strong> file
+1. Download the <strong>MSHGQM Installer.msi</strong> and/or the <strong>Power Sort Installer.msi</strong> files
 2. Run the msi file
 3. Next, Next, Next, Close
 4. Launch Power BI and go to the "<strong>External Tools</strong>" tab
