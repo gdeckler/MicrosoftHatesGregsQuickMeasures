@@ -1,9 +1,12 @@
-# MSHGQM and MSHGQM Power Sort
-External tools for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
+# MSHGQM, Power Sort and Metadata Mechanic
+MSHGQM is an external tool for creating quick measures or columns in Power BI Desktop or tabular model. Read more about it here <a href="https://www.linkedin.com/pulse/microsoft-hates-gregs-quick-measures-greg-deckler-microsoft-mvp-/">Microsoft Hates Greg's Quick Measures</a>
 <img src="MSHGQM_Gamma.png" />
+Power Sort lets you automatically find and set Sort By columns
 <img src="MSHGQMPowerSort.png" />
+Metadata Mechanica lets you automatically mass set metadata fields for tables, columns and measures.
+<img src="MSHGQMMetadataMechanic.png" />
 ## Installation
-1. Download the <strong>MSHGQM Installer.msi</strong> and/or the <strong>Power Sort Installer.msi</strong> files
+1. Download the <strong>MSHGQM Installer.msi</strong> and/or the <strong>Power Sort Installer.msi</strong> and/or the <strong>Metadata Mechanic.msi</strong>files
 2. Run the msi file
 3. Next, Next, Next, Close
 4. Launch Power BI and go to the "<strong>External Tools</strong>" tab
@@ -12,7 +15,10 @@ External tools for creating quick measures or columns in Power BI Desktop or tab
 ## Removal
 1. Run the msi file again to remove or use <strong>Add or remove programs</strong>
 
-## How to Use MSHGQM Power Sort
+## How to Use Power Sort
+1. Follow the directions in the Notes pane.
+
+## How to Use Metadata Mechanic
 1. Follow the directions in the Notes pane.
 
 ## How to Use MSHGQM
