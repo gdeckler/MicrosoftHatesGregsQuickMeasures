@@ -1,0 +1,405 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "usermeta": {
+    "deneb": {
+      "build": "1.4.0.0",
+      "metaVersion": 1,
+      "provider": "vegaLite",
+      "providerVersion": "5.4.0"
+    },
+    "interactivity": {
+      "tooltip": true,
+      "contextMenu": true,
+      "selection": false,
+      "highlight": false,
+      "dataPointLimit": 50
+    },
+    "information": {
+      "name": "Matrix Visual with Totals",
+      "description": "This is a matrix visual that includes totals as well as an \"extra\" total column.",
+      "author": "Gregory J. Deckler",
+      "uuid": "55eb1638-2707-4b14-a969-68503adfaa0f",
+      "generated": "2022-12-23T17:26:41.024Z",
+      "previewImageBase64PNG": "data:image/png;base64,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"
+    },
+    "dataset": [
+      {
+        "key": "__0__",
+        "name": "Index-",
+        "description": "An index column ensures that there is no de-duplication of data",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__1__",
+        "name": "Island",
+        "description": "Used for the rows of the matrix",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__2__",
+        "name": "Species",
+        "description": "Used for the columns of the matrix",
+        "type": "text",
+        "kind": "column"
+      },
+      {
+        "key": "__3__",
+        "name": "Beak Depth (mm)",
+        "description": "Not used, present for reference with Measure",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__4__",
+        "name": "Body Mass (g)",
+        "description": "Used for the extra total column",
+        "type": "numeric",
+        "kind": "column"
+      },
+      {
+        "key": "__5__",
+        "name": "Measure",
+        "description": "Used as the primary value column in matrix",
+        "type": "numeric",
+        "kind": "measure"
+      }
+    ]
+  },
+  "config": {
+    "view": {"stroke": "lightgrey"},
+    "font": "Segoe UI",
+    "arc": {},
+    "area": {
+      "line": true,
+      "opacity": 0.6
+    },
+    "bar": {},
+    "line": {
+      "strokeWidth": 3,
+      "strokeCap": "round",
+      "strokeJoin": "round"
+    },
+    "path": {},
+    "point": {
+      "filled": true,
+      "size": 75
+    },
+    "rect": {},
+    "shape": {},
+    "symbol": {
+      "strokeWidth": 1.5,
+      "size": 50
+    },
+    "text": {
+      "font": "Segoe UI",
+      "fontSize": 12,
+      "fill": "#605E5C"
+    },
+    "axis": {
+      "ticks": false,
+      "grid": false,
+      "domain": true,
+      "domainColor": "blue",
+      "tickBand": "extent",
+      "labelColor": "#605E5C",
+      "labelFontSize": 14,
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleColor": "#252423",
+      "titleFontSize": 16,
+      "titleFontWeight": "normal"
+    },
+    "axisQuantitative": {
+      "tickCount": 3,
+      "grid": true,
+      "gridColor": "#C8C6C4",
+      "gridDash": [1, 5],
+      "labelFlush": false
+    },
+    "axisX": {
+      "labelPadding": 5,
+      "labelAngle": 0
+    },
+    "axisY": {"labelPadding": 10},
+    "header": {
+      "titleFont": "wf_standard-font, helvetica, arial, sans-serif",
+      "titleFontSize": 16,
+      "titleColor": "#252423",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C"
+    },
+    "legend": {
+      "titleFont": "Segoe UI",
+      "titleFontWeight": "bold",
+      "titleColor": "#605E5C",
+      "labelFont": "Segoe UI",
+      "labelFontSize": 13.333333333333332,
+      "labelColor": "#605E5C",
+      "symbolType": "circle",
+      "symbolSize": 75
+    }
+  },
+  "data": {"name": "dataset"},
+  "layer": [
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "__3__",
+              "as": "sum_BD"
+            }
+          ],
+          "groupby": ["__1__", "__2__"]
+        },
+        {
+          "calculate": "datum.sum_BD - 2",
+          "as": "xMeasure"
+        }
+      ],
+      "mark": "rect",
+      "encoding": {
+        "y": {"field": "__1__"},
+        "x": {
+          "field": "__2__",
+          "orient": "top",
+          "title": "null",
+          "labels": "false"
+        },
+        "color": {"value": "white"}
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "__3__",
+              "as": "sum_BD"
+            }
+          ],
+          "groupby": ["__1__", "__2__"]
+        },
+        {
+          "calculate": "datum.sum_BD - 2",
+          "as": "xMeasure"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "tooltip": "true",
+        "fontSize": 14
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "axis": {
+            "grid": "true",
+            "title": null
+          }
+        },
+        "x": {
+          "field": "__2__",
+          "axis": {
+            "orient": "top",
+            "grid": "true",
+            "title": null,
+            "labelBaseline": "bottom"
+          }
+        },
+        "text": {
+          "field": "xMeasure",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "__3__",
+              "as": "sum_BD"
+            }
+          ],
+          "groupby": ["__1__", "__2__"]
+        },
+        {
+          "calculate": "datum.sum_BD - 2",
+          "as": "xMeasure"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "y": {"expr": "1.1 * height"},
+        "color": "firebrick",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "x": {
+          "field": "__2__",
+          "axis": {"orient": "top"}
+        },
+        "text": {
+          "aggregate": "sum",
+          "field": "xMeasure",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "__3__",
+              "as": "sum_BD"
+            }
+          ],
+          "groupby": ["__1__", "__2__"]
+        },
+        {
+          "calculate": "datum.sum_BD - 2",
+          "as": "xMeasure"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.1 * width"},
+        "color": "firebrick",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "y": {
+          "field": "__1__",
+          "axis": {
+            "grid": "true",
+            "tickBand": "extent"
+          }
+        },
+        "text": {
+          "aggregate": "sum",
+          "type": "quantitative",
+          "field": "xMeasure",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            {
+              "op": "sum",
+              "field": "__3__",
+              "as": "sum_BD"
+            }
+          ],
+          "groupby": ["__1__", "__2__"]
+        },
+        {
+          "calculate": "datum.sum_BD - 2",
+          "as": "xMeasure"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.1 * width"},
+        "y": {"expr": "1.1 * height"},
+        "color": "firebrick",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "sum",
+          "type": "quantitative",
+          "field": "xMeasure",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.1 * width"},
+        "y": -12,
+        "color": "firebrick",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {"value": "Total"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "x": -22,
+        "y": {"expr": "1.1 * height"},
+        "color": "firebrick",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {"value": "Total"}
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.35 * width"},
+        "color": "blue",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "y": {"field": "__1__"},
+        "text": {
+          "aggregate": "average",
+          "type": "quantitative",
+          "field": "__4__",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.35 * width"},
+        "y": {"expr": "1.1 * height"},
+        "color": "blue",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {
+          "aggregate": "average",
+          "type": "quantitative",
+          "field": "__4__",
+          "format": ",.2f"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "x": {"expr": "1.35 * width"},
+        "y": -12,
+        "color": "blue",
+        "fontSize": 14
+      },
+      "encoding": {
+        "text": {
+          "value": "Average Body Mass (g)"
+        }
+      }
+    }
+  ]
+}
